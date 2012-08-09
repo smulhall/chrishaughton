@@ -193,6 +193,7 @@ elseif(isset($_POST['submitted2']) && $_POST['project_name'] != 'null'){
 	?>
 	<h4>Upload the images in the order of preference that you would like them top be displayed:</h4>
 	<form action='' enctype='multipart/form-data' method='post'>
+	<input type='hidden' name='project_id' value='<?php echo "$project_id"; ?>' />
 	<table class='input_table'>
 		<tr><td>Main Image File:</td><td> <input type='file' name='upload' /></td></tr>
 		<tr><td>File Type:</td>
@@ -208,8 +209,7 @@ elseif(isset($_POST['submitted2']) && $_POST['project_name'] != 'null'){
 	
 	</table>
 	<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
-	<input type='hidden' name='category' value='<?php echo "$category;" ?>' />
-	<input type='hidden' name='project_id' value='<?php echo "$project_id;" ?>' />
+	<input type='hidden' name='category' value='<?php echo "$category"; ?>' />	
 	<input type='hidden' name='submitted3' value='true' />
 	</form>
 	

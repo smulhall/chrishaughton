@@ -92,8 +92,15 @@ public class PortfolioServiceImpl implements PortfolioService {
 		ofy().transactNew(new VoidWork(){
 			@Override
 			public void vrun() {
+				// adds image to DB
+				Key<Picture> result = (Key<Picture>) ofy().save().entity(image).now();
+				// returns newly created image
+				Picture picture = (Picture) ofy().load().key(result).get();
+				// returns relevent project
 				Project proj = ofy().load().key(Key.create(Project.class, project.getId())).get();
-				proj.addImage(image);
+				// adds image to project
+				proj.addImage(picture);
+				// updates project in DB
 				ofy().save().entity(proj).now();
 			}		
 		});

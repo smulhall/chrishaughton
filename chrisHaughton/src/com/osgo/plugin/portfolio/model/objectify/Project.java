@@ -12,6 +12,8 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 @Entity
 public class Project {
 
@@ -94,7 +96,9 @@ public class Project {
 	public List<Picture> getImages(){
 		List<Picture> results = new ArrayList<Picture>(images.size());
 		for(Ref<Picture> image : images){
-			results.add(image.get());
+			
+			Picture picture = ofy().load().key(image.getKey()).get();
+			results.add(picture);
 		}
 		return results;
 	}
@@ -106,7 +110,9 @@ public class Project {
     }
     
     public void addImage(Picture image){
-    	Ref<Picture> ref = Ref.create(Key.create(Picture.class, image.getId()), image);
+    	
+    	Key<Picture> key = Key.create(Picture.class, image.getId());
+    	Ref<Picture> ref = Ref.create(key, image);
     	images.add(ref);
     }
 

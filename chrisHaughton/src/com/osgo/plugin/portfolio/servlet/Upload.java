@@ -85,7 +85,7 @@ public class Upload extends HttpServlet {
 			  if (item.isFormField()) {
 			    log.warning("Got a form field: " + item.getFieldName());
 			    StringWriter writer = new StringWriter();
-			    if(item.getFieldName().equals("proj")){
+			    if(item.getFieldName().equals("project_id")){
 			    	IOUtils.copy(stream, writer);
 			    	String theString = writer.toString();
 				    String projId = URLDecoder.decode(theString);

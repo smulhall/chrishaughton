@@ -3,6 +3,8 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $category = $portfolioService-> getCategory(1);
+$projects = $portfolioService-> getProjectList();
+$images = $projects[2]-> getImages();
 
 ?>
 
@@ -57,7 +59,7 @@ $category = $portfolioService-> getCategory(1);
 		<img id='social_icons' src='/model/images/other/social_icons.png' />
 	</div>
 	<div id="central_panel">
-		<img src="../model/images/art/181.jpg"> <!--  make dynamic based on thumbnail selection -->
+		<img src="<?php echo $images[0]-> getUrl();?>"> <!--  make dynamic based on thumbnail selection -->
 	</div>
 	<div id="rhs_panel">
 		<div id="thumb_wrapper"> <!--  make dynamic based on thumbnails returned -->
