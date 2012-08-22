@@ -5,7 +5,7 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $category = $portfolioService-> getCategory(1);
 $projects = $portfolioService-> getProjectList();
 $images = $projects[2]-> getImages();
-
+//test
 ?>
 
 
