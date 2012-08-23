@@ -1,5 +1,7 @@
 package com.osgo.plugin.portfolio.model.objectify;
 
+import java.util.List;
+
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
@@ -21,6 +23,8 @@ public class Picture {
 	private String url;
 	private String thumbUrl;
 	private String alt;
+	private List<String> info;
+	private List<String> links;
 	
 	private Key<Project> project;
 	
@@ -54,12 +58,12 @@ public class Picture {
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 
 		this.url = imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getKey()));
-		//this.thumbUrl = imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getKey()).imageSize(1));
+		this.thumbUrl = this.url+"=s64";
 	}
 	
 	public String getThumb(){
-
-		return this.thumbUrl;
+		String thumb = this.url + "=s64";
+		return thumb;
 	}
 	
 	public String getAlt() {
@@ -73,6 +77,18 @@ public class Picture {
 	}
 	public void setProject(Key<Project> project) {
 		this.project = project;
+	}
+	public List<String> getInfo() {
+		return info;
+	}
+	public void setInfo(List<String> info) {
+		this.info = info;
+	}
+	public List<String> getLinks() {
+		return links;
+	}
+	public void setLinks(List<String> links) {
+		this.links = links;
 	}
 	
 	

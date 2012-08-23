@@ -1,17 +1,21 @@
 <?php 
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
+$currCategoryId = $_GET['c'];
+$currProjId = $_GET['p'];
 $currImageId = $_GET['i'];
+//echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
-$category = $portfolioService-> getCategory(1);
-echo "category = $category<br />";
-$projects = $portfolioService-> getProjectList();
-echo "projects = $projects<br />";
-$images = $projects[1]-> getImages();
-echo "images = $images<br />";
-$image = $projects[1]-> getImageById($currImageId);
-echo "image = $image<br />";
+
+//generic 
+$projects = $portfolioService-> getProjectList(); //numerical array of all projects
+
+//individual selection
+$category = $portfolioService-> getCategory($currCategoryId);
+$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
+$images = $project-> getImages(); //numerical array of all images in this single project
+$image = $project-> getImageById($currImageId); //particular image user has clicked
 
 ?>
 
@@ -33,23 +37,35 @@ echo "image = $image<br />";
 	</div>
 	
 	
-	<!-- ======================== Header ========================== -->	
+	<!-- ======================== LHS Menu ========================== -->	
 	<?php include 'includes/leftMenu.php'; ?>
 	
 	
-		
+	<!-- ======================== Central Panel ========================== -->	
 	<div id="central_panel">
 		<img src="<?php echo $image-> getUrl();?>"> 
 	</div>
+	
+	<!-- ======================== RHS Panel ========================== -->
 	<div id="rhs_panel">
+		
 		<div id="thumb_wrapper"> 
-			<a href='/views/category.php?c=<?php echo $category; ?>&p=<?php echo $projects[1]-> getId();?>&i=<?php echo $images[$c]-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $images[0]-> getThumb();?>"></a>
+			<?php
+			foreach($projects as $proj){
+				$images = $project-> getImages(); //numerical array of all images in this single project
+				$image = $project-> getImageById($currImageId); //particular image user has clicked
+			?>
+				<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $images[0]-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $images[0]-> getThumb();?>" /></a>
+			<?php 
+			} 
+			?>
 		</div>
+		
 		<div id="prev_next">
-			<a id="prev_ts" href="index.php?pg=ill&amp;proj=131&amp;th=181&amp;img=219&amp;curr_ts=1">
+			<a id="prev_ts" href="#">
 				<img class="arrow" src="/images/prev.jpg">
 			</a>
-			<a id="next_ts" href="index.php?pg=ill&amp;proj=131&amp;th=181&amp;img=219&amp;curr_ts=3">
+			<a id="next_ts" href="#">
 				<img class="arrow" src="/images/next.jpg">
 			</a>
 		</div>
@@ -62,11 +78,14 @@ echo "image = $image<br />";
 			
 			
 			<div id="info">
-			
+				<p>line1</p>
+				<p>line2</p>
+				<p>line3</p>
 			</div>
 			
-			<div id="links">
 			
+			<div id="links">
+				<a target='_blank' href='#'>link 1</a>;
 			</div>
 			
 			

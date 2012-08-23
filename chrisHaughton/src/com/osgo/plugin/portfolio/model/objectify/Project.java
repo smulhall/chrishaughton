@@ -22,7 +22,7 @@ public class Project {
 	private String title;
 	private Key<Category> category;	
 	private List<Ref<Picture>> images = new ArrayList<Ref<Picture>>();
-	
+
 	public Project(){}
 	
 	public Project(Map<String, Object> input){
@@ -122,6 +122,19 @@ public class Project {
 
 	public void setCategory(Key<Category> category) {
 		this.category = category;
+	}
+	
+	public Picture getImageById(long id){
+		
+		for(Ref<Picture> image : images){
+			
+			if(id==image.getKey().getId()){
+				Picture picture = ofy().load().key(image.getKey()).get();
+				return picture;
+			}
+		}
+		
+		return null;
 	}
 	
 }
