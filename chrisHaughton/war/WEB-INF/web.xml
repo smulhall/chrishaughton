@@ -45,4 +45,15 @@
          <url-pattern>/upload</url-pattern>
     </servlet-mapping>
  
+    <servlet>
+         <servlet-name>NewCategory</servlet-name>
+         <servlet-class>com.osgo.plugin.portfolio.servlet.NewCategory</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+         <servlet-name>NewCategory</servlet-name>
+         <url-pattern>/newcat</url-pattern>
+    </servlet-mapping>
+    
+    
 </web-app>

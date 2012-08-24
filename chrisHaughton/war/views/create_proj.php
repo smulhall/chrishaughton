@@ -1,3 +1,11 @@
+<?php
+import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+
+$portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
+
+?>
+
 <div id='central_panel'>
 
 	<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
@@ -12,14 +20,12 @@
 	<tr>
 	<td>Category:</td>
 	<td><select name='category'>
-	<option value='ill'>illustration</option>
-	<option value='ani'>animation</option>
-	<option value='sk'>sketch</option>
-	<option value='bks'>book</option>
-	<option value='prj'>project</option>
-	<option value='mov'>movie</option>
-	<option value='app'>app</option>
-	<option value='ft'>fair trade</option>
+	<?php 
+		foreach ($categories as $category) {
+			?><option value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
+			<?php
+		}
+	?>
 	</select></td>
 	</tr>
 	

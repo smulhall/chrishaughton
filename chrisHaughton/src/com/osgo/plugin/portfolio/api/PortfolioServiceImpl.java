@@ -71,16 +71,34 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public Project addProject(final Map<String, Object> input) {
+		
+		final Category category;
+		String idStr = (String) input.get("category");
+		if(idStr!=null){
+			category = ofy().load().key(Key.create(Category.class, Long.parseLong(idStr))).get();
+		} else {
+			category = null;
+		}
+		
 		Project result = ofy().transactNew(new Work<Project>(){
 			@SuppressWarnings("unchecked")
 			@Override
 			public Project run() {
 				String title = (String) input.get("title");
 				Project project = new Project();
+				if(category!=null){
+					project.setCategory((Key.create(Category.class, category.getId())));
+				}
 				project.setTitle(title);
 				Key<Project> result = ofy().save().entity(project).now();
-				Project obj = ofy().load().key(result).get();
-				return obj;		
+				project = ofy().load().key(result).get();			
+				
+				if(category!=null){
+					category.addProject(project);
+					ofy().save().entities(category).now();
+				}
+				
+				return project;		
 			}		
 		});
 		return result;
@@ -109,8 +127,8 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public List<Category> getCategoryList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category> results = ofy().load().type(Category.class).list();
+		return results;
 	}
 
 	@Override
@@ -126,9 +144,20 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
-	public Key<Category> addCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category addCategory(final Map<String, Object> input) {
+		Category result = ofy().transactNew(new Work<Category>(){
+			@SuppressWarnings("unchecked")
+			@Override
+			public Category run() {
+				String title = (String) input.get("title");
+				Category category = new Category();
+				category.setTitle(title);
+				Key<Category> result = ofy().save().entity(category).now();
+				Category obj = ofy().load().key(result).get();
+				return obj;		
+			}		
+		});
+		return result;
 	}
 
 	@Override
@@ -136,8 +165,5 @@ public class PortfolioServiceImpl implements PortfolioService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 		
 }

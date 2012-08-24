@@ -22,7 +22,7 @@ public interface PortfolioService {
 	List<Category> getCategoryList();
 	Category getCategory(long id);
 	void deleteCategory(long id);
-	Key<Category> addCategory(Category category);
+	Category addCategory(Map<String, Object> input);
 	Category updateCategory(Category category);
 	
 	
