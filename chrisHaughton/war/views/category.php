@@ -17,6 +17,7 @@ $project = $portfolioService-> getProject($currProjId); //object of singular pro
 $images = $project-> getImages(); //numerical array of all images in this single project
 $image = $project-> getImageById($currImageId); //particular image user has clicked
 
+
 ?>
 
 
@@ -52,8 +53,7 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 		<div id="thumb_wrapper"> 
 			<?php
 			foreach($projects as $proj){
-				$images = $project-> getImages(); //numerical array of all images in this single project
-				$image = $project-> getImageById($currImageId); //particular image user has clicked
+				$images = $proj-> getImages(); //numerical array of all images in this single project
 			?>
 				<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $images[0]-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $images[0]-> getThumb();?>" /></a>
 			<?php 
@@ -78,14 +78,24 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 			
 			
 			<div id="info">
-				<p>line1</p>
-				<p>line2</p>
-				<p>line3</p>
+				<?php $info = $image-> getInfo();
+				foreach($info as $info1){
+				?>
+					<p><?php echo $info1?></p>
+				<?php
+				}
+				?>
 			</div>
 			
 			
 			<div id="links">
-				<a target='_blank' href='#'>link 1</a>;
+				<?php $links = $image-> getLinks();
+				foreach($links as $links1){
+				?>
+					<a target='_blank' href='<?php echo $links1 ?>'><?php echo $links1 ?></a>
+				<?php
+				}
+				?>	
 			</div>
 			
 			
@@ -96,17 +106,16 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 					$no_of_elements = count($images);
 					if($no_of_elements > 1){ //test to see if there are more images in this project
 						$c=0;
-						foreach($images as $key => $value){
+						foreach($images as $img){
 							if($c >= 1){
 								?>
-									<a href='/views/category.php?c=<?php echo $category; ?>&p=<?php echo $projects[1]-> getId();?>&i=<?php echo $images[$c]-> getId(); ?>'><img class='rhs_thumb' src='<?php echo $images[$c]-> getUrl().'=s64'; ?>' /></a>
-								<?php 
-							}
+								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumb();?>" /></a>
+							<?php
+							} 
 							$c++;
 						}
-					}
-					?>	
-					
+					} 
+					?>
 				</div>	
 			</div>
 			
