@@ -51,9 +51,6 @@ public class Upload extends HttpServlet {
 	
     public void doPost(HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException{
-    	   		
-	// Get the file service
-	FileService fileService = FileServiceFactory.getFileService();
 
 	/**
 	 * Set up properties of your new object
@@ -63,8 +60,7 @@ public class Upload extends HttpServlet {
 	 */
 	
 	
-	ServletFileUpload upload = new ServletFileUpload();
-    byte[] attachmentData = null;
+    	ServletFileUpload upload = new ServletFileUpload();
     
         res.setContentType("text/plain");
         PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
