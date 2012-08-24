@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -48,9 +51,6 @@ public class Upload extends HttpServlet {
 	
     public void doPost(HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException{
-    	   		
-	// Get the file service
-	FileService fileService = FileServiceFactory.getFileService();
 
 	/**
 	 * Set up properties of your new object
@@ -60,10 +60,14 @@ public class Upload extends HttpServlet {
 	 */
 	
 	
-	ServletFileUpload upload = new ServletFileUpload();
-    byte[] attachmentData = null;
+    	ServletFileUpload upload = new ServletFileUpload();
     
         res.setContentType("text/plain");
+        PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
+        Project project = null;
+        List<String> info = new ArrayList<String>();
+        List<String> links = new ArrayList<String>();
+        Map<String, BlobKey> images = new HashMap<String, BlobKey>();
 
         FileItemIterator iterator = null;
 		try {
@@ -76,8 +80,8 @@ public class Upload extends HttpServlet {
         try {
         	
         	// get Project to add image to
-        	PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
-        	Project project = null;
+        	
+        	
 			while (iterator.hasNext()) {
 			  FileItemStream item = iterator.next();
 			  InputStream stream = item.openStream();
@@ -85,13 +89,19 @@ public class Upload extends HttpServlet {
 			  if (item.isFormField()) {
 			    log.warning("Got a form field: " + item.getFieldName());
 			    StringWriter writer = new StringWriter();
-			    if(item.getFieldName().equals("project_id")){
-			    	IOUtils.copy(stream, writer);
-			    	String theString = writer.toString();
+			    IOUtils.copy(stream, writer);
+		    	String theString = writer.toString();
+			    if(item.getFieldName().equals("project_id")){			    	
 				    String projId = URLDecoder.decode(theString);
 				    Long id = Long.parseLong(projId);
 				    project = portfolioService.getProject(id);
-			    } 
+			    } else {
+			    	if(item.getFieldName().contains("display_text")){
+			    		info.add(theString);
+			    	} else if(item.getFieldName().contains("link")){
+			    		links.add(theString);
+			    	}
+			    }
 			  } else {
 				  if(project==null){
 					  res.getWriter().println("Error: Project not saved in DB.");
@@ -99,11 +109,11 @@ public class Upload extends HttpServlet {
 				  } else {
 				    log.warning("Got an uploaded file: " + item.getFieldName() +
 				                ", name = " + item.getName());
-
-				    byte[] data = IOUtils.toByteArray(item.openStream());
-					Picture image = createBlob(data, res);
 				    
-					portfolioService.addImage(image, project);
+				    byte[] data = IOUtils.toByteArray(item.openStream());
+				    
+				    BlobKey blobKey = createBlob(data, res);
+				    images.put(item.getFieldName(), blobKey);
 					
 				  }
 			  }
@@ -114,11 +124,22 @@ public class Upload extends HttpServlet {
 		} catch (FileUploadException e) {
 			res.getWriter().println("Error: Occurred during upload: "+e.getMessage());
 			res.setStatus(500);
-		}			    
+		}	
+        
+		Picture picture = new Picture();
+		BlobKey imageKey = images.get("main");
+		picture.setKey(imageKey);
+		BlobKey thumbKey = images.get("thumb");
+		picture.setThumbKey(thumbKey);
+		picture.intUrl();
+		picture.setInfo(info);
+		picture.setLinks(links);
+        
+        portfolioService.addImage(picture, project);
     	
     }
     
-    private Picture createBlob(byte[] data, HttpServletResponse response) throws IOException{
+    private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{
 		  // Get a file service
 		  FileService fileService = FileServiceFactory.getFileService();
 
@@ -146,11 +167,7 @@ public class Upload extends HttpServlet {
 		  // Now read from the file using the Blobstore API
 		  BlobKey blobKey = fileService.getBlobKey(file);
 		  
-		  Picture picture = new Picture();
-		  picture.setKey(blobKey);
-		  picture.intUrl();
-		  
-		  return picture;
+		  return blobKey;
 
 	}
 }
