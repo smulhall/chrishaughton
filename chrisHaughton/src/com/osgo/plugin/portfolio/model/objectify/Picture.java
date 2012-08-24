@@ -22,6 +22,7 @@ public class Picture {
 	private BlobKey key;
 	private String url;
 	private String thumbUrl;
+	private BlobKey thumbKey;
 	private String alt;
 	private List<String> info;
 	private List<String> links;
@@ -54,16 +55,10 @@ public class Picture {
 	}
 	
 	public void intUrl(){
-		BlobstoreService service = BlobstoreServiceFactory.getBlobstoreService();
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
 
 		this.url = imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getKey()));
-		this.thumbUrl = this.url+"=s64";
-	}
-	
-	public String getThumb(){
-		String thumb = this.url + "=s64";
-		return thumb;
+		this.setThumbUrl(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getThumbKey())));
 	}
 	
 	public String getAlt() {
@@ -89,6 +84,18 @@ public class Picture {
 	}
 	public void setLinks(List<String> links) {
 		this.links = links;
+	}
+	public BlobKey getThumbKey() {
+		return thumbKey;
+	}
+	public void setThumbKey(BlobKey thumbKey) {
+		this.thumbKey = thumbKey;
+	}
+	public String getThumbUrl() {
+		return thumbUrl;
+	}
+	public void setThumbUrl(String thumbUrl) {
+		this.thumbUrl = thumbUrl;
 	}
 	
 	
