@@ -4,20 +4,25 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 $currCategoryId = $_GET['c'];
 $currProjId = $_GET['p'];
 $currImageId = $_GET['i'];
-//echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
-//generic 
-$projects = $portfolioService-> getProjectList(); //numerical array of all projects
-
-//individual selection
+//from model
 $category = $portfolioService-> getCategory($currCategoryId);
-$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
+$projects = $portfolioService-> getProjectList(); //numerical array of all projects
+if(isset($currProjId)){
+	$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
+}else{
+	$project = $projects[0];
+}
 $images = $project-> getImages(); //numerical array of all images in this single project
-$image = $project-> getImageById($currImageId); //particular image user has clicked
+if(isset($currProjId)){
+	$image = $project-> getImageById($currImageId); //particular image user has clicked
+} else {
+	$image = $project-> getImages()[0];
+}
 
-
+$links = $image-> getLinks();
 ?>
 
 
@@ -53,9 +58,11 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 		<div id="thumb_wrapper"> 
 			<?php
 			foreach($projects as $proj){
-				$images = $proj-> getImages(); //numerical array of all images in this single project
+				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
 			?>
-				<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $images[0]-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $images[0]-> getThumb();?>" /></a>
+				<!--  <a href="#"><img class="rhs_thumb" src="#" /></a> -->
+				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>
+				
 			<?php 
 			} 
 			?>
@@ -89,7 +96,7 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 			
 			
 			<div id="links">
-				<?php $links = $image-> getLinks();
+				<?php 
 				foreach($links as $links1){
 				?>
 					<a target='_blank' href='<?php echo $links1 ?>'><?php echo $links1 ?></a>
@@ -103,6 +110,7 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 			<div id="more_images">
 				<div id='more_images_thumb_wrapper'>
 					<?php
+					
 					$no_of_elements = count($images);
 					if($no_of_elements > 1){ //test to see if there are more images in this project
 						$c=0;
@@ -110,7 +118,7 @@ $image = $project-> getImageById($currImageId); //particular image user has clic
 							if($c >= 1){
 								?>
 								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumb();?>" /></a>
-							<?php
+								<?php
 							} 
 							$c++;
 						}
