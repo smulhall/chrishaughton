@@ -59,11 +59,13 @@ $links = $image-> getLinks();
 			<?php
 			foreach($projects as $proj){
 				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
+				if($imagesCurrProj[0]!=null){
 			?>
-				<!--  <a href="#"><img class="rhs_thumb" src="#" /></a> -->
-				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>
-				
+				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>">
+					<img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" />
+				</a>	
 			<?php 
+				}
 			} 
 			?>
 		</div>
