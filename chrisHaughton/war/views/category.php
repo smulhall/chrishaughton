@@ -58,7 +58,10 @@ $links = $image-> getLinks();
 		<div id="thumb_wrapper"> 
 			<?php
 			foreach($projects as $proj){
+				//print_r($proj);
 				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
+				//echo "<br />";
+				//print_r($imagesCurrProj);
 				if($imagesCurrProj[0]!=null){
 			?>
 				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>">
