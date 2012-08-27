@@ -60,6 +60,9 @@ $links = $image-> getLinks();
 			foreach($projects as $proj){
 				//print_r($proj);
 				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
+				//print_r($imagesCurrProj[0]);
+				$thumbUrl = $imagesCurrProj[0]-> getThumbUrl();
+				//echo "<br />thumbUrl = ".$thumbUrl;
 				//echo "<br />";
 				//print_r($imagesCurrProj);
 				if($imagesCurrProj[0]!=null){
@@ -114,15 +117,18 @@ $links = $image-> getLinks();
 			
 			<div id="more_images">
 				<div id='more_images_thumb_wrapper'>
+					<h4>More Images:</h4>
 					<?php
-					
 					$no_of_elements = count($images);
+					//echo "elements = ".$no_of_elements."<br />";
+					//print_r($images);
 					if($no_of_elements > 1){ //test to see if there are more images in this project
 						$c=0;
 						foreach($images as $img){
 							if($c >= 1){
+								//echo $c." // ";
 								?>
-								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumb();?>" /></a>
+								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a>
 								<?php
 							} 
 							$c++;

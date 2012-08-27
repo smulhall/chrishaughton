@@ -24,7 +24,7 @@ $categories = $portfolioService-> getCategoryList();
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
-	<?php include 'includes/leftMenu.php'; ?>
+	<?php include '../views/includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
@@ -32,7 +32,7 @@ $categories = $portfolioService-> getCategoryList();
 	<div id='central_panel'>
 	
 		<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
-		<form action='/forms/create_proj.php' method='post'>
+		<form action='/forms/process_files/create_proj.php' method='post'>
 		<table class='input_table'>
 		
 		<tr>

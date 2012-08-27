@@ -1,7 +1,3 @@
-<?php
-include_once("model/Model.php");
-?>
-
 <div id='central_panel'>
 <?php 
 
@@ -164,7 +160,7 @@ elseif(isset($_POST['submitted5'])){
 	
 ?>	
 	<h4>Please enter each of the <?php echo $no_of_links?> links associated with this image:</h4>
-	<form action='' method='post'>
+	<form action='/upload' method='post'>
 	<table class='input_table'>
 	<?php 
 	for($i=1; $i<=$no_of_links; $i++){
@@ -192,7 +188,7 @@ elseif(isset($_POST['submitted2']) && $_POST['project_name'] != 'null'){
 	
 	?>
 	<h4>Upload the images in the order of preference that you would like them top be displayed:</h4>
-	<form action='' enctype='multipart/form-data' method='post'>
+	<form action='/upload' enctype='multipart/form-data' method='post'>
 	<input type='hidden' name='project_id' value='<?php echo "$project_id"; ?>' />
 	<table class='input_table'>
 		<tr><td>Main Image File:</td><td> <input type='file' name='upload' /></td></tr>
@@ -209,7 +205,8 @@ elseif(isset($_POST['submitted2']) && $_POST['project_name'] != 'null'){
 	
 	</table>
 	<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
-	<input type='hidden' name='category' value='<?php echo "$category"; ?>' />	
+	<input type='hidden' name='category' value='<?php echo "$category"; ?>' />
+	
 	<input type='hidden' name='submitted3' value='true' />
 	</form>
 	
@@ -221,7 +218,7 @@ elseif (isset($_POST['submitted1']) && $_POST['project_category'] != 'null'){
 	$category_projects = $this->model->get_projects_in_category($category); //array of all projects in this category
 ?>
 	<h4>Select the project that you would like to upload images for:</h4>
-	<form action='' method='post'>
+	<form action='/upload' method='post'>
 	<table class='input_table'>
 		
 		<tr><td>Project:</td>
@@ -252,7 +249,7 @@ else{
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ?>
 	<h4>Select the category of the project that you would like to upload images for:</h4>
-	<form action='' method='post'>
+	<form action='/upload' method='post'>
 	<table class='input_table'>
 		
 		<tr><td>Category:</td>
@@ -286,7 +283,7 @@ if(isset($_POST['submitted4'])){
 	$proj_id = $_POST['proj'];
 	?>
 	<h4>Please Enter the number of links associated with this image:</h4>
-	<form action='' method='post'>
+	<form action='/upload' method='post'>
 	<table class='input_table'>
 	<tr><td>No of links:</td><td> <input  name ='no_of_links' type='text' /></td></tr>
 	<tr><td></td><td><input type='submit' /></td></tr>

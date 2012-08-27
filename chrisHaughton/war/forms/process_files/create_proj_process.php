@@ -1,8 +1,16 @@
 <?php
+
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
+// gettting attributes from form POST
+$projectDetails['title'] = $_POST['title'];
+$projectDetails['category'] = $_POST['category'];
+
+// creating the service and accessing the model
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
-$categories = $portfolioService-> getCategoryList();
+$project = $portfolioService-> addProject($projectDetails);
+
+$id = $project->getId();
 
 ?>
 
@@ -24,45 +32,15 @@ $categories = $portfolioService-> getCategoryList();
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
-	<?php include '../views/includes/leftMenu.php'; ?>
+	<?php include '../../views/includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
 	<div id='central_panel'>
 	
-		<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
-		<form action='/forms/process_files/create_proj_process.php' method='post'>
-		<table class='input_table'>
-		
-		<tr>
-		<td>Project Name:</td>
-		<td><input type='text' name='title' /></td>
-		</tr>
-		
-		<tr>
-		<td>Category:</td>
-		<td><select name='category'>
-		<?php 
-			foreach ($categories as $category) {
-				?><option value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
-				<?php
-			}
-		?>
-		</select></td>
-		</tr>
-		
-		
-		<tr>
-		<td></td>
-		<td><input type='submit' /></td>
-		</tr>
-				
-		</table>
-		
-		<input type='hidden' name='pg' value='crproj' />
-		
-		</form>
+		<p><a href='/forms/upload_image.php?proj=<?php echo $id; ?>'>upload an IMAGE for this project?</a></p>
+		<p><a href='/forms/upload_video.php?proj=<?php echo $id; ?>'>upload a VIDEO for this project?</a></p>
 	
 	</div> <!--  close central_panel -->
 
@@ -77,3 +55,4 @@ $categories = $portfolioService-> getCategoryList();
 
 
 		
+

@@ -32,7 +32,7 @@ public class Category {
 	public List<Project> getProjects(){
 		List<Project> results = new ArrayList<Project>(projects.size());
 		for(Ref<Project> project : projects){
-			results.add(project.get());
+			results.add(project.get()); //TODO: fix this ya fecker!!!!
 		}
 		return results;
 	}
