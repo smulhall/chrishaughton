@@ -8,13 +8,13 @@ echo "<br />";
 $projects = $categories[0]-> getProjects();
 print_r($projects);
 echo "<br />";
-$images = $projects-> getImages();
+$images = $projects[0]-> getImages();
 print_r($images);
 echo "<br />";
-$info = $images-> getInfo();
+$info = $images[0]-> getInfo();
 print_r($info);
 echo "<br />";
-$links = $images-> getLinks();
+$links = $images[0]-> getLinks();
 print_r($links);
 echo "<br />";
 

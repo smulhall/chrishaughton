@@ -96,7 +96,6 @@ public class Project {
 	public List<Picture> getImages(){
 		List<Picture> results = new ArrayList<Picture>(images.size());
 		for(Ref<Picture> image : images){
-			
 			Picture picture = ofy().load().key(image.getKey()).get();
 			results.add(picture);
 		}

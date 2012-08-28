@@ -8,6 +8,8 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 @Entity
 public class Category {
 
@@ -31,8 +33,9 @@ public class Category {
 
 	public List<Project> getProjects(){
 		List<Project> results = new ArrayList<Project>(projects.size());
-		for(Ref<Project> project : projects){
-			results.add(project.get()); //TODO: fix this ya fecker!!!!
+		for(Ref<Project> projectRef : projects){
+			Project project = ofy().load().key(projectRef.getKey()).get();
+			results.add(project); //TODO: fix this ya fecker!!!!
 		}
 		return results;
 	}
