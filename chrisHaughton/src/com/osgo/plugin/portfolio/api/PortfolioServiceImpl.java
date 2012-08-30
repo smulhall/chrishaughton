@@ -133,8 +133,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public Category getCategory(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ofy().load().key(Key.create(Category.class, id)).get();
 	}
 
 	@Override

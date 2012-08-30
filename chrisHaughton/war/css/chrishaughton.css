@@ -245,3 +245,8 @@ img.arrow{
 .input_table td{
 	vertical-align:top;
 }
+
+/* ============================================ */
+.admin_table2, .admin_table2{
+	margin:0 0 0 20px;
+}
