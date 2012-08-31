@@ -42,7 +42,7 @@ if(isset($_GET['proj'])){
 			<!--  	<tr><td>Main Video File (m4v file):</td><td> <input type='file' name='main' /></td></tr>
 					<tr><td>Main Video File (ogg file):</td><td> <input type='file' name='main' /></td></tr> -->
 					
-			<tr><td>Vimeo Link:</td><td> <input  name ='vimeo_link' type='text' /></td><td>(e.g. 13703809)</td></tr>
+			<tr><td>Vimeo Link:</td><td> <input  name ='movie' type='text' /></td><td>(e.g. 13703809)</td></tr>
 			<tr><td>Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 			<tr><td>Text to Display (line 1):</td><td> <input  name ='display_text_line1' type='text' /></td></tr>
 			<tr><td>Text to Display (line 2):</td><td> <input  name ='display_text_line2' type='text' /></td></tr>

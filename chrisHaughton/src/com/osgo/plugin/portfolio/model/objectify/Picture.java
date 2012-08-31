@@ -28,8 +28,10 @@ public class Picture {
 	private String thumbUrl;
 	private BlobKey thumbKey;
 	private String alt;
+	private String movieUrl;
 	private List<String> info;
 	private List<String> links;
+	private List<String> linksText;
 	
 	private Key<Project> project;
 	
@@ -60,9 +62,13 @@ public class Picture {
 	
 	public void intUrl(){
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
-
-		this.url = imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getKey()));
-		this.setThumbUrl(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getThumbKey())));
+		
+		if(this.getKey() != null){
+			this.url = imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getKey()));
+		}
+		if(this.getThumbKey() != null){
+			this.setThumbUrl(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(this.getThumbKey())));
+		}
 	}
 	
 	public String getAlt() {
@@ -102,7 +108,7 @@ public class Picture {
 		this.thumbUrl = thumbUrl;
 	}
 	public String getMovieUrl(){
-		return null;
+		return this.movieUrl;
 	}
 	
 	public void setAttributes(Map<String, Object> input){
@@ -152,6 +158,15 @@ public class Picture {
 				}
 			}
 		}
+	}
+	public void setMovieUrl(String movieUrl) {
+		this.movieUrl = movieUrl;
+	}
+	public List<String> getLinksText() {
+		return linksText;
+	}
+	public void setLinksText(List<String> linksText) {
+		this.linksText = linksText;
 	}
 	
 }

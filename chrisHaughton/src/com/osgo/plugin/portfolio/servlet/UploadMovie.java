@@ -36,7 +36,7 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 import com.osgo.plugin.portfolio.model.objectify.Picture;
 import com.osgo.plugin.portfolio.model.objectify.Project;
 
-public class Upload extends HttpServlet {
+public class UploadMovie extends HttpServlet {
     /**
 	 * 
 	 */
@@ -47,7 +47,7 @@ public class Upload extends HttpServlet {
 	public static final String BUCKETNAME = "osgo/dealImages";
 	public static final String DIR = "dealImages/";
 	private static final Logger log =
-		      Logger.getLogger(Upload.class.getName());
+		      Logger.getLogger(UploadMovie.class.getName());
 	
     public void doPost(HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException{
@@ -68,6 +68,7 @@ public class Upload extends HttpServlet {
         List<String> info = new ArrayList<String>();
         List<String> links = new ArrayList<String>();
         List<String> linkTexts = new ArrayList<String>();
+        String movieUrl = "";
         Map<String, BlobKey> images = new HashMap<String, BlobKey>();
 
         FileItemIterator iterator = null;
@@ -103,6 +104,8 @@ public class Upload extends HttpServlet {
 			    		links.add(theString);
 			    	} else if(item.getFieldName().contains("link_text")){
 			    		linkTexts.add(theString);
+			    	} else if(item.getFieldName().contains("movie")){
+			    		movieUrl = theString;
 			    	}
 			    }
 			  } else {
@@ -130,15 +133,14 @@ public class Upload extends HttpServlet {
 		}	
         
 		Picture picture = new Picture();
-		BlobKey imageKey = images.get("main");
-		picture.setKey(imageKey);
 		BlobKey thumbKey = images.get("thumb");
 		picture.setThumbKey(thumbKey);
 		picture.intUrl();
+		picture.setMovieUrl(movieUrl);
 		picture.setInfo(info);
 		picture.setLinks(links);
 		picture.setLinksText(linkTexts);
-        
+		
         portfolioService.addImage(picture, project);
     	
     }
@@ -148,7 +150,7 @@ public class Upload extends HttpServlet {
 		  FileService fileService = FileServiceFactory.getFileService();
 
 		  // Create a new Blob file with mime-type "text/plain"
-		  AppEngineFile file = fileService.createNewBlobFile("image/jpeg");
+		  AppEngineFile file = fileService.createNewBlobFile("");
 
 		  // Open a channel to write to it
 		  boolean lock = false;

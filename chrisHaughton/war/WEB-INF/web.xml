@@ -44,6 +44,16 @@
          <servlet-name>Upload</servlet-name>
          <url-pattern>/upload</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+         <servlet-name>UploadMovie</servlet-name>
+         <servlet-class>com.osgo.plugin.portfolio.servlet.UploadMovie</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+         <servlet-name>UploadMovie</servlet-name>
+         <url-pattern>/uploadmovie</url-pattern>
+    </servlet-mapping>
  
     <servlet>
          <servlet-name>NewCategory</servlet-name>

@@ -23,10 +23,14 @@ if(isset($currProjId)){
 	$image = $project-> getImages()[0];
 }
 
+<<<<<<< HEAD
 $links = $image-> getLinks(); //Links Url
 //$links_url = $image-> getLinksText(); //Links Display text
 
 
+=======
+$links = $image-> getLinks();
+>>>>>>> refs/remotes/origin/stephen1
 ?>
 
 
@@ -37,6 +41,7 @@ $links = $image-> getLinks(); //Links Url
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>portfolio.php</title>
+<<<<<<< HEAD
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript'>
 	$(document).ready(function() {
@@ -55,6 +60,8 @@ $links = $image-> getLinks(); //Links Url
 	});
 </script>
 
+=======
+>>>>>>> refs/remotes/origin/stephen1
 </head>
 <body>
 <div id='wrapper'>
