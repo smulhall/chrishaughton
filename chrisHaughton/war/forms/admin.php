@@ -121,13 +121,13 @@ function submitForm(name, form, value){
 			
 			
 			<table class='images_table'>
-			<tr><td><img src='<?php echo $image-> getUrl(); ?>' /></td>
+			<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
 			<!-- 
 			<a href='/forms/edit.php?type=image&Id=<?php echo $image-> getId(); ?>&'>Edit</a>
 			<a href='#'>Delete</a>
 			-->
 			
-			<td><img src='<?php echo $image-> getThumbUrl(); ?>' /></td></tr>
+			<td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
 			<!--
 			<a href='/forms/edit.php?type=thumb&Id=<?php echo $image-> getId(); ?>'>Edit</a>
 			<a href='#'>Delete</a>
@@ -139,9 +139,14 @@ function submitForm(name, form, value){
 		
 		
 		<form action='/update' enctype='multipart/form-data' method='post'>
-		<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
-		<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
-		<table class='input_table'>
+			
+		
+			<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
+			<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
+			<input type='hidden' name='image_id' value='<?php echo $image-> getId();?>' />
+		
+			
+			<table class='input_table'>
 			<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
 			<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 			
@@ -151,11 +156,11 @@ function submitForm(name, form, value){
 			?>
 				<tr>
 					<td>Text to Display (line <?php echo $c; ?>):</td>
-					<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line ?>' type='text' /></td>
+					<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
 				</tr>
 				
 			<?php 
-			$c++
+			$c++;
 			} 
 			?>
 			
@@ -169,12 +174,12 @@ function submitForm(name, form, value){
 					$modulus = $i%2; 
 					if($modulus == 0){ ?>
 						<tr>
-						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value ?>' /></td>
+						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value; ?>' /></td>
 						
 					<?php
 					} 
 					if($modulus != 0){ ?>
-						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value ?>' /></td>
+						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value; ?>' /></td>
 						</tr>
 						
 					<?php

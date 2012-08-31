@@ -10,6 +10,7 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 //from model
 $category = $portfolioService-> getCategory($currCategoryId);
 $projects = $portfolioService-> getProjectList(); //numerical array of all projects
+//TODO: projects should be based on the $currCategoryId
 if(isset($currProjId)){
 	$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
 }else{
@@ -61,12 +62,12 @@ $links = $image-> getLinks();
 				//print_r($proj);
 				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
 				//print_r($imagesCurrProj[0]);
-				$thumbUrl = $imagesCurrProj[0]-> getThumbUrl();
-				//echo "<br />thumbUrl = ".$thumbUrl;
-				//echo "<br />";
-				//print_r($imagesCurrProj);
 				if($imagesCurrProj[0]!=null){
-			?>
+					$thumbUrl = $imagesCurrProj[0]-> getThumbUrl();
+					//echo "<br />thumbUrl = ".$thumbUrl;
+					//echo "<br />";
+					//print_r($imagesCurrProj);
+				?>
 				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>">
 					<img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" />
 				</a>	
@@ -105,13 +106,33 @@ $links = $image-> getLinks();
 			
 			<div id="links">
 				<?php 
-				foreach($links as $links1){
-				?>
-					<a target='_blank' href='<?php echo $links1 ?>'><?php echo $links1 ?></a>
+				$i=0;
+				foreach($links as $links_loop){
+					$modulus = $i%2;
+					//echo $links_loop."<br />";
+					if($modulus != 0){ ?>
+						<a target='_blank' href='<?php echo $links_loop; ?>'> 
+					<?php
+					}
+				
+					if($modulus == 0){
+					?>
+						<?php echo $links_loop; ?></a><br />
+					<?php
+					} ?>
+					
+					
 				<?php
+					$i++;
 				}
+				
 				?>	
 			</div>
+			
+	
+			
+			
+			
 			
 			
 			
