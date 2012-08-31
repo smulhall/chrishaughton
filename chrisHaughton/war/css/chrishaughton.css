@@ -189,6 +189,12 @@ p.flow_link{
 	width:730px;
 }
 
+/* ================== admin ========================== */
+
+.admin_central_panel{
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+	letter-spacing: 0em;
+}
 
 /* ================== text pages ========================== */
 iframe#blog{

@@ -4,35 +4,39 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 $currCategoryId = $_GET['c'];
 $currProjId = $_GET['p'];
 $currImageId = $_GET['i'];
+//echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
-//from model
-$category = $portfolioService-> getCategory($currCategoryId);
-$projects = $portfolioService-> getProjectList(); //numerical array of all projects
-//TODO: projects should be based on the $currCategoryId
+if(isset($currCategoryId)){
+	$category = $portfolioService-> getCategory($currCategoryId);
+}else{
+	$categories = $portfolioService-> getCategoryList();
+	$category = $categories[0];
+	$currCategoryId = $category-> getId();
+}
+$projects = $category-> getProjects();
+
+//$projects = $portfolioService-> getProjectList(); //numerical array of all projects
 if(isset($currProjId)){
 	$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
 }else{
 	$project = $projects[0];
+	$currProjId = $project-> getId();
 }
 $images = $project-> getImages(); //numerical array of all images in this single project
-if(isset($currProjId)){
+if(isset($currImageId)){
 	$image = $project-> getImageById($currImageId); //particular image user has clicked
 } else {
-	$image = $project-> getImages()[0];
+	$images = $project-> getImages();
+	$image = $images[0];
+	$currImageId = $image-> getId();
 }
 
-<<<<<<< HEAD
-$links = $image-> getLinks(); //Links Url
-//$links_url = $image-> getLinksText(); //Links Display text
+$links_text = $image-> getLinks(); //Links Url
+$links_url = $image-> getLinksText(); //Links Display text
 
-
-=======
-$links = $image-> getLinks();
->>>>>>> refs/remotes/origin/stephen1
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +45,6 @@ $links = $image-> getLinks();
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>portfolio.php</title>
-<<<<<<< HEAD
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript'>
 	$(document).ready(function() {
@@ -59,9 +62,6 @@ $links = $image-> getLinks();
 		
 	});
 </script>
-
-=======
->>>>>>> refs/remotes/origin/stephen1
 </head>
 <body>
 <div id='wrapper'>
@@ -78,10 +78,13 @@ $links = $image-> getLinks();
 	
 	<!-- ======================== Central Panel ========================== -->	
 	<div id="central_panel">
-		<?php if($image-> getMovieUrl() != null){ ?>
+		<?php 
+			$movieUrl = $image-> getMovieUrl();
+			//echo "movieUrl = $movieUrl<br />";
+			if($movieUrl != null){ echo "movie"; ?>
 			<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-		<?php }else{?>
-			<img src="<?php echo $image-> getUrl();?>">
+		<?php }else{ ?>
+			<img src="<?php echo $image-> getUrl();?>" />
 		<?php }	 ?>
 	</div>
 	
@@ -139,8 +142,10 @@ $links = $image-> getLinks();
 			<div id="links">
 				<?php 
 				$i=0;
-				$no_of_links = count($links);
-				echo "no_of_links = $no_of_links";
+				$no_of_links_text = count($links_text);
+				$no_of_links_url = count($links_url);
+				echo "no_of_links_text = $no_of_links_text <br />";
+				echo "no_of_links_url = $no_of_links_url <br />";
 				?>
 				<a id='first_link' target='_blank' href='<?php echo $links_loop; ?>'><?php echo $links_loop; ?></a><br />
 				
