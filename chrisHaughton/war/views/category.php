@@ -50,7 +50,11 @@ $links = $image-> getLinks();
 	
 	<!-- ======================== Central Panel ========================== -->	
 	<div id="central_panel">
-		<img src="<?php echo $image-> getUrl();?>"> 
+		<?php if($image-> getMovieUrl() != null){ ?>
+			<iframe src="<?php echo $image-> getMovieUrl(); ?>" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+		<?php }else{?>
+			<img src="<?php echo $image-> getUrl();?>">
+		<?php }	 ?>
 	</div>
 	
 	<!-- ======================== RHS Panel ========================== -->
@@ -109,32 +113,34 @@ $links = $image-> getLinks();
 				$i=0;
 				foreach($links as $links_loop){
 					$modulus = $i%2;
-					//echo $links_loop."<br />";
-					if($modulus != 0){ ?>
-						<a target='_blank' href='<?php echo $links_loop; ?>'> 
-					<?php
-					}
-				
-					if($modulus == 0){
-					?>
-						<?php echo $links_loop; ?></a><br />
-					<?php
-					} ?>
+					//echo $modulus;
 					
+										if($i==0){
+										?>
+											<a id='first_link' target='_blank' href='<?php echo $links_loop; ?>'><?php echo $links_loop; ?></a><br />
+										<?php 
+										}
+										if($i==1){
+										?>
+											
+										<?php }
+										if($modulus != 0){ 
+										?>
+											<a target='_blank' href='<?php echo $links_loop; ?>'> 
+										<?php
+										}
+										if($modulus == 0 && $i!=0){
+											echo $links_loop; ?></a><br />
+										<?php
+										} 
 					
-				<?php
-					$i++;
+				$i++;
 				}
-				
 				?>	
 			</div>
 			
 	
-			
-			
-			
-			
-			
+				
 			
 			<div id="more_images">
 				<div id='more_images_thumb_wrapper'>
@@ -147,9 +153,8 @@ $links = $image-> getLinks();
 						$c=0;
 						foreach($images as $img){
 							if($c >= 1){
-								//echo $c." // ";
 								?>
-								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a>
+								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
 							} 
 							$c++;
@@ -160,6 +165,10 @@ $links = $image-> getLinks();
 			</div>
 			
 			
+			
+			
+			
+		
 
 		</div>
 	</div>

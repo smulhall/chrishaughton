@@ -25,6 +25,7 @@
 	<li class='lhs_menu_heading'>
 		<ul id='portfolio'>
 			<!--  <a href='category.php?c=1' class='lhs_menu_subheading'><li>books</li></a> -->
+			<!--  <a href='category.php?c=2' class='lhs_menu_subheading'><li>apps</li></a> -->
 			<a href='category.php?c=1' class='lhs_menu_subheading'><li>illustration</li></a>
 			<a href='category.php?c=3' class='lhs_menu_subheading'><li>animation</li></a>
 			<a href='category.php?c=4' class='lhs_menu_subheading'><li>sketches</li></a>
