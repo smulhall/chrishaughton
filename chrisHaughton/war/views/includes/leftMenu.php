@@ -24,12 +24,12 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='portfolio'>
-			<a href='index.php?pg=bks&curr_ts=1' class='lhs_menu_subheading'><li>books</li></a>
-			<a href='index.php?pg=ill&curr_ts=1' class='lhs_menu_subheading'><li>illustration</li></a>
-			<a href='index.php?pg=ani&curr_ts=1' class='lhs_menu_subheading'><li>animation</li></a>
-			<a href='index.php?pg=sk&curr_ts=1' class='lhs_menu_subheading'><li>sketches</li></a>
-			<a href='index.php?pg=prj&curr_ts=1' class='lhs_menu_subheading'><li>projects</li></a>
-			<a href='index.php?pg=ft&curr_ts=1' class='lhs_menu_subheading'><li>fair trade</li></a>
+			<!--  <a href='category.php?c=1' class='lhs_menu_subheading'><li>books</li></a> -->
+			<a href='category.php?c=1' class='lhs_menu_subheading'><li>illustration</li></a>
+			<a href='category.php?c=3' class='lhs_menu_subheading'><li>animation</li></a>
+			<a href='category.php?c=4' class='lhs_menu_subheading'><li>sketches</li></a>
+			<a href='category.php?c=5' class='lhs_menu_subheading'><li>projects</li></a>
+			<a href='category.php?c=6' class='lhs_menu_subheading'><li>fair trade</li></a>
 		</ul>
 	</li>
 	
@@ -44,9 +44,9 @@
 		<ul id='admin'>
 			<a href='/forms/login.php' class='lhs_menu_subheading'><li>login/logout</li></a>
 			<?php 
-			$user_logged_in = "N";
+			$user_logged_in = "Y"; //TODO: user to be created on server side
 			if($user_logged_in == "Y"){ ?>
-				<a href='/forms/admin.php' class='lhs_menu_subheading'><li>Create/Edit/Upload</li></a>
+				<a href='/forms/admin.php' class='lhs_menu_subheading'><li>admin</li></a>
 			<?php } ?>
 		</ul>
 	</li>
