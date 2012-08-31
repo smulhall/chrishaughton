@@ -55,5 +55,15 @@
          <url-pattern>/newcat</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+         <servlet-name>Update</servlet-name>
+         <servlet-class>com.osgo.plugin.portfolio.servlet.Update</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+         <servlet-name>Update</servlet-name>
+         <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    
     
 </web-app>
