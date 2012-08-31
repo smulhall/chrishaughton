@@ -62,7 +62,7 @@
     
     <servlet-mapping>
          <servlet-name>UpdateImage</servlet-name>
-         <url-pattern>/updateimage</url-pattern>
+         <url-pattern>/update</url-pattern>
     </servlet-mapping>
     
     

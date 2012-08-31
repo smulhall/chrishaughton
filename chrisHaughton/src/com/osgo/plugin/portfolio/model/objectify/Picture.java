@@ -101,6 +101,9 @@ public class Picture {
 	public void setThumbUrl(String thumbUrl) {
 		this.thumbUrl = thumbUrl;
 	}
+	public String getMovieUrl(){
+		return null;
+	}
 	
 	public void setAttributes(Map<String, Object> input){
 		Key<Category> key = null;

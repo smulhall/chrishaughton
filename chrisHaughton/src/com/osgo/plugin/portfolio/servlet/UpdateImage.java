@@ -110,10 +110,10 @@ public class UpdateImage extends HttpServlet {
 				                ", name = " + item.getName());
 				    
 				    byte[] data = IOUtils.toByteArray(item.openStream());
-				    
-				    BlobKey blobKey = createBlob(data, response);
-				    images.put(item.getFieldName(), blobKey);
-					
+				    if(data.length>0){
+					    BlobKey blobKey = createBlob(data, response);
+					    images.put(item.getFieldName(), blobKey);
+			  		}					
 				  }
 			  }
 			}
