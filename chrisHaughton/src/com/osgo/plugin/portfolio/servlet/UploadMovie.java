@@ -67,6 +67,7 @@ public class UploadMovie extends HttpServlet {
         Project project = null;
         List<String> info = new ArrayList<String>();
         List<String> links = new ArrayList<String>();
+        List<String> linkTexts = new ArrayList<String>();
         String movieUrl = "";
         Map<String, BlobKey> images = new HashMap<String, BlobKey>();
 
@@ -101,6 +102,8 @@ public class UploadMovie extends HttpServlet {
 			    		info.add(theString);
 			    	} else if(item.getFieldName().contains("link")){
 			    		links.add(theString);
+			    	} else if(item.getFieldName().contains("link_text")){
+			    		linkTexts.add(theString);
 			    	} else if(item.getFieldName().contains("movie")){
 			    		movieUrl = theString;
 			    	}
@@ -136,7 +139,8 @@ public class UploadMovie extends HttpServlet {
 		picture.setMovieUrl(movieUrl);
 		picture.setInfo(info);
 		picture.setLinks(links);
-        
+		picture.setLinksText(linkTexts);
+		
         portfolioService.addImage(picture, project);
     	
     }

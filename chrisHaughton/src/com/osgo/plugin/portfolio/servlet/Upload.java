@@ -67,6 +67,7 @@ public class Upload extends HttpServlet {
         Project project = null;
         List<String> info = new ArrayList<String>();
         List<String> links = new ArrayList<String>();
+        List<String> linkTexts = new ArrayList<String>();
         Map<String, BlobKey> images = new HashMap<String, BlobKey>();
 
         FileItemIterator iterator = null;
@@ -100,6 +101,8 @@ public class Upload extends HttpServlet {
 			    		info.add(theString);
 			    	} else if(item.getFieldName().contains("link")){
 			    		links.add(theString);
+			    	} else if(item.getFieldName().contains("link_text")){
+			    		linkTexts.add(theString);
 			    	}
 			    }
 			  } else {
@@ -134,6 +137,7 @@ public class Upload extends HttpServlet {
 		picture.intUrl();
 		picture.setInfo(info);
 		picture.setLinks(links);
+		picture.setLinksText(linkTexts);
         
         portfolioService.addImage(picture, project);
     	

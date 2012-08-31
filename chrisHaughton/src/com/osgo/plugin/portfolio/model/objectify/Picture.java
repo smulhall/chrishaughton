@@ -31,6 +31,7 @@ public class Picture {
 	private String movieUrl;
 	private List<String> info;
 	private List<String> links;
+	private List<String> linksText;
 	
 	private Key<Project> project;
 	
@@ -160,6 +161,12 @@ public class Picture {
 	}
 	public void setMovieUrl(String movieUrl) {
 		this.movieUrl = movieUrl;
+	}
+	public List<String> getLinksText() {
+		return linksText;
+	}
+	public void setLinksText(List<String> linksText) {
+		this.linksText = linksText;
 	}
 	
 }
