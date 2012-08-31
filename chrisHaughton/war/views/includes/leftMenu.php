@@ -43,7 +43,11 @@
 	<li class='lhs_menu_heading'>
 		<ul id='admin'>
 			<a href='/forms/login.php' class='lhs_menu_subheading'><li>login/logout</li></a>
-			<a href='/forms/admin.php' class='lhs_menu_subheading'><li>Create/Edit/Upload</li></a>
+			<?php 
+			$user_logged_in = "N";
+			if($user_logged_in == "Y"){ ?>
+				<a href='/forms/admin.php' class='lhs_menu_subheading'><li>Create/Edit/Upload</li></a>
+			<?php } ?>
 		</ul>
 	</li>
 

@@ -139,7 +139,8 @@ function submitForm(name, form, value){
 		
 		
 		<form action='/update' enctype='multipart/form-data' method='post'>
-		<input type='hidden' name='project_id' value='' />
+		<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
+		<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
 		<table class='input_table'>
 			<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
 			<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
