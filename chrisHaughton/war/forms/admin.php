@@ -160,7 +160,7 @@ function submitForm(name, form, value){
 				</tr>
 				
 			<?php 
-			$c++;
+				$c++;
 			} 
 			?>
 			
