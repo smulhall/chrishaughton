@@ -1,6 +1,10 @@
 package com.osgo.plugin.portfolio.model.objectify;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
@@ -97,6 +101,57 @@ public class Picture {
 	public void setThumbUrl(String thumbUrl) {
 		this.thumbUrl = thumbUrl;
 	}
+	public String getMovieUrl(){
+		return null;
+	}
 	
+	public void setAttributes(Map<String, Object> input){
+		Key<Category> key = null;
+		
+		for (Field f : getClass().getDeclaredFields()) {
+			String attrName = f.getName();
+			Object obj = (Object) input.get(attrName);
+			String category = (String) input.get("category");
+			if(category!=null){
+				obj = Key.create(Category.class, 1);
+			}
+			if(obj!=null){
+				Object objToSet = null;
+				try {
+					Class<?> type = f.getType();
+					Constructor<?>[] ctors = type.getDeclaredConstructors();
+					Constructor<?> ctor = null;
+					for (int i = 0; i < ctors.length; i++) {
+					    ctor = ctors[i];
+					    if (ctor.getGenericParameterTypes().length == 1){
+					    	Class<?>[] params = ctor.getParameterTypes();
+					    	if(params[0].getSimpleName().equals("String")){
+					    		try {
+					    			objToSet = ctor.newInstance(obj);
+					    		} catch (InvocationTargetException e) {
+									// using 0 instead of "" for empty numbers
+									objToSet = ctor.newInstance(0);
+								}
+					    		break;
+					    	}
+					    }				
+					}
+					f.set(this, objToSet);
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}  catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 }

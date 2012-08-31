@@ -25,5 +25,6 @@ public interface PortfolioService {
 	Category addCategory(Map<String, Object> input);
 	Category updateCategory(Category category);
 	
+	Object update(Object entity);
 	
 }

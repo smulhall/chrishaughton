@@ -62,7 +62,8 @@ public class PortfolioServiceImpl implements PortfolioService {
 		Project result = ofy().transactNew(new Work<Project>(){
 			@Override
 			public Project run() {
-				Project proj = ofy().load().key(Key.create(Project.class, project.getId())).get();
+				Key<Project> key = ofy().save().entity(project).now();
+				Project proj = ofy().load().key(key).get();
 				return proj;
 			}		
 		});
@@ -163,6 +164,19 @@ public class PortfolioServiceImpl implements PortfolioService {
 	public Category updateCategory(Category category) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Object update(final Object entity) {
+		Object result = ofy().transactNew(new Work<Object>(){
+			@Override
+			public Object run() {
+				Key<Object> key = ofy().save().entity(entity).now();
+				Object proj = ofy().load().key(key).get();
+				return proj;
+			}		
+		});
+		return result;
 	}
 		
 }
