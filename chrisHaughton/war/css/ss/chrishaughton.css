@@ -6,8 +6,7 @@
 }
 
 body{
-	font-family: chrishaughton, Arial, Helvetica, sans-serif;
-	letter-spacing: 0.1em;
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
 }
 
 /* ==================== MAIN ======================== */
@@ -27,35 +26,13 @@ body{
 float: right;
 margin-right: 780px;
 }
-/* ===================  ========================= */
-.text_page_img{
-	width: 650px;
-	height: 250px;
-}
 
-
-/* =================== LHS & horiz menu ========================= */
+/* =================== LHS ========================= */
 #lhs_menu{
 	float:left;
 	width:190px;
 	font-family: chrishaughton, Arial, Helvetica, sans-serif;
 	color:#000000;
-}
-
-.horiz_menu_ul{
-	margin:0;
-}
-
-.HL {
-	background: #000; 
-	color: #fff;
-	padding:0px 0px 0px 0px;
-}
-
-#lhs_menu a:active, #horiz_links_div a:active
-{ 
-	background-color: #000; 
-	color: #fff;
 }
 
 .lhs_menu_heading_ul{
@@ -64,18 +41,13 @@ margin-right: 780px;
 	text-align:right;
 }
 
-#lhs_menu ul, #horiz_links_div ul{
+#lhs_menu ul{
 	list-style-type:none;
 }
 
-a.lhs_menu_subheading:link, a.horiz_menu_a:link{
+a.lhs_menu_subheading:link{
 	text-decoration:none;
 	color:#000000;
-}
-
-a.horiz_menu_a:link{
-	float:left;
-	margin: 0 10px 0 0;
 }
 
 a.lhs_menu_subheading:link{
@@ -134,7 +106,7 @@ a.horiz_menu:link{
 }
 
 .horiz_link{
-	width: 80px;
+	
 }
 
 
@@ -202,10 +174,6 @@ iframe#rugs{
 	margin-top: -100px;
 }
 
-.text_pages_container{
-	width:650px;
-	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
-}
 /* ================== RHS ========================== */
 
 #rhs_panel{
@@ -222,21 +190,19 @@ img.rhs_thumb{
 }
 
 #image_info_wrapper{
-	margin:0px 0 0 0;
+	margin:10px 0 0 0;
+	color:#999;
 	clear:both;
-	width:180px;
-	font-size:80%;
 }
 
 #image_info_wrapper h4{
 	margin:10px 0 5px 0;
 	font-weight:bold;
-	color:#035881;
+	color:#666;
 }
 
 #image_info_wrapper p{
-	margin:0px 0 0 0;
-	
+	margin:-5px 0 0 0;
 }
 
 .dashed_line{
@@ -248,13 +214,7 @@ img.rhs_thumb{
 #info, #links, #more_images{
 	float:left;
 	clear:left;
-	/* height:90px; */
-	margin-top:20px;
-}
-
-#links a{
-	color:#222;
-	text-decoration: none;	
+	height:90px;
 }
 
 #more_images{
@@ -277,7 +237,7 @@ a#prev_ts{
 }
 
 img.arrow{
-	/* width:30px; */
+	width:30px;
 }
 
 /* ============================================ */
@@ -290,4 +250,3 @@ img.arrow{
 .admin_table2, .admin_table2{
 	margin:0 0 0 20px;
 }
-

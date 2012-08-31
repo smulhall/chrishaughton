@@ -23,7 +23,8 @@ if(isset($currProjId)){
 	$image = $project-> getImages()[0];
 }
 
-$links = $image-> getLinks();
+$links = $image-> getLinks(); //Links Url
+//$links_url = $image-> getLinksText(); //Links Display text
 
 
 ?>
@@ -36,9 +37,24 @@ $links = $image-> getLinks();
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>portfolio.php</title>
-<script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script type='text/javascript'>
+	$(document).ready(function() {
 
+		$(".menu_link").hover(
+	  function () {
+	    $(this).addClass('HL');
+	  }, 
+	  function () {
+	    $(this).removeClass('HL');
+	  }
+	);
+
+	
+		
+	});
 </script>
+
 </head>
 <body>
 <div id='wrapper'>
@@ -56,7 +72,7 @@ $links = $image-> getLinks();
 	<!-- ======================== Central Panel ========================== -->	
 	<div id="central_panel">
 		<?php if($image-> getMovieUrl() != null){ ?>
-			<iframe src="<?php echo $image-> getMovieUrl(); ?>" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 		<?php }else{?>
 			<img src="<?php echo $image-> getUrl();?>">
 		<?php }	 ?>
@@ -116,32 +132,12 @@ $links = $image-> getLinks();
 			<div id="links">
 				<?php 
 				$i=0;
-				foreach($links as $links_loop){
-					$modulus = $i%2;
-					//echo $modulus;
+				$no_of_links = count($links);
+				echo "no_of_links = $no_of_links";
+				?>
+				<a id='first_link' target='_blank' href='<?php echo $links_loop; ?>'><?php echo $links_loop; ?></a><br />
+				
 					
-										if($i==0){
-										?>
-											<a id='first_link' target='_blank' href='<?php echo $links_loop; ?>'><?php echo $links_loop; ?></a><br />
-										<?php 
-										}
-										if($i==1){
-										?>
-											
-										<?php }
-										if($modulus != 0){ 
-										?>
-											<a target='_blank' href='<?php echo $links_loop; ?>'> 
-										<?php
-										}
-										if($modulus == 0 && $i!=0){
-											echo $links_loop; ?></a><br />
-										<?php
-										} 
-					
-				$i++;
-				}
-				?>	
 			</div>
 			
 	

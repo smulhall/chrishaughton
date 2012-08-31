@@ -39,8 +39,10 @@ if(isset($_GET['proj'])){
 		<form action='/upload' enctype='multipart/form-data' method='post'>
 		<input type='hidden' name='project_id' value='<?php echo "$projectId"; ?>' />
 		<table class='input_table'>
-			<tr><td>Main Video File (m4v file):</td><td> <input type='file' name='main' /></td></tr>
-			<tr><td>Main Video File (ogg file):</td><td> <input type='file' name='main' /></td></tr>
+			<!--  	<tr><td>Main Video File (m4v file):</td><td> <input type='file' name='main' /></td></tr>
+					<tr><td>Main Video File (ogg file):</td><td> <input type='file' name='main' /></td></tr> -->
+					
+			<tr><td>Vimeo Link:</td><td> <input  name ='vimeo_link' type='text' /></td><td>(e.g. 13703809)</td></tr>
 			<tr><td>Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 			<tr><td>Text to Display (line 1):</td><td> <input  name ='display_text_line1' type='text' /></td></tr>
 			<tr><td>Text to Display (line 2):</td><td> <input  name ='display_text_line2' type='text' /></td></tr>
@@ -56,9 +58,8 @@ if(isset($_GET['proj'])){
 			<tr><td></td><td><input type='submit' /></td></tr>
 		
 		</table>
-		<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
+		<!--  <input type='hidden' name='MAX_FILE_SIZE' value='524288'> -->
 		<input type='hidden' name='category' value='<?php echo "$category"; ?>' />	
-		<input type='hidden' name='submitted3' value='true' />
 		</form>
 		
 	
