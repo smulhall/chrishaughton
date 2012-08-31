@@ -9,27 +9,6 @@ $cat = $_GET['category'];
 echo "cat = $cat <br />";
 $proj = $_GET['project'];
 echo "proj = $proj <br />";
-
-
-if($type =='category'){
-	echo "category";
-}
-if($type =='project'){
-	echo "project";
-}
-elseif($type =='image'){
-	echo "image";
-}
-elseif($type =='thumb'){
-	echo "thumb";
-}
-elseif($type =='info'){
-	echo "info";
-}
-elseif($type =='link'){
-	echo "link";
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -57,23 +36,12 @@ elseif($type =='link'){
 	
 	<div id='central_panel'>
 	
-		<h4>Upload the images in the order of preference that you would like them to be displayed:</h4>
-		<form action='/upload' enctype='multipart/form-data' method='post'>
-		<input type='hidden' name='project_id' value='<?php echo "$projectId"; ?>' />
+		<h4>Please enter the new name of the <?php echo $type; ?>:</h4>
+		<form action='/update' enctype='multipart/form-data' method='post'>
+		<input type='hidden' name='<?php echo $type; ?>_id' value='<?php echo $id; ?>' />
 		<table class='input_table'>
-			<tr><td>Main Image File:</td><td> <input type='file' name='main' /></td></tr>
-			<tr><td>Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
-			<tr><td>Text to Display (line 1):</td><td> <input  name ='display_text_line1' value='<?php echo ?>' type='text' /></td></tr>
-			<tr><td>Text to Display (line 2):</td><td> <input  name ='display_text_line2' type='text' /></td></tr>
-			<tr><td>Text to Display (line 3):</td><td> <input  name ='display_text_line3' type='text' /></td></tr>
-			<tr><td>Text to Display (line 4):</td><td> <input  name ='display_text_line4' type='text' /></td></tr>
-			<tr><td>Text to Display (line 5):</td><td> <input  name ='display_text_line5' type='text' /></td></tr>
-			<tr><td>Link 1 (display text):</td><td> <input  name ='link1_displayText' type='text' /></td></tr>
-			<tr><td>Link 1 (url):</td><td> <input  name ='link1_url' type='text' /></td></tr>
-			<tr><td>Link 2 (display text):</td><td> <input  name ='link2_displayText' type='text' /></td></tr>
-			<tr><td>Link 2 (url):</td><td> <input  name ='link2_url' type='text' /></td></tr>
-			<tr><td>Link 3 (display text):</td><td> <input  name ='link3_displayText' type='text' /></td></tr>
-			<tr><td>Link 3 (url):</td><td> <input  name ='link3_url' type='text' /></td></tr>
+			
+			<tr><td><input type='text' name='<?php echo $type; ?>' value='' /></td></tr>
 			<tr><td></td><td><input type='submit' /></td></tr>
 		
 		</table>

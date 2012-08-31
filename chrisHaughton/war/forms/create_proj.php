@@ -1,6 +1,10 @@
 <?php
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
+$catId = $_GET['Id'];
+echo "catId = $catId <br />";
+
+
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $categories = $portfolioService-> getCategoryList();
 
