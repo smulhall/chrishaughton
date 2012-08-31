@@ -42,8 +42,8 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='admin'>
-			<a href='login.php' class='lhs_menu_subheading'><li>login/logout</li></a>
-			<a href='/forms/db.php' class='lhs_menu_subheading'><li>Create/Edit/Upload</li></a>
+			<a href='/forms/login.php' class='lhs_menu_subheading'><li>login/logout</li></a>
+			<a href='/forms/admin.php' class='lhs_menu_subheading'><li>Create/Edit/Upload</li></a>
 		</ul>
 	</li>
 

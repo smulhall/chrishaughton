@@ -3,9 +3,9 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
 $cat = $_POST['category'];
-echo "cat = $cat <br />";
+//echo "cat = $cat <br />";
 $proj = $_POST['project'];
-echo "proj = $proj <br />";
+//echo "proj = $proj <br />";
 
 
 
@@ -18,7 +18,7 @@ if(isset($cat)){
 }
 
 $projects = $category-> getProjects();
-print_r($projects);
+//print_r($projects);
 
 if(isset($proj)){
 	$project = $portfolioService-> getProject($proj);

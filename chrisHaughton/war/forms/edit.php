@@ -5,10 +5,6 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
 $type = $_GET['type'];
 $id = $_GET['Id'];
-$cat = $_GET['category'];
-echo "cat = $cat <br />";
-$proj = $_GET['project'];
-echo "proj = $proj <br />";
 ?>
 
 <!DOCTYPE html>
