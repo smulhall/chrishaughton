@@ -36,11 +36,10 @@ if(isset($_GET['proj'])){
 	<div id='central_panel'>
 	
 		<h4>Upload the images in the order of preference that you would like them to be displayed:</h4>
-		<form action='/upload' enctype='multipart/form-data' method='post'>
+		<form action='/uploadmovie' enctype='multipart/form-data' method='post'>
 		<input type='hidden' name='project_id' value='<?php echo "$projectId"; ?>' />
 		<table class='input_table'>
-			<tr><td>Main Video File (m4v file):</td><td> <input type='file' name='main' /></td></tr>
-			<tr><td>Main Video File (ogg file):</td><td> <input type='file' name='main' /></td></tr>
+			<tr><td>Main Video File URL:</td><td> <input type='text' name='movie' /></td></tr>
 			<tr><td>Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 			<tr><td>Text to Display (line 1):</td><td> <input  name ='display_text_line1' type='text' /></td></tr>
 			<tr><td>Text to Display (line 2):</td><td> <input  name ='display_text_line2' type='text' /></td></tr>
