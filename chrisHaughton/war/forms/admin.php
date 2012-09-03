@@ -28,6 +28,8 @@ if(isset($proj)){
 
 $images = $project-> getImages();
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +64,7 @@ function submitForm(name, form, value){
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Select a Category and Project to display all images contained in that project:</h4>
 		
@@ -114,24 +116,14 @@ function submitForm(name, form, value){
 		
 		<?php 	
 		foreach($images as $image){
-		
+			echo "<p>===================================================================================================================</p>";
 		?>
 			
-			<p>===================================================================================================================</p>
-			
-			
+
 			<table class='images_table'>
 			<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
-			<!-- 
-			<a href='/forms/edit.php?type=image&Id=<?php echo $image-> getId(); ?>&'>Edit</a>
-			<a href='#'>Delete</a>
-			-->
-			
+	
 			<td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
-			<!--
-			<a href='/forms/edit.php?type=thumb&Id=<?php echo $image-> getId(); ?>'>Edit</a>
-			<a href='#'>Delete</a>
-			-->
 			</table>
 				
 
@@ -164,35 +156,26 @@ function submitForm(name, form, value){
 			} 
 			?>
 			
-			
+			<tr><td><a href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
 			
 			<?php 
-			$i=0;
-			foreach ($image-> getLinks() as $key => $value) {?>
-					
-					<?php
-					$modulus = $i%2; 
-					if($modulus == 0){ ?>
-						<tr>
-						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value; ?>' /></td>
-						
-					<?php
-					} 
-					if($modulus != 0){ ?>
-						<td><input  name ='link<?php echo $c; ?>_displayText' type='text' value='<?php echo $value; ?>' /></td>
-						</tr>
-						
-					<?php
-					}
-					?>
-			<?php 
-				$i++;
-			} 
-			?>
 			
+			$links_text = $image-> getLinks(); //Links Url
+			$links_url = $image-> getLinksText(); //Links Display text
+			$no_of_links_text = count($links_text);
+			$no_of_links_url = count($links_url);
+			echo "no_of_links_text = $no_of_links_text <br />";
+			echo "no_of_links_url = $no_of_links_url <br />";
 			
-		
-			<tr><td></td><td><input type='submit' value='save' /></td></tr>
+			for($i=0; $i<$no_of_links_text; $i++){ ?>
+				<tr>
+					<td><input  name ='link_text<?php echo $c; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
+					<td><input  name ='link_url<?php echo $c; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
+				</tr>
+			<?php } ?>
+			
+			<tr><td><a href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
+			<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
 		
 		</table>
 		<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
