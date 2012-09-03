@@ -97,12 +97,14 @@ public class Upload extends HttpServlet {
 				    Long id = Long.parseLong(projId);
 				    project = portfolioService.getProject(id);
 			    } else {
-			    	if(item.getFieldName().contains("display_text")){
-			    		info.add(theString);
-			    	} else if(item.getFieldName().contains("link")){
-			    		links.add(theString);
-			    	} else if(item.getFieldName().contains("link_text")){
-			    		linkTexts.add(theString);
+			    	if(theString!=null){
+				    	if(item.getFieldName().contains("display_text")){
+				    		info.add(theString);
+				    	} else if(item.getFieldName().contains("link")){
+				    		links.add(theString);
+				    	} else if(item.getFieldName().contains("link_text")){
+				    		linkTexts.add(theString);
+				    	}
 			    	}
 			    }
 			  } else {
