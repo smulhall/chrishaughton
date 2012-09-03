@@ -46,12 +46,12 @@ if(isset($_GET['proj'])){
 			<tr><td>Text to Display (line 3):</td><td> <input  name ='display_text_line3' type='text' /></td></tr>
 			<tr><td>Text to Display (line 4):</td><td> <input  name ='display_text_line4' type='text' /></td></tr>
 			<tr><td>Text to Display (line 5):</td><td> <input  name ='display_text_line5' type='text' /></td></tr>
-			<tr><td>Link 1 (display text):</td><td> <input  name ='link1_displayText' type='text' /></td></tr>
-			<tr><td>Link 1 (url):</td><td> <input  name ='link1_url' type='text' /></td></tr>
-			<tr><td>Link 2 (display text):</td><td> <input  name ='link2_displayText' type='text' /></td></tr>
-			<tr><td>Link 2 (url):</td><td> <input  name ='link2_url' type='text' /></td></tr>
-			<tr><td>Link 3 (display text):</td><td> <input  name ='link3_displayText' type='text' /></td></tr>
-			<tr><td>Link 3 (url):</td><td> <input  name ='link3_url' type='text' /></td></tr>
+			<tr><td>Link 1 (display text):</td><td> <input  name ='link_text1' type='text' /></td></tr>
+			<tr><td>Link 1 (url):</td><td> <input  name ='link_url1' type='text' /></td></tr>
+			<tr><td>Link 2 (display text):</td><td> <input  name ='link_text2' type='text' /></td></tr>
+			<tr><td>Link 2 (url):</td><td> <input  name ='link_url2' type='text' /></td></tr>
+			<tr><td>Link 3 (display text):</td><td> <input  name ='link_text3' type='text' /></td></tr>
+			<tr><td>Link 3 (url):</td><td> <input  name ='link_url3' type='text' /></td></tr>
 			<tr><td></td><td><input type='submit' /></td></tr>
 		
 		</table>
