@@ -178,5 +178,14 @@ public class PortfolioServiceImpl implements PortfolioService {
 		});
 		return result;
 	}
+	
+	@Override
+	public void delete(final Object entity) {
+		ofy().transactNew(new VoidWork() {
+		    public void vrun() {
+		    	ofy().delete().entity(entity);
+		    }
+		});
+	}
 		
 }

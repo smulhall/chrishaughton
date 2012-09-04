@@ -26,5 +26,6 @@ public interface PortfolioService {
 	Category updateCategory(Category category);
 	
 	Object update(Object entity);
+	void delete(Object entity);
 	
 }
