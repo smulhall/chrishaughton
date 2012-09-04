@@ -37,7 +37,7 @@ $id = $project->getId();
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<p><a href='/forms/upload_image.php?proj=<?php echo $id; ?>'>upload an IMAGE for this project?</a></p>
 		<p><a href='/forms/upload_video.php?proj=<?php echo $id; ?>'>upload a VIDEO for this project?</a></p>

@@ -30,14 +30,14 @@ $id = $_GET['Id'];
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Please enter the new name of the <?php echo $type; ?>:</h4>
 		<form action='/update' enctype='multipart/form-data' method='post'>
 		<input type='hidden' name='<?php echo $type; ?>_id' value='<?php echo $id; ?>' />
 		<table class='input_table'>
 			
-			<tr><td><input type='text' name='<?php echo $type; ?>' value='' /></td></tr>
+			<tr><td><input type='text' name='title' value='' /></td></tr>
 			<tr><td></td><td><input type='submit' /></td></tr>
 		
 		</table>

@@ -33,7 +33,7 @@ if(isset($_GET['proj'])){
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Upload the images in the order of preference that you would like them to be displayed:</h4>
 		<form action='/upload' enctype='multipart/form-data' method='post'>

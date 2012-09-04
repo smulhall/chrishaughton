@@ -77,12 +77,12 @@ $links_url = $image-> getLinksText(); //Links Display text
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
-	<div id="central_panel">
+	<div id="central_panel" class='central_panel_portfolio'>
 		<?php 
+			
 			$movieUrl = $image-> getMovieUrl();
-			//echo "movieUrl = $movieUrl<br />";
-			if($movieUrl != null){ echo "movie"; ?>
-			<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			if($movieUrl != null){ ?>
+			<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 		<?php }else{ ?>
 			<img src="<?php echo $image-> getUrl();?>" />
 		<?php }	 ?>
@@ -141,13 +141,23 @@ $links_url = $image-> getLinksText(); //Links Display text
 			
 			<div id="links">
 				<?php 
-				$i=0;
+				$links_text = $image-> getLinksText(); //Links Url
+				$links_url = $image-> getLinks(); //Links Display text
 				$no_of_links_text = count($links_text);
+				$upper_limit = $no_of_links_text;
 				$no_of_links_url = count($links_url);
-				echo "no_of_links_text = $no_of_links_text <br />";
-				echo "no_of_links_url = $no_of_links_url <br />";
+				if($no_of_links_url > $upper_limit){
+					$upper_limit = $no_of_links_url;
+				}
+				//echo "no_of_links_text = $no_of_links_text <br />";
+				//echo "no_of_links_url = $no_of_links_url <br />";
+				for($i=0; $i<$upper_limit; $i++){ ?>
+					<a id='first_link' target='_blank' href='<?php echo $links_url[$i]; ?>'><?php echo $links_text[$i]; ?></a><br />
+				<?php 
+				} 
 				?>
-				<a id='first_link' target='_blank' href='<?php echo $links_loop; ?>'><?php echo $links_loop; ?></a><br />
+
+				
 				
 					
 			</div>
@@ -157,10 +167,14 @@ $links_url = $image-> getLinksText(); //Links Display text
 			
 			<div id="more_images">
 				<div id='more_images_thumb_wrapper'>
-					<h4>More Images:</h4>
+					
 					<?php
 					$no_of_elements = count($images);
 					//echo "elements = ".$no_of_elements."<br />";
+					if($no_of_elements > 1){ ?>
+						<h4>More Images:</h4>
+					<?php } 
+					
 					//print_r($images);
 					if($no_of_elements > 1){ //test to see if there are more images in this project
 						$c=0;

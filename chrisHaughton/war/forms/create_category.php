@@ -29,27 +29,15 @@ $categories = $portfolioService-> getCategoryList();
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
-		<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
-		<form action='/forms/process_files/create_proj.php' method='post'>
+		<h4>Please give the name of the new category you would like to enter into the database:</h4>
+		<form action='process_files/create_category_process.php' method='post'>
 		<table class='input_table'>
 		
 		<tr>
-		<td>Project Name:</td>
+		<td>Category Name:</td>
 		<td><input type='text' name='title' /></td>
-		</tr>
-		
-		<tr>
-		<td>Category:</td>
-		<td><select name='category'>
-		<?php 
-			foreach ($categories as $category) {
-				?><option value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
-				<?php
-			}
-		?>
-		</select></td>
 		</tr>
 		
 		

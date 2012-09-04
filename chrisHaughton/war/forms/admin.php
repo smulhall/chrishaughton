@@ -38,13 +38,33 @@ $images = $project-> getImages();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<title>portfolio.php</title>
+<title>admin</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 
 <script type="text/javascript">
 function submitForm(name, form, value){
 	form.submit();
 }
+
+$(document).ready(function() {
+
+	   $(".delete_info_line1").click(function(){
+			alert("Delete this row");
+		   });
+
+	   //add_link
+	   //add_info_line
+	   //delete_info_line1
+	   //delete_link1
+	   
+});
+	 
+
+
+
 </script>
+
 
 
 
@@ -139,8 +159,21 @@ function submitForm(name, form, value){
 		
 			
 			<table class='input_table'>
-			<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
-			<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
+			<?php 
+			$movieUrl = $image-> getMovieUrl();
+			//echo "movieUrl = $movieUrl<br />";
+			if($movieUrl != null){ 
+			?>
+				<tr><td>Vimeo reference:</td><td> <input type='file' name='video' /></td></tr>
+				<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
+			<?php }else{ ?>
+				<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
+				<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
+			<?php 
+			}	 
+			?>
+		
+			
 			
 			<?php 
 			$c=1;
@@ -149,6 +182,7 @@ function submitForm(name, form, value){
 				<tr>
 					<td>Text to Display (line <?php echo $c; ?>):</td>
 					<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
+					<td><a class='delete_info_line<?php echo $c; ?>' href=''>delete</a></td>
 				</tr>
 				
 			<?php 
@@ -156,25 +190,29 @@ function submitForm(name, form, value){
 			} 
 			?>
 			
-			<tr><td><a href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
+			<tr><td><a class='add_info_line' href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
 			
 			<?php 
 			
 			$links_text = $image-> getLinks(); //Links Url
 			$links_url = $image-> getLinksText(); //Links Display text
 			$no_of_links_text = count($links_text);
+			$upper_limit = $no_of_links_text;
 			$no_of_links_url = count($links_url);
-			echo "no_of_links_text = $no_of_links_text <br />";
-			echo "no_of_links_url = $no_of_links_url <br />";
-			
-			for($i=0; $i<$no_of_links_text; $i++){ ?>
+			if($no_of_links_url > $upper_limit){
+				$upper_limit = $no_of_links_url;
+			}
+			//echo "no_of_links_text = $no_of_links_text <br />";
+			//echo "no_of_links_url = $no_of_links_url <br />";
+			for($i=0; $i<$upper_limit; $i++){ ?>
 				<tr>
-					<td><input  name ='link_text<?php echo $c; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
-					<td><input  name ='link_url<?php echo $c; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
+					<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
+					<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
+					<td><a class='delete_link<?php echo $i; ?>' href='#'>delete</a></td>
 				</tr>
 			<?php } ?>
 			
-			<tr><td><a href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
+			<tr><td><a class='add_link' href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
 			<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
 		
 		</table>

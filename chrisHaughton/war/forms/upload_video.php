@@ -33,10 +33,10 @@ if(isset($_GET['proj'])){
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Upload the images in the order of preference that you would like them to be displayed:</h4>
-		<form action='/upload' enctype='multipart/form-data' method='post'>
+		<form action='/uploadmovie' enctype='multipart/form-data' method='post'>
 		<input type='hidden' name='project_id' value='<?php echo "$projectId"; ?>' />
 		<table class='input_table'>
 			<!--  	<tr><td>Main Video File (m4v file):</td><td> <input type='file' name='main' /></td></tr>

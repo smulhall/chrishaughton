@@ -146,10 +146,13 @@ a.horiz_menu:link{
 	float:left;
 	margin:0 10px 0 10px;
 	width:550px;
-	text-align:left;
 }
 
 #central_panel{
+	
+}
+
+.central_panel_portfolio{
 	text-align:center;
 }
 
@@ -194,6 +197,7 @@ p.flow_link{
 .admin_central_panel{
 	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
 	letter-spacing: 0em;
+	text-align: left;
 }
 
 /* ================== text pages ========================== */

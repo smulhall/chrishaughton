@@ -1,8 +1,10 @@
 <?php
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
-$catId = $_GET['Id'];
-echo "catId = $catId <br />";
+if(!isset($catId)){
+	$catId = $_GET['Id'];
+}
+//echo "catId = $catId <br />";
 
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
@@ -33,7 +35,7 @@ $categories = $portfolioService-> getCategoryList();
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-	<div id='central_panel'>
+	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
 		<form action='/forms/process_files/create_proj_process.php' method='post'>
@@ -49,7 +51,9 @@ $categories = $portfolioService-> getCategoryList();
 		<td><select name='category'>
 		<?php 
 			foreach ($categories as $category) {
-				?><option value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
+				$id_loop = $category-> getId();
+				?>
+				<option <?php if($id_loop == $catId){echo "selected='selected'";} ?> value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
 				<?php
 			}
 		?>
