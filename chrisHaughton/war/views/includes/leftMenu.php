@@ -26,11 +26,11 @@
 		<ul id='portfolio'>
 			<!--  <a href='category.php?c=1' class='lhs_menu_subheading'><li>books</li></a> -->
 			<!--  <a href='category.php?c=2' class='lhs_menu_subheading'><li>apps</li></a> -->
-			<a href='category.php?c=1' class='lhs_menu_subheading'><li class='menu_link'>illustration</li></a>
-			<a href='category.php?c=3' class='lhs_menu_subheading'><li class='menu_link'>animation</li></a>
-			<a href='category.php?c=4' class='lhs_menu_subheading'><li class='menu_link'>sketches</li></a>
-			<a href='category.php?c=5' class='lhs_menu_subheading'><li class='menu_link'>projects</li></a>
-			<a href='category.php?c=6' class='lhs_menu_subheading'><li class='menu_link'>fair trade</li></a>
+			<a href='/views/category.php?c=1' class='lhs_menu_subheading'><li class='menu_link'>illustration</li></a>
+			<a href='/views/category.php?c=3' class='lhs_menu_subheading'><li class='menu_link'>animation</li></a>
+			<a href='/views/category.php?c=4' class='lhs_menu_subheading'><li class='menu_link'>sketches</li></a>
+			<a href='/views/category.php?c=5' class='lhs_menu_subheading'><li class='menu_link'>projects</li></a>
+			<a href='/views/category.php?c=6' class='lhs_menu_subheading'><li class='menu_link'>fair trade</li></a>
 		</ul>
 	</li>
 	

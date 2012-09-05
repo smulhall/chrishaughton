@@ -3,9 +3,9 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
 $cat = $_POST['category'];
-//echo "cat = $cat <br />";
+echo "cat = $cat <br />";
 $proj = $_POST['project'];
-//echo "proj = $proj <br />";
+echo "proj = $proj <br />";
 
 
 
@@ -18,7 +18,6 @@ if(isset($cat)){
 }
 
 $projects = $category-> getProjects();
-//print_r($projects);
 
 if(isset($proj)){
 	$project = $portfolioService-> getProject($proj);
@@ -123,7 +122,7 @@ $(document).ready(function() {
 		</select></td>
 		<td><?php echo $project-> getTitle();?></td>
 		<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
-		<td><a href='/forms/delete.php?type=category&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
+		<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
 		<td><a href='/forms/create_proj.php'>Create new project</a></td>
 		<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
 		<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
