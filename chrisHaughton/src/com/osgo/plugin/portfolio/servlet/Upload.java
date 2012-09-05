@@ -154,16 +154,12 @@ public class Upload extends HttpServlet {
 		  AppEngineFile file = fileService.createNewBlobFile("image/jpeg");
 
 		  // Open a channel to write to it
-		  boolean lock = false;
+		  boolean lock = true;
 		  FileWriteChannel writeChannel = fileService.openWriteChannel(file, lock);
 		  String path = file.getFullPath();
 
 		  // Write more to the file in a separate request:
 		  file = new AppEngineFile(path);
-
-		  // This time lock because we intend to finalize
-		  lock = true;
-		  writeChannel = fileService.openWriteChannel(file, lock);
 
 		  // This time we write to the channel directly
 		  writeChannel.write(ByteBuffer.wrap(data));
