@@ -100,7 +100,7 @@ public class Upload extends HttpServlet {
 			    	if(theString!=null){
 				    	if(item.getFieldName().contains("display_text")){
 				    		info.add(theString);
-				    	} else if(item.getFieldName().contains("link")){
+				    	} else if(item.getFieldName().contains("link_url")){
 				    		links.add(theString);
 				    	} else if(item.getFieldName().contains("link_text")){
 				    		linkTexts.add(theString);

@@ -6,6 +6,10 @@ $cat = $_POST['category'];
 echo "cat = $cat <br />";
 $proj = $_POST['project'];
 echo "proj = $proj <br />";
+$prev_cat = $_POST['prev_category'];
+echo "prev_cat = $prev_cat <br />";
+$prev_proj = $_POST['prev_project'];
+echo "prev_proj = $prev_proj <br />";
 
 
 
@@ -89,6 +93,9 @@ $(document).ready(function() {
 		
 		
 		<form action='' method='post'>
+		<input type='hidden' name='prev_category' value='<?php echo $proj; ?>' />
+		<input type='hidden' name='prev_project' value='<?php echo $cat?>' />
+		
 		<table class='admin_table1 input_table'>
 		
 		<tr>
@@ -163,7 +170,7 @@ $(document).ready(function() {
 			//echo "movieUrl = $movieUrl<br />";
 			if($movieUrl != null){ 
 			?>
-				<tr><td>Vimeo reference:</td><td> <input type='file' name='video' /></td></tr>
+				<tr><td>Vimeo reference:</td><td> <input type='text' name='video' /></td><td>(e.g. 13703809)</td></tr>
 				<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 			<?php }else{ ?>
 				<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
