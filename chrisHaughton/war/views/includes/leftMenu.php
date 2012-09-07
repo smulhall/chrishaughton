@@ -7,10 +7,10 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='books'>
-			<a href='index.php?fp=abl&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>A Bit Lost</li></a>
-			<a href='index.php?fp=ong&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Oh No George</li></a>
-			<a href='index.php?fp=hm&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Hot Monkey</li></a>
-			<a href='index.php?fp=dwihap&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Don't worry, I have a plan</li></a>
+			<a href='/views/featured.php?fp=abl&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>A Bit Lost</li></a>
+			<a href='/views/featured.php?fp=ong&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Oh No George</li></a>
+			<a href='/views/featured.php?fp=hm&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Hot Monkey</li></a>
+			<a href='/views/featured.php?fp=dwihap&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Don't worry, I have a plan</li></a>
 		</ul>
 	</li>
 	
