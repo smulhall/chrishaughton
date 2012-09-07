@@ -8,7 +8,7 @@ $pg = $_GET['pg'];
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<title>press</title>
+<title>shop</title>
 </head>
 <body>
 <div id='wrapper'>
@@ -30,17 +30,7 @@ $pg = $_GET['pg'];
 	
 		
 
-		<?php
-		if($pg == 'press'){
-			include('includes/press/press.php');
-		}
-		elseif($pg == 'int'){
-			include('includes/press/interviews.php');
-		}
-		elseif($pg == 'pub'){
-			include('includes/press/publications.php');
-		}
-		?>
+		<p>shop</p>
 	
 		
 				

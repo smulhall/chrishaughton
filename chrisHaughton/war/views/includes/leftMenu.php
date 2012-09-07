@@ -16,9 +16,9 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='other_sites'>
-			<a href='index.php?pg=blg' class='lhs_menu_subheading'><li class='menu_link'>blog</li></a>
-			<a href='index.php?pg=shp' class='lhs_menu_subheading'><li class='menu_link'>shop</li></a>
-			<a href='index.php?pg=rugs' class='lhs_menu_subheading'><li class='menu_link'>rugs</li></a>
+			<a href='/views/blog.php' class='lhs_menu_subheading'><li class='menu_link'>blog</li></a>
+			<a href='/views/shop.php' class='lhs_menu_subheading'><li class='menu_link'>shop</li></a>
+			<a href='/views/rugs.php' class='lhs_menu_subheading'><li class='menu_link'>rugs</li></a>
 		</ul>
 	</li>
 	
@@ -36,8 +36,8 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='about_etc'>
-			<a href='index.php?pg=abt-cont' class='lhs_menu_subheading'><li class='menu_link'>about/contact</li></a>
-			<a href='index.php?pg=prs' class='lhs_menu_subheading'><li class='menu_link'>press</li></a>
+			<a href='/views/about-contact.php?pg=about' class='lhs_menu_subheading'><li class='menu_link'>about/contact</li></a>
+			<a href='/views/press.php?pg=press' class='lhs_menu_subheading'><li class='menu_link'>press</li></a>
 		</ul>
 	</li>
 	

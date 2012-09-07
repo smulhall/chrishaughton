@@ -7,7 +7,6 @@
 	</ul>
 </div>
 		
-		
 <?php 
 if($pg == 'lang'){ ?>
 	<p>language contnet</p>
