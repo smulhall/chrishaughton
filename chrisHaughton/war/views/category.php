@@ -103,9 +103,7 @@ $links_url = $image-> getLinksText(); //Links Display text
 					//echo "<br />";
 					//print_r($imagesCurrProj);
 				?>
-				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>">
-					<img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" />
-				</a>	
+				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>	
 			<?php 
 				}
 			} 
