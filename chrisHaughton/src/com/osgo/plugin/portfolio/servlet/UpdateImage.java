@@ -61,6 +61,7 @@ public class UpdateImage extends HttpServlet {
         PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
         Project project = null;
         Picture picture = null;
+        Category category = null;
         List<String> info = new ArrayList<String>();
         List<String> links = new ArrayList<String>();
         List<String> linkTexts = new ArrayList<String>();
@@ -91,6 +92,10 @@ public class UpdateImage extends HttpServlet {
 				    String projId = URLDecoder.decode(theString);
 				    Long id = Long.parseLong(projId);
 				    project = portfolioService.getProject(id);
+			    } else if(item.getFieldName().equals("category_id")){			    	
+				    String catId = URLDecoder.decode(theString);
+				    Long id = Long.parseLong(catId);
+				    category = portfolioService.getCategory(id);
 			    } else if(item.getFieldName().equals("image_id")){			    	
 				    String strId = URLDecoder.decode(theString);
 				    Long id = Long.parseLong(strId);
@@ -146,7 +151,7 @@ public class UpdateImage extends HttpServlet {
 		picture.setLinksText(linkTexts);
 		portfolioService.update(picture);
 		
-		response.sendRedirect("/forms/admin.php");
+		response.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
 	}
 	
 	private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{

@@ -33,6 +33,7 @@ import com.google.appengine.api.files.FileWriteChannel;
 import com.google.appengine.api.files.GSFileOptions.GSFileOptionsBuilder;
 import com.osgo.plugin.portfolio.api.PortfolioService;
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+import com.osgo.plugin.portfolio.model.objectify.Category;
 import com.osgo.plugin.portfolio.model.objectify.Picture;
 import com.osgo.plugin.portfolio.model.objectify.Project;
 
@@ -65,6 +66,7 @@ public class Upload extends HttpServlet {
         res.setContentType("text/plain");
         PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
         Project project = null;
+        Category category = null;
         List<String> info = new ArrayList<String>();
         List<String> links = new ArrayList<String>();
         List<String> linkTexts = new ArrayList<String>();
@@ -81,8 +83,7 @@ public class Upload extends HttpServlet {
         try {
         	
         	// get Project to add image to
-        	
-        	
+
 			while (iterator.hasNext()) {
 			  FileItemStream item = iterator.next();
 			  InputStream stream = item.openStream();
@@ -96,6 +97,10 @@ public class Upload extends HttpServlet {
 				    String projId = URLDecoder.decode(theString);
 				    Long id = Long.parseLong(projId);
 				    project = portfolioService.getProject(id);
+			    } else if(item.getFieldName().equals("category_id")){			    	
+				    String catId = URLDecoder.decode(theString);
+				    Long id = Long.parseLong(catId);
+				    category = portfolioService.getCategory(id);
 			    } else {
 			    	if(theString!=null){
 			    		if(!theString.equals("")){
@@ -145,7 +150,7 @@ public class Upload extends HttpServlet {
         
         portfolioService.addImage(picture, project);
     	      
-        res.sendRedirect("/forms/admin.php");
+        res.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
     }
     
     private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{
