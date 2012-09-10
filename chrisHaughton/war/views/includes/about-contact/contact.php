@@ -1,18 +1,16 @@
-<div>
-	<ul>
-		<a href='?pg=about'><li>About</li></a>
-		<a href='?pg=contact'><li>Contact</li></a>
-	</ul>
-</div>
-		
-		
+
+<div class='text_pages_content'>
+	
 <?php 
-if($pg == 'about'){ ?>
-	<p>about content</p>
-<?php 
-}
-elseif($pg == 'contact'){ ?>
-	<p>contact content</p>
-<?php 
-}
+include('includes/about-contact/about-contact-menu.php');
 ?>
+
+<div class='text_pages_content_content'>
+
+
+	<p>contact content</p>
+
+
+</div>
+
+</div>

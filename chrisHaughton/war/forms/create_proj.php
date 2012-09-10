@@ -39,6 +39,7 @@ $categories = $portfolioService-> getCategoryList();
 	
 		<h4>Please give the name and category of the new project you would like to enter into the database:</h4>
 		<form action='/forms/process_files/create_proj_process.php' method='post'>
+		<input type='hidden' name='category_id' value='<?php echo "$catId"; ?>' />
 		<table class='input_table'>
 		
 		<tr>

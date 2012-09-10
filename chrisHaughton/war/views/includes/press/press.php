@@ -1,23 +1,14 @@
-<div>
-	<ul>
-		<a href='?pg=press'><li>Press</li></a>
-		<a href='?pg=int'><li>Interviews</li></a>
-		<a href='?pg=pub'><li>Publications</li></a>
-	</ul>
-</div>
-		
-		
+
+<div class='text_pages_content'>
+	
 <?php 
-if($pg == 'press'){ ?>
-	<p>press content</p>
-<?php 
-}
-elseif($pg == 'int'){ ?>
-	<p>interview content</p>
-<?php 
-}
-elseif($pg == 'pub'){ ?>
-	<p>publications content</p>
-<?php 
-}
+include('includes/press/press-menu.php');
 ?>
+
+<div class='text_pages_content_content'>
+
+	<p>press content</p>
+
+</div>
+
+</div>

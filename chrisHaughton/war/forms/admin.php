@@ -12,8 +12,8 @@ if(isset($_POST['prev_project'])){
 	$prev_proj = $_POST['prev_project'];
 }
 
-echo "cat = $cat // prev_cat = $prev_cat<br />";
-echo "proj = $proj // prev_proj = $prev_proj<br />";
+//echo "cat = $cat // prev_cat = $prev_cat<br />";
+//echo "proj = $proj // prev_proj = $prev_proj<br />";
 
 
 
@@ -54,6 +54,7 @@ $images = $project-> getImages();
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>admin</title>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
@@ -157,11 +158,11 @@ $(document).ready(function() {
 		</select></td>
 		<?php if($projects[0] != null){ ?>
 			<td><?php echo $project-> getTitle(); ?></td>
-			<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
-			<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
 			<td><a href='/forms/create_proj.php'>Create new project</a></td>
 			<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
 			<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+			<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
+			<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
 		<?php }else{ ?>
 			<td>no projects</td>
 		<?php } ?>
@@ -174,9 +175,21 @@ $(document).ready(function() {
 		<?php if($projects[0] != null){	
 			foreach($images as $image){
 				echo "<p>===================================================================================================================</p>";
+		?>
+		
+		<?php 
+			$movieUrl = $image-> getMovieUrl();
+			//echo "movieUrl = $movieUrl<br />";
+			if($movieUrl != null){ 
 			?>
-				
-	
+				<h4>Movie</h4>			
+			<?php 
+			} else{	 
+			?>
+				<h4>Image</h4>
+			<?php 
+			}
+			?>	
 				<table class='images_table'>
 				<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
 		

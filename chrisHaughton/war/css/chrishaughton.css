@@ -43,7 +43,7 @@ margin-right: 780px;
 }
 
 .horiz_menu_ul{
-	margin:0;
+	margin:5px 0 0 -40px;
 }
 
 .HL {
@@ -68,7 +68,7 @@ margin-right: 780px;
 	list-style-type:none;
 }
 
-a.lhs_menu_subheading:link, a.horiz_menu_a:link{
+a.lhs_menu_subheading:link, a.horiz_menu_a:link, a.lhs_menu_subheading:visited, a.horiz_menu_a:visited{
 	text-decoration:none;
 	color:#000000;
 }
@@ -110,6 +110,10 @@ ul#books li{
 
 /* =========================== horiz menu ============== */
 
+.featured{
+	font-size: 75%;	
+}
+
 #horiz_menu_div{
 	width:500px;
 	font-family: chrishaughton, Arial, Helvetica, sans-serif;
@@ -134,7 +138,9 @@ a.horiz_menu:link{
 }
 
 .horiz_link{
-	width: 80px;
+	text-align: left;
+	padding: 2px 5px 0px 5px;
+	margin: 0 10px 0 0;
 }
 
 
@@ -142,7 +148,7 @@ a.horiz_menu:link{
 
 /* ================= CENTRAL =========================== */	
 
-#central_panel, #homepage_panel, #text_page_panel{
+#central_panel, #homepage_panel, .central_panel_text_pages{
 	float:left;
 	margin:0 10px 0 10px;
 	width:550px;
@@ -156,7 +162,7 @@ a.horiz_menu:link{
 	text-align:center;
 }
 
-#homepage_panel, #text_page_panel{
+#homepage_panel, .central_panel_text_pages{
 	width:750px;	
 }
 
@@ -192,6 +198,16 @@ p.flow_link{
 	width:730px;
 }
 
+.wait_for_video{
+	z-index: -2;
+	margin: 50px 0 0 0;
+	color:orange;
+}
+
+#video_iframe_div{
+	z-index: 2;
+	margin: -50px 0 0 0;
+}
 /* ================== admin ========================== */
 
 .admin_central_panel{
@@ -201,6 +217,25 @@ p.flow_link{
 }
 
 /* ================== text pages ========================== */
+
+.text_pages_content{
+	text-align: center;
+}
+
+.text_pages_content_content{
+	clear: left;
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+	letter-spacing: 0em;
+	text-align: left;
+	padding: 10px 0 0 0;
+}
+
+.text_pages_img{
+	
+}
+
+
+
 iframe#blog{
 	width:700px;
 	height:1000px;
@@ -239,7 +274,7 @@ img.rhs_thumb{
 }
 
 #image_info_wrapper h4{
-	margin:10px 0 5px 0;
+	margin:0px 0 5px 0;
 	font-weight:bold;
 	color:#035881;
 }
@@ -259,7 +294,7 @@ img.rhs_thumb{
 	float:left;
 	clear:left;
 	/* height:90px; */
-	margin-top:20px;
+	margin-top:15px;
 }
 
 #links a{

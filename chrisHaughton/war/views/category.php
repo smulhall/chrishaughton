@@ -36,6 +36,15 @@ if(isset($currImageId)){
 $links_text = $image-> getLinks(); //Links Url
 $links_url = $image-> getLinksText(); //Links Display text
 
+
+//thumbnails pagination calcs
+$no_of_thumbnails_per_set = 3; //set no of thumbnails per page
+$total_no_of_thumbnails = count($images);
+$no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
+$current_th_set = $_GET['ts']; //if set
+$current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
+$current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
+
 ?>
 
 <!DOCTYPE html>
@@ -46,22 +55,7 @@ $links_url = $image-> getLinksText(); //Links Display text
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>portfolio.php</title>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script type='text/javascript'>
-	$(document).ready(function() {
-
-		$(".menu_link").hover(
-	  function () {
-	    $(this).addClass('HL');
-	  }, 
-	  function () {
-	    $(this).removeClass('HL');
-	  }
-	);
-
-	
-		
-	});
-</script>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
 </head>
 <body>
 <div id='wrapper'>
@@ -82,7 +76,10 @@ $links_url = $image-> getLinksText(); //Links Display text
 			
 			$movieUrl = $image-> getMovieUrl();
 			if($movieUrl != null){ ?>
-			<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			<p class='wait_for_video'>Please wait for the movie file to load...</p>
+			<div id='video_iframe_div'>
+				<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
 		<?php }else{ ?>
 			<img src="<?php echo $image-> getUrl();?>" />
 		<?php }	 ?>
@@ -93,32 +90,51 @@ $links_url = $image-> getLinksText(); //Links Display text
 		
 		<div id="thumb_wrapper"> 
 			<?php
+			$counter=1;
 			foreach($projects as $proj){
-				//print_r($proj);
-				$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
-				//print_r($imagesCurrProj[0]);
-				if($imagesCurrProj[0]!=null){
-					$thumbUrl = $imagesCurrProj[0]-> getThumbUrl();
-					//echo "<br />thumbUrl = ".$thumbUrl;
-					//echo "<br />";
-					//print_r($imagesCurrProj);
-				?>
-				<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>	
-			<?php 
+				if($counter > $current_ts_lwr_limit && $counter <= $current_ts_upr_limit){
+					//print_r($proj);
+					$imagesCurrProj = $proj-> getImages(); //numerical array of all images in this single project
+					//print_r($imagesCurrProj[0]);
+						if($imagesCurrProj[0]!=null){
+							$thumbUrl = $imagesCurrProj[0]-> getThumbUrl();
+							//echo "<br />thumbUrl = ".$thumbUrl;
+							//echo "<br />";
+							//print_r($imagesCurrProj);
+						?>
+						<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>	
+					<?php 
+						}
 				}
+				$counter++;
 			} 
 			?>
 		</div>
 		
+		
+		
 		<div id="prev_next">
-			<a id="prev_ts" href="#">
-				<img class="arrow" src="/images/prev.jpg">
-			</a>
-			<a id="next_ts" href="#">
-				<img class="arrow" src="/images/next.jpg">
-			</a>
+			<?php 
+			echo "current_th_set = $current_th_set";
+			if($current_th_set > 1){
+				$new_th_set = $current_th_set - 1;
+				?>
+				<a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a>
+			<?php 
+			}
+			?>
+			<?php 
+			if($current_th_set < $no_of_th_sets){
+				$new_th_set = $current_th_set + 1;
+			?>
+			<a id="next_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a>
+			<?php 
+			}
+			?>
 		</div>
 		
+		
+	
 		
 		
 		<div id="image_info_wrapper">
@@ -129,9 +145,11 @@ $links_url = $image-> getLinksText(); //Links Display text
 			<div id="info">
 				<?php $info = $image-> getInfo();
 				foreach($info as $info1){
-				?>
+					if($info1 != null){
+					?>
 					<p><?php echo $info1?></p>
 				<?php
+					}
 				}
 				?>
 			</div>
@@ -149,9 +167,12 @@ $links_url = $image-> getLinksText(); //Links Display text
 				}
 				//echo "no_of_links_text = $no_of_links_text <br />";
 				//echo "no_of_links_url = $no_of_links_url <br />";
-				for($i=0; $i<$upper_limit; $i++){ ?>
+				for($i=0; $i<$upper_limit; $i++){ 
+					if($links_url[$i] != null || $links_text[$i] != null){
+				?>
 					<a id='first_link' target='_blank' href='<?php echo $links_url[$i]; ?>'><?php echo $links_text[$i]; ?></a><br />
 				<?php 
+					}
 				} 
 				?>
 

@@ -8,6 +8,8 @@ $pg = $_GET['pg'];
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
 <title>blog</title>
 </head>
 <body>
@@ -30,7 +32,8 @@ $pg = $_GET['pg'];
 	
 		
 
-		<p>blog</p>
+		<p>blog splash page</p>
+		<a target="_blank" href='http://www.chrishaughton.com'>go to chris' blog</a>
 	
 		
 				
