@@ -22,6 +22,7 @@ public class Project {
 	private String title;
 	private Key<Category> category;	
 	private List<Ref<Picture>> images = new ArrayList<Ref<Picture>>();
+	private String text;
 
 	public Project(){}
 	
@@ -134,6 +135,14 @@ public class Project {
 		}
 		
 		return null;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 }

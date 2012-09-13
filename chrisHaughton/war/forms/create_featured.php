@@ -1,3 +1,11 @@
+<?php
+import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+
+$portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +33,26 @@
 	
 	<div id='central_panel' class='admin_central_panel'>
 	
-		<form action='/login' method='post'>
-			username:<input type="text" name="uname" />
-			password:<input type="password" name="pword" />
-			<input type="submit" value='login' />
+		<h4>Please give the name of the new featured link you would like to enter into the database:</h4>
+		<form action='process_files/create_featured_process.php' method='post'>
+		<table class='input_table'>
+		
+		<tr>
+		<td>Featured Link Name:</td>
+		<td><input type='text' name='title' /></td>
+		</tr>
+		
+		
+		<tr>
+		<td></td>
+		<td><input type='submit' /></td>
+		</tr>
+				
+		</table>
+		
+		<input type='hidden' name='pg' value='crproj' />
+		<input type='hidden' name='featured' value='true' />
+		
 		</form>
 	
 	</div> <!--  close central_panel -->

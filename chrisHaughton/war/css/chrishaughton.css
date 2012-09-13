@@ -111,7 +111,7 @@ ul#books li{
 /* =========================== horiz menu ============== */
 
 .featured{
-	font-size: 75%;	
+	font-size: 95%;	
 }
 
 #horiz_menu_div{
@@ -300,6 +300,15 @@ img.rhs_thumb{
 #links a{
 	color:#222;
 	text-decoration: none;	
+}
+
+#links a:hover{
+	color:#333;
+	text-decoration: none;	
+}
+
+a.horiz_menu_a:active{
+	background-color: #999;
 }
 
 #more_images{

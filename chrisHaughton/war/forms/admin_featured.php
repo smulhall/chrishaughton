@@ -28,22 +28,21 @@ if(isset($_POST['prev_project'])){
 
 
 $categories = $portfolioService-> getCategoryList();
-$categories2 = $categories;
 
 if(isset($cat)){
 	$category = $portfolioService-> getCategory($cat);
 } else{
-	$category = $categories[0];
+	$flag = "false";
+	foreach($categories as $categoy_loop){
+		$featured_check = $category_loop-> isFeatured();
+		if($featured_check != null && $flag == "false"){
+			$category = $category_loop;
+			$flag = "true";
+		}
+	}
 }
 
 $projects = $category-> getProjects();
-
-/*
-foreach($projects as $project_loop_id){
-	$temp_id = $project_loop_id-> getId();
-	echo "temp_id = $temp_id<br />";
-}
-*/
 
 if(isset($proj)){
 	$project = $portfolioService-> getProject($proj);
@@ -115,24 +114,21 @@ $(document).ready(function() {
 		
 			<h4>Select a Category and Project to display all images contained in that project:</h4>
 
-			
+
 			
 			<form action='' method='post'>
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			
-			
-			
-			
 			<table class='admin_table1 input_table'>
 			
 			<tr>
-			<td>Category:</td>
+			<td>Featured:</td>
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach($categories as $category_loop) {
 					$featured_check = $category_loop-> isFeatured();
-					if($featured_check == null){
+					if($featured_check != null){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
@@ -141,10 +137,10 @@ $(document).ready(function() {
 			?>
 			</select></td>
 			<td><?php echo $category-> getTitle(); ?></td>
-			<!-- <td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
+			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
 			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
-			<td><a href='/forms/create_category.php'>Create new category</a></td> -->
-			<td><a href='/forms/create_proj.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add project</a></td>
+			<td><a href='/forms/create_featured.php'>Create new category</a></td> 
+			<!--  <td><a href='/forms/create_proj_featured.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add subLink</a></td> -->
 			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
 			</tr>
 			
@@ -187,12 +183,6 @@ $(document).ready(function() {
 			
 			</table>
 			</form>
-			
-			
-			
-			
-			<a href='/forms/admin_featured.php'>Manage Featured Links</a>
-			
 			
 	
 			<?php if($projects[0] != null){	

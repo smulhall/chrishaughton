@@ -17,6 +17,7 @@ public class Category {
 	private Long id;
 	private String title;
 	private List<Ref<Project>> projects = new ArrayList<Ref<Project>>();
+	private boolean featured;
 	
 	public Long getId() {
 		return id;
@@ -50,4 +51,10 @@ public class Category {
     	Ref<Project> ref = Ref.create(Key.create(Project.class, project.getId()), project);
     	projects.add(ref);
     }
+	public boolean isFeatured() {
+		return featured;
+	}
+	public void setFeatured(boolean featured) {
+		this.featured = featured;
+	}
 }

@@ -86,11 +86,13 @@ public class PortfolioServiceImpl implements PortfolioService {
 			@Override
 			public Project run() {
 				String title = (String) input.get("title");
+				String text = (String) input.get("text");
 				Project project = new Project();
 				if(category!=null){
 					project.setCategory((Key.create(Category.class, category.getId())));
 				}
 				project.setTitle(title);
+				project.setText(text);
 				Key<Project> result = ofy().save().entity(project).now();
 				project = ofy().load().key(result).get();			
 				
@@ -150,8 +152,15 @@ public class PortfolioServiceImpl implements PortfolioService {
 			@Override
 			public Category run() {
 				String title = (String) input.get("title");
+				String featured = (String)input.get("featured");
+				boolean featuredVal = false;
+				if(featured!=null){
+					if(featured.equals("true"));
+						featuredVal = true;
+				}
 				Category category = new Category();
 				category.setTitle(title);
+				category.setFeatured(featuredVal);
 				Key<Category> result = ofy().save().entity(category).now();
 				Category obj = ofy().load().key(result).get();
 				return obj;		
