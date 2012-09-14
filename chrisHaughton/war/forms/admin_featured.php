@@ -170,9 +170,6 @@ $(document).ready(function() {
 			<td><select name='project' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach ($projects as $project_loop) { ?>
-					if($project_loop-> getId() == $proj){ 
-						
-					}
 					<option value='<?php echo $project_loop-> getId();?>' <?php if($project_loop-> getId() == $proj){ echo "selected='selected' "; } ?>><?php echo $project_loop-> getTitle();?></option>
 				<?php
 				}
