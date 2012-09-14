@@ -154,7 +154,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 				String title = (String) input.get("title");
 				String featured = (String)input.get("featured");
 				boolean featuredVal = false;
-				if(featured!=null){
+				if(featured.equals("true")){
 					if(featured.equals("true"));
 						featuredVal = true;
 				}
