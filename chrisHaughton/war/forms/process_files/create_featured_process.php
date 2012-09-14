@@ -29,7 +29,7 @@ foreach($featured_titles as $featured_title){
 	$proj_id_array[$featured_title] = $proj_id;
 }
 */
-include('../create_proj.php');
+include('../create_featured_sublink.php');
 
 ?>
 

@@ -66,7 +66,7 @@ $categories = $portfolioService-> getCategoryList();
 		
 		<tr>
 		<td>Page Text (HTML):</td>
-		<td><input type='text' name='page_text' /></td>
+		<td><textarea name='page_text' width='20' height='20'></textarea></td>
 		</tr>
 		
 		

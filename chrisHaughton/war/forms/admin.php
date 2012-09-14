@@ -28,13 +28,15 @@ if(isset($_POST['prev_project'])){
 
 
 $categories = $portfolioService-> getCategoryList();
-$categories2 = $categories;
+
 
 if(isset($cat)){
 	$category = $portfolioService-> getCategory($cat);
 } else{
 	$category = $categories[0];
 }
+
+
 
 $projects = $category-> getProjects();
 
@@ -132,8 +134,7 @@ $(document).ready(function() {
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach($categories as $category_loop) {
-					$featured_check = $category_loop-> isFeatured();
-					if($featured_check == "true"){
+					if(!$category-> isFeatured()){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
