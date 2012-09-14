@@ -19,7 +19,7 @@ public class Category {
 	private Long id;
 	private String title;
 	private List<Ref<Project>> projects = new ArrayList<Ref<Project>>();
-	private boolean featured;
+	private boolean featured = false;
 	
 	public Long getId() {
 		return id;
