@@ -66,7 +66,10 @@ margin-right: 780px;
 
 #lhs_menu ul, #horiz_links_div ul{
 	list-style-type:none;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
 }
+
 
 a.lhs_menu_subheading:link, a.horiz_menu_a:link, a.lhs_menu_subheading:visited, a.horiz_menu_a:visited{
 	text-decoration:none;
@@ -169,6 +172,11 @@ a.horiz_menu:link{
 #central_panel h4{
 	margin:0 0 20px 0;
 	padding:0 0 0 0;
+}
+
+.admin_title{
+	clear:left;
+	margin:50px 0 0 0;
 }
 
 p.success{

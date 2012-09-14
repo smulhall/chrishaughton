@@ -63,7 +63,7 @@ $images2 = $images;
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
 <title>admin</title>
 
 
@@ -111,8 +111,17 @@ $(document).ready(function() {
 	<!-- ======================== Central Panel ========================== -->	
 	
 		<div id='central_panel' class='admin_central_panel'>
-		
-			<h4>Select a Category and Project to display all images contained in that project:</h4>
+			
+			<div id='horiz_links_div'>
+				<ul class='horiz_menu_ul'>
+					<a class='horiz_menu_a' href='/forms/admin.php'><li class='horiz_link menu_link'>Portfolio</li></a>
+					<a class='horiz_menu_a' href='/forms/admin_featured.php'><li class='horiz_link menu_link'>Featured Links</li></a>
+					
+				</ul>
+			</div>
+			
+			
+			<h4 class='admin_title'>Select a Category and Project to display all images contained in that project:</h4>
 
 
 			

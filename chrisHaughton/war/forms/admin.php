@@ -38,13 +38,6 @@ if(isset($cat)){
 
 $projects = $category-> getProjects();
 
-/*
-foreach($projects as $project_loop_id){
-	$temp_id = $project_loop_id-> getId();
-	echo "temp_id = $temp_id<br />";
-}
-*/
-
 if(isset($proj)){
 	$project = $portfolioService-> getProject($proj);
 } else {
@@ -64,7 +57,7 @@ $images2 = $images;
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
 <title>admin</title>
 
 
@@ -113,7 +106,15 @@ $(document).ready(function() {
 	
 		<div id='central_panel' class='admin_central_panel'>
 		
-			<h4>Select a Category and Project to display all images contained in that project:</h4>
+			<div id='horiz_links_div'>
+				<ul class='horiz_menu_ul'>
+					<a class='horiz_menu_a' href='/forms/admin.php'><li class='horiz_link menu_link'>Portfolio</li></a>
+					<a class='horiz_menu_a' href='/forms/admin_featured.php'><li class='horiz_link menu_link'>Featured Links</li></a>
+					
+				</ul>
+			</div>
+			
+			<h4 class='admin_title'>Select a Category and Project to display all images contained in that project:</h4>
 
 			
 			
@@ -132,20 +133,20 @@ $(document).ready(function() {
 			<?php 
 				foreach($categories as $category_loop) {
 					$featured_check = $category_loop-> isFeatured();
-					if($featured_check == null){
+					//if($featured_check == null){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
-					}
+					//}
 				}
 			?>
 			</select></td>
 			<td><?php echo $category-> getTitle(); ?></td>
-			<!-- <td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
+			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
 			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
-			<td><a href='/forms/create_category.php'>Create new category</a></td> -->
+			<td><a href='/forms/create_category.php'>Create new category</a></td>
 			<td><a href='/forms/create_proj.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add project</a></td>
-			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+			<td>&nbsp</td>
 			</tr>
 			
 			</form>
@@ -175,11 +176,12 @@ $(document).ready(function() {
 			</select></td>
 			<?php if($projects[0] != null){ ?>
 				<td><?php echo $project-> getTitle(); ?></td>
+				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
+				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
 				<td><a href='/forms/create_proj.php'>Create new project</a></td>
 				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
 				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
-				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
-				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
+				
 			<?php }else{ ?>
 				<td>no projects</td>
 			<?php } ?>
@@ -188,10 +190,7 @@ $(document).ready(function() {
 			</table>
 			</form>
 			
-			
-			
-			
-			<a href='/forms/admin_featured.php'>Manage Featured Links</a>
+		
 			
 			
 	

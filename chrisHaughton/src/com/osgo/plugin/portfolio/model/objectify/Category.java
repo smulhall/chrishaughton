@@ -7,10 +7,12 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @Entity
+@Index
 public class Category {
 
 	@Id
