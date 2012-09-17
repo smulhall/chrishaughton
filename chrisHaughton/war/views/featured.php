@@ -10,11 +10,12 @@ $currImageId = $_GET['i'];
 //echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
+
 
 if(isset($currCategoryId)){
 	$category = $portfolioService-> getCategory($currCategoryId);
 }else{
-	$categories = $portfolioService-> getCategoryList();
 	$category = $categories[0];
 	$currCategoryId = $category-> getId();
 }
@@ -70,21 +71,42 @@ $links_url = $image-> getLinksText(); //Links Display text
 	
 	<div id='central_panel' class='central_panel_text_pages'>
 		
-		<?php
-		if($fp == 'abl'){ 
-			include('includes/featured/abl.php');
-		}
-		elseif($fp == 'ong'){ 
-			include('includes/featured/ong.php');
-		}
-		elseif($fp == 'hm'){ 
-			include('includes/featured/hm.php');
-		}
-		elseif($fp == 'dwihap'){ 
-			include('includes/featured/dwihap.php');
-		}
+			<?php 
+			$movieUrl = $image-> getMovieUrl();
+			if($movieUrl != null){ ?>
+				<p class='wait_for_video'>Please wait for the movie file to load...</p>
 				
-		?>
+				<div id='video_iframe_div'>
+					<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
+				<?php }else{ ?>
+					<img src="<?php echo $image-> getUrl();?>" />
+				<?php }	 
+				?>
+				
+		
+		<div class='text_pages_content'>
+			
+			<div id='horiz_links_div' class='featured'>
+				<ul class='horiz_menu_ul'>
+				<?php 
+				foreach($projects as $project_loop){
+				?>
+					<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $project_loop-> getId(); ?>&ts=1' class='horiz_menu_a'><li class='horiz_link menu_link'><?php echo $project_loop-> getTitle(); ?></li></a>
+				<?php 
+				}
+				?>
+				</ul>
+			</div>
+			
+			
+			<div class='text_pages_content_content'>
+				<?php 
+				echo $project-> getText();
+				?>
+			</div>
+		
+		</div>
 				
 	
 	</div> <!--  close central_panel -->

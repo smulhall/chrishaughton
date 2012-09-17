@@ -7,11 +7,12 @@ $currImageId = $_GET['i'];
 //echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList(); 
 
 if(isset($currCategoryId)){
 	$category = $portfolioService-> getCategory($currCategoryId);
 }else{
-	$categories = $portfolioService-> getCategoryList();
+	//$categories = $portfolioService-> getCategoryList();
 	$category = $categories[0];
 	$currCategoryId = $category-> getId();
 }

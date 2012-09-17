@@ -7,6 +7,7 @@ echo "id = $id";
 echo "<br />type = $type";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
 
 if($type=="category"){
 	$object_to_delete = $portfolioService-> getCategory($id);

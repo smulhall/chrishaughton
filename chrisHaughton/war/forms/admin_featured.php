@@ -24,23 +24,25 @@ if(isset($_POST['prev_project'])){
 //echo "cat = $cat // prev_cat = $prev_cat<br />";
 //echo "proj = $proj // prev_proj = $prev_proj<br />";
 
-
-
-
 $categories = $portfolioService-> getCategoryList();
+//echo"<br />categories<br />";
+//print_r($categories);
 
 if(isset($cat)){
 	$category = $portfolioService-> getCategory($cat);
 } else{
+	//$category = $categories[0];
 	$flag = "false";
-	foreach($categories as $categoy_loop){
-		$featured_check = $category_loop-> isFeatured();
-		if($featured_check != null && $flag == "false"){
+	foreach($categories as $category_loop){
+		if($category_loop-> isFeatured() && $flag == "false"){
 			$category = $category_loop;
 			$flag = "true";
 		}
 	}
 }
+//echo"<br />category<br />";
+//print_r($category);
+
 
 $projects = $category-> getProjects();
 
@@ -111,7 +113,7 @@ $(document).ready(function() {
 	<!-- ======================== Central Panel ========================== -->	
 	
 		<div id='central_panel' class='admin_central_panel'>
-			
+		
 			<div id='horiz_links_div'>
 				<ul class='horiz_menu_ul'>
 					<a class='horiz_menu_a' href='/forms/admin.php'><li class='horiz_link menu_link'>Portfolio</li></a>
@@ -120,14 +122,16 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			
-			
 			<h4 class='admin_title'>Select a Category and Project to display all images contained in that project:</h4>
 
-
+			
 			
 			<form action='' method='post'>
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
+			
+			
+			
 			
 			<table class='admin_table1 input_table'>
 			
@@ -136,8 +140,7 @@ $(document).ready(function() {
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach($categories as $category_loop) {
-					$featured_check = $category_loop-> isFeatured();
-					if($featured_check != null){
+					if($category_loop-> isFeatured()){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
@@ -148,9 +151,9 @@ $(document).ready(function() {
 			<td><?php echo $category-> getTitle(); ?></td>
 			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
 			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
-			<td><a href='/forms/create_featured.php'>Create new category</a></td> 
-			<!--  <td><a href='/forms/create_proj_featured.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add subLink</a></td> -->
-			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+			<td><a href='/forms/create_featured.php'>New Featured</a></td>
+			<td><a href='/forms/create_proj_featured.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td>
+			<td>&nbsp</td>
 			</tr>
 			
 			</form>
@@ -166,7 +169,7 @@ $(document).ready(function() {
 			
 			
 			<tr>
-			<td>Project:</td>
+			<td>Sub-Link:</td>
 			<td><select name='project' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach ($projects as $project_loop) { ?>
@@ -177,11 +180,12 @@ $(document).ready(function() {
 			</select></td>
 			<?php if($projects[0] != null){ ?>
 				<td><?php echo $project-> getTitle(); ?></td>
-				<td><a href='/forms/create_proj.php'>Create new project</a></td>
-				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
-				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
 				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
 				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
+				<td><a href='/forms/create_proj.php'>New Sub-link</a></td>
+				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
+				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+				
 			<?php }else{ ?>
 				<td>no projects</td>
 			<?php } ?>
@@ -189,6 +193,9 @@ $(document).ready(function() {
 			
 			</table>
 			</form>
+			
+		
+			
 			
 	
 			<?php if($projects[0] != null){	
@@ -201,11 +208,11 @@ $(document).ready(function() {
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h4>Movie</h4>			
+					<h3>Movie</h3>			
 				<?php 
 				} else{	 
 				?>
-					<h4>Image</h4>
+					<h3>Image</h3>
 				<?php 
 				}
 				?>	

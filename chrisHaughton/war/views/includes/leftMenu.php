@@ -7,10 +7,17 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='books'>
-			<a href='/views/featured.php?fp=abl&pg=awards&c=4002&p=12001&i=5004&ts=1' class='lhs_menu_subheading'><li class='menu_link'>A Bit Lost</li></a>
-			<a href='/views/featured.php?fp=ong&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Oh No George</li></a>
-			<a href='/views/featured.php?fp=hm&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Hot Monkey</li></a>
-			<a href='/views/featured.php?fp=dwihap&pg=awards' class='lhs_menu_subheading'><li class='menu_link'>Don't worry, I have a plan</li></a>
+		<?php 
+		//print_r($categories);
+		foreach($categories as $category_loop){
+			if($category_loop-> isFeatured()){
+				$featured_projects = $category_loop-> getProjects();
+		?>
+				<a href='/views/featured.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+		<?php 
+			}
+		}
+		?>
 		</ul>
 	</li>
 	
@@ -24,13 +31,16 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='portfolio'>
-			<!--  <a href='category.php?c=9002&ts=1' class='lhs_menu_subheading'><li>books</li></a> -->
-			<!--  <a href='category.php?c=7003&ts=1' class='lhs_menu_subheading'><li>apps</li></a> -->
-			<a href='/views/category.php?c=4002&ts=1' class='lhs_menu_subheading'><li class='menu_link'>illustration</li></a>
-			<a href='/views/category.php?c=8001&ts=1' class='lhs_menu_subheading'><li class='menu_link'>animation</li></a>
-			<a href='/views/category.php?c=9001&ts=1' class='lhs_menu_subheading'><li class='menu_link'>sketches</li></a>
-			<a href='/views/category.php?c=9002&ts=1' class='lhs_menu_subheading'><li class='menu_link'>projects</li></a>
-			<a href='/views/category.php?c=5003&ts=1' class='lhs_menu_subheading'><li class='menu_link'>fair trade</li></a>
+			<?php 
+			//print_r($categories);
+			foreach($categories as $category_loop){
+				if(!$category_loop-> isFeatured()){
+			?>
+					<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+			<?php 
+				}
+			}
+			?>
 		</ul>
 	</li>
 	

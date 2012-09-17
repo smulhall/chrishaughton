@@ -8,6 +8,7 @@ $projectDetails['category'] = $_POST['category'];
 
 // creating the service and accessing the model
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
 $project = $portfolioService-> addProject($projectDetails);
 
 $id = $project->getId();

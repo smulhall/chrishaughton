@@ -2,7 +2,7 @@
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
-//$categories = $portfolioService-> getCategoryList();
+$categories = $portfolioService-> getCategoryList();
 
 if(isset($_GET['proj'])){
 	$projectId = $_GET['proj'];

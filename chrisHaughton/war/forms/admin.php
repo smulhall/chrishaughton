@@ -134,7 +134,7 @@ $(document).ready(function() {
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach($categories as $category_loop) {
-					if(!$category-> isFeatured()){
+					if(!$category_loop-> isFeatured()){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
@@ -202,11 +202,11 @@ $(document).ready(function() {
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h4>Movie</h4>			
+					<h3>Movie</h3>			
 				<?php 
 				} else{	 
 				?>
-					<h4>Image</h4>
+					<h3>Image</h3>
 				<?php 
 				}
 				?>	

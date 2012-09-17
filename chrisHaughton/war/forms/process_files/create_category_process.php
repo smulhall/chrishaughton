@@ -8,6 +8,7 @@ $categoryDetails['featured'] = $_POST['featured'];
 
 // creating the service and accessing the model
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
 $category = $portfolioService-> addCategory($categoryDetails);
 
 $catId = $category->getId();

@@ -10,6 +10,7 @@ $projectDetails['text'] = $_POST['page_text'];
 
 // creating the service and accessing the model
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
 $project = $portfolioService-> addProject($projectDetails);
 
 $id = $project->getId();
