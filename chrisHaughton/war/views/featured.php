@@ -40,6 +40,16 @@ if(isset($currImageId)){
 $links_text = $image-> getLinks(); //Links Url
 $links_url = $image-> getLinksText(); //Links Display text
 
+
+//thumbnails pagination calcs
+$no_of_thumbnails_per_set = 15; //set no of thumbnails per page
+$total_no_of_thumbnails = count($images);
+$no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
+$current_th_set = $_GET['ts']; //if set
+$current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
+$current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
+
+
 ?>
 
 
@@ -123,7 +133,7 @@ $links_url = $image-> getLinksText(); //Links Display text
 						foreach($images as $img){
 							if($c >= 1){
 								?>
-								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
+								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
 							} 
 							$c++;

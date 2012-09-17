@@ -39,7 +39,7 @@ $categories = $portfolioService-> getCategoryList();
 	
 	<div id='central_panel' class='admin_central_panel'>
 	
-		<h4>Please give the name and category of the new sublink you would like to enter into the database:</h4>
+		<h4>Please give the name and category of the new sublink you would like to create:</h4>
 		<form action='/forms/process_files/create_featured_sublink_process.php' method='post'>
 		<input type='hidden' name='category_id' value='<?php echo "$catId"; ?>' />
 		<table class='input_table'>
@@ -54,10 +54,12 @@ $categories = $portfolioService-> getCategoryList();
 		<td><select name='category'>
 		<?php 
 			foreach ($categories as $category) {
-				$id_loop = $category-> getId();
+				if($category-> isFeatured()){
+					$id_loop = $category-> getId();
 				?>
 				<option <?php if($id_loop == $catId){echo "selected='selected'";} ?> value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
 				<?php
+				}
 			}
 		?>
 		</select></td>

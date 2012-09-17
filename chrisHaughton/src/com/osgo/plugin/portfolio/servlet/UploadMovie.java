@@ -149,7 +149,8 @@ public class UploadMovie extends HttpServlet {
 		
         portfolioService.addImage(picture, project);
     
-        res.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
+        //res.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
+        res.sendRedirect("/forms/admin.php");
     }
     
     private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{

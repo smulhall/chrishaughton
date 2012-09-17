@@ -151,7 +151,8 @@ public class UpdateImage extends HttpServlet {
 		picture.setLinksText(linkTexts);
 		portfolioService.update(picture);
 		
-		response.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
+		//response.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
+		response.sendRedirect("/forms/admin.php");
 	}
 	
 	private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{

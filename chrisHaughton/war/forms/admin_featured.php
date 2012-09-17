@@ -153,7 +153,7 @@ $(document).ready(function() {
 			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
 			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
 			<td><a href='/forms/create_featured.php'>New Featured</a></td>
-			<td><a href='/forms/create_proj_featured.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td>
+			<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td>
 			<td>&nbsp</td>
 			</tr>
 			
@@ -183,7 +183,7 @@ $(document).ready(function() {
 				<td><?php echo $project-> getTitle(); ?></td>
 				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
 				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
-				<td><a href='/forms/create_proj.php'>New Sub-link</a></td>
+				<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>New Sub-link</a></td>
 				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
 				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
 				
@@ -192,11 +192,19 @@ $(document).ready(function() {
 			<?php } ?>
 			</tr>
 			
-			</table>
 			</form>
 			
-		
 			
+			<form action='/update' method='post'>
+			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
+			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
+			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
+			
+			<tr><td>Sub-link Text:</td><td colspan='7'><textarea class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
+			<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
+			
+			</form>
+			</table>
 			
 	
 			<?php if($projects[0] != null){	

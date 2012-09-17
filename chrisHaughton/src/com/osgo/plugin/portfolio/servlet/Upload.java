@@ -150,7 +150,8 @@ public class Upload extends HttpServlet {
         
         portfolioService.addImage(picture, project);
     	      
-        res.sendRedirect("/forms/admin.php?category="+project.getCategory().getId()+"&project="+project.getId());
+        //res.sendRedirect("/forms/admin.php?category="+project.getCategory().getId()+"&project="+project.getId());
+        res.sendRedirect("/forms/admin.php");
     }
     
     private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{

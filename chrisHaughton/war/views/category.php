@@ -103,7 +103,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 							//echo "<br />";
 							//print_r($imagesCurrProj);
 						?>
-						<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>	
+						<a href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $proj-> getId();?>&i=<?php echo $imagesCurrProj[0]-> getId(); ?>&ts=<?php echo $current_th_set; ?>"><img class="rhs_thumb" src="<?php echo $imagesCurrProj[0]-> getThumbUrl();?>" /></a>	
 					<?php 
 						}
 				}
@@ -200,7 +200,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 						foreach($images as $img){
 							if($c >= 1){
 								?>
-								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
+								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
 							} 
 							$c++;

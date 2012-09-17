@@ -231,6 +231,11 @@ p.flow_link{
 .admin_table1{
 	width:650px;
 }
+
+.sublink_textarea{
+	width:500px;
+	height:100px;
+}
 /* ================== text pages ========================== */
 
 .text_pages_content{
@@ -291,7 +296,7 @@ img.rhs_thumb{
 #image_info_wrapper h4{
 	margin:0px 0 5px 0;
 	font-weight:bold;
-	color:#035881;
+	color:#000;
 }
 
 #image_info_wrapper p{
