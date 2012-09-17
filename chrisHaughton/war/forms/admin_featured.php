@@ -40,6 +40,7 @@ if(isset($cat)){
 		}
 	}
 }
+
 //echo"<br />category<br />";
 //print_r($category);
 

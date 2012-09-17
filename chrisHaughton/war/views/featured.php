@@ -123,7 +123,7 @@ $links_url = $image-> getLinksText(); //Links Display text
 						foreach($images as $img){
 							if($c >= 1){
 								?>
-								<a href='/views/featured.php?fp=<?php echo $fp; ?>&pg=<?php echo $pg; ?>&c=4002&p=12001&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
+								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
 							} 
 							$c++;

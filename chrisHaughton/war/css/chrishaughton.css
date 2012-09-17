@@ -223,8 +223,14 @@ p.flow_link{
 	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
 	letter-spacing: 0em;
 	text-align: left;
+	width:550px;
+	float:left;
+	margin:0 10px 0 10px;
 }
 
+.admin_table1{
+	width:650px;
+}
 /* ================== text pages ========================== */
 
 .text_pages_content{
