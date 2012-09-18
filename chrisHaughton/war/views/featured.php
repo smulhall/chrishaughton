@@ -142,14 +142,29 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 				?>
 		</div>
 		
+		
+
+		
+		
 		<div id="prev_next">
-			<a id="prev_ts" href="#">
-				<img class="arrow" src="/images/prev.jpg">
-			</a>
-			<a id="next_ts" href="#">
-				<img class="arrow" src="/images/next.jpg">
-			</a>
+			<?php 
+			if($current_th_set > 1){
+				$new_th_set = $current_th_set - 1;
+				?>
+				<a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a>
+			<?php 
+			}
+			?>
+			<?php 
+			if($current_th_set < $no_of_th_sets){
+				$new_th_set = $current_th_set + 1;
+			?>
+			<a id="next_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a>
+			<?php 
+			}
+			?>
 		</div>
+		
 		
 		
 		

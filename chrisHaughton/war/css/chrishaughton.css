@@ -209,13 +209,13 @@ p.flow_link{
 
 .wait_for_video{
 	z-index: -2;
-	margin: 50px 0 0 0;
+	margin: 150px 0 0 0;
 	color:orange;
 }
 
 #video_iframe_div{
 	z-index: 2;
-	margin: -50px 0 0 0;
+	margin: -170px 0 0 0;
 }
 /* ================== admin ========================== */
 
@@ -236,6 +236,12 @@ p.flow_link{
 	width:500px;
 	height:100px;
 }
+
+#admin_save_btn{
+	clear:left;	
+}
+
+
 /* ================== text pages ========================== */
 
 .text_pages_content{

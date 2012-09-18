@@ -69,16 +69,27 @@ function submitForm(name, form, value){
 	form.submit();
 }
 
+
 $(document).ready(function() {
+		$("#link_text").click(function(e){
+			alert("clear text");
+			//e.preventDefault();
+		    //$('#link_text').val("");
+		});
+	
+	   $(".delete_element").click(function(){
+		   alert("Delete this row");
+		});
 
-	   $(".delete_info_line1").click(function(){
-			alert("Delete this row");
-		   });
+	   $(".add_text_line").click(function(e){
+		   e.preventDefault();
+		   $('#info_table > tbody:last').append("<tr><td>Text to Display:</td><td><input  name ='display_text_line' value='' type='text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
+		});
 
-	   //add_link
-	   //add_info_line
-	   //delete_info_line1
-	   //delete_link1
+	   $(".add_link").click(function(e){
+		   e.preventDefault();
+		   $('#links_table > tbody:last').append("<tr><td><input id='link_text' class='link_text' name ='link_text' type='text' value='url' /></td><td><input class='link_url' name ='link_url' type='text' value='display text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
+		});
 	   
 });
 	 
@@ -120,14 +131,17 @@ $(document).ready(function() {
 
 			
 			
-			<form action='' method='post'>
-			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
-			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
+			
 			
 			
 			
 			
 			<table class='admin_table1 input_table'>
+			<tbody>
+			
+			<form action='' method='post'>
+			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
+			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			
 			<tr>
 			<td>Category:</td>
@@ -185,6 +199,7 @@ $(document).ready(function() {
 			<?php } ?>
 			</tr>
 			
+			</tbody>
 			</table>
 			</form>
 			
@@ -220,15 +235,19 @@ $(document).ready(function() {
 		
 				
 				
-				<form action='/update' enctype='multipart/form-data' method='post'>
+				
+				
+					
+					<table id='admin_form_table' class='input_table'>
+					<tbody>
+					
+					<form id='admin_form' action='/update' enctype='multipart/form-data' method='post'>
 					
 				
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
 					<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
 					<input type='hidden' name='image_id' value='<?php echo $image-> getId();?>' />
-				
 					
-					<table class='input_table'>
 					<?php 
 					$movieUrl = $image-> getMovieUrl();
 					//echo "movieUrl = $movieUrl<br />";
@@ -242,9 +261,12 @@ $(document).ready(function() {
 					<?php 
 					}	 
 					?>
-				
 					
+					</tbody>
+					</table>
 					
+					<table id='info_table' class='input_table'>
+					<tbody>
 					<?php 
 					$c=1;
 					foreach ($image-> getInfo() as $info_line) {
@@ -252,7 +274,7 @@ $(document).ready(function() {
 						<tr>
 							<td>Text to Display (line <?php echo $c; ?>):</td>
 							<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
-							<td><a class='delete_info_line<?php echo $c; ?>' href=''>delete</a></td>
+							<td><a class='delete_element' href=''>delete</a></td>
 						</tr>
 						
 					<?php 
@@ -260,8 +282,13 @@ $(document).ready(function() {
 					} 
 					?>
 					
-					<tr><td><a class='add_info_line' href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
+					</tbody>
+					</table>
+					<a class='add_text_line' href='#'>Add Text Line</a>
 					
+					
+					<table id='links_table' class='input_table'>
+					<tbody>
 					<?php 
 					
 					$links_text = $image-> getLinks(); //Links Url
@@ -278,20 +305,21 @@ $(document).ready(function() {
 						<tr>
 							<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
 							<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
-							<td><a class='delete_link<?php echo $i; ?>' href='#'>delete</a></td>
+							<td><a class='delete_element' href=''>delete</a></td>
 						</tr>
 					<?php 
 					} 
 					?>
-					
-					<tr><td><a class='add_link' href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
-					<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
 				
+				</tbody>
 				</table>
+				<a class='add_link' href='#'>Add Link</a>
+				
+				
+				<br />
+				<input id='admin_save_btn' type='submit' value='save' />
 				<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
 				</form>
-				
-				
 				
 				<?php 
 				}
