@@ -35,9 +35,11 @@
 			//print_r($categories);
 			foreach($categories as $category_loop){
 				if(!$category_loop-> isFeatured()){
+					if(!$category_loop-> isLink()){
 			?>
 					<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
 			<?php 
+					}
 				}
 			}
 			?>
@@ -46,8 +48,16 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='about_etc'>
-			<a href='/views/about-contact.php?pg=about' class='lhs_menu_subheading'><li class='menu_link'>about/contact</li></a>
-			<a href='/views/press.php?pg=press' class='lhs_menu_subheading'><li class='menu_link'>press</li></a>
+			<?php 
+			//print_r($categories);
+			foreach($categories as $category_loop){
+				if($category_loop-> isLink()){
+			?>
+					<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+			<?php 
+				}
+			}
+			?>
 		</ul>
 	</li>
 	
