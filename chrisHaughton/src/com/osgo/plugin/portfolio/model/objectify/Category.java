@@ -46,6 +46,11 @@ public class Category {
 		return results;
 	}
 	
+	public void removeProject(Project project){
+		Ref<Project> ref = Ref.create(Key.create(Project.class, project.getId()), project);
+    	projects.remove(ref);
+	}
+	
     public void setProjects(List<Project> list){ 
     	for(Project project : list){
     		projects.add(Ref.create(Key.create(Project.class, project.getId()), project));

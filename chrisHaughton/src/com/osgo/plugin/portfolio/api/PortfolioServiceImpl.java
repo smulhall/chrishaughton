@@ -28,7 +28,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public List<Project> getProjectList() {
 		
-		List<Project> results = ofy().load().type(Project.class).list();
+		List<Project> results = ofy().load().type(Project.class).order("-date").list();
 		return results;
 	}
 
@@ -42,7 +42,11 @@ public class PortfolioServiceImpl implements PortfolioService {
 	public void deleteProject(final long id) {
 		ofy().transactNew(new VoidWork() {
 		    public void vrun() {
+		    	Project project = ofy().load().key(Key.create(Project.class, id)).get();
+		    	Category category = ofy().load().key(project.getCategory()).get();
+		    	category.removeProject(project);
 		    	ofy().delete().key(Key.create(Project.class, id));
+		    	ofy().save().entity(category);
 		    }
 		});
 	}
@@ -133,7 +137,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public List<Category> getCategoryList() {
-		List<Category> results = ofy().load().type(Category.class).list();
+		List<Category> results = ofy().load().type(Category.class).order("-date").list();
 		return results;
 	}
 

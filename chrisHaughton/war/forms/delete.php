@@ -10,13 +10,13 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $categories = $portfolioService-> getCategoryList();
 
 if($type=="category"){
-	$object_to_delete = $portfolioService-> getCategory($id);
+	$portfolioService-> deleteCategory($id);
 }
 else if($type=="project"){
-	$object_to_delete = $portfolioService-> getProject($id);
+	$portfolioService-> deleteProject($id);
 }
 		
-$portfolioService-> delete($object_to_delete);
+//$portfolioService-> delete($object_to_delete);
 
 header("Location: /forms/admin.php");
 ?>
