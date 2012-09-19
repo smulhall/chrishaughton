@@ -3,8 +3,8 @@ import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
 $id = $_GET['Id'];
 $type = $_GET['type'];
-echo "id = $id";
-echo "<br />type = $type";
+//echo "id = $id";
+//echo "<br />type = $type";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $categories = $portfolioService-> getCategoryList();
@@ -18,4 +18,5 @@ else if($type=="project"){
 		
 $portfolioService-> delete($object_to_delete);
 
+header("Location: /forms/admin.php");
 ?>

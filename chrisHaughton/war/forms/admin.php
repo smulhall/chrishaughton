@@ -207,7 +207,8 @@ $(document).ready(function() {
 			
 			
 	
-			<?php if($projects[0] != null){	
+			<?php 
+			if($projects[0] != null){	
 				foreach($images as $image){
 					echo "<p>===================================================================================================================</p>";
 			?>
@@ -324,6 +325,8 @@ $(document).ready(function() {
 				<?php 
 				}
 			}
+			
+			
 	?>
 		
 		
