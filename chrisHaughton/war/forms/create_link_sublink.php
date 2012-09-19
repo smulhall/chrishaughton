@@ -1,6 +1,12 @@
 <?php
 import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
 
+if(!isset($catId)){
+	$catId = $_GET['Id'];
+}
+//echo "catId = $catId <br />";
+
+
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $categories = $portfolioService-> getCategoryList();
 
@@ -33,13 +39,34 @@ $categories = $portfolioService-> getCategoryList();
 	
 	<div id='central_panel' class='admin_central_panel'>
 	
-		<h4>Please give the name of the new featured link you would like to enter into the database:</h4>
-		<form action='process_files/create_featured_process.php' method='post'>
+		<h4>Please give the name and category of the new sublink you would like to create:</h4>
+		<form action='/forms/process_files/create_link_sublink_process.php' method='post'>
+		<input type='hidden' name='category_id' value='<?php echo "$catId"; ?>' />
 		<table class='input_table'>
 		
 		<tr>
-		<td>Featured Link Name:</td>
+		<td>Sublink Name:</td>
 		<td><input type='text' name='title' /></td>
+		</tr>
+		
+		<tr>
+		<td>Featured Link:</td>
+		<td><select name='category'>
+		<?php 
+			foreach ($categories as $category) {
+				$id_loop = $category-> getId();
+				?>
+				<option <?php if($id_loop == $catId){echo "selected='selected'";} ?> value='<?php echo $category-> getId();?>'><?php echo $category-> getTitle();?></option>
+				<?php
+			}
+		?>
+		</select></td>
+		</tr>
+		
+		
+		<tr>
+		<td>Page Text (HTML):</td>
+		<td><textarea name='page_text' width='20' height='20'></textarea></td>
 		</tr>
 		
 		
@@ -51,8 +78,6 @@ $categories = $portfolioService-> getCategoryList();
 		</table>
 		
 		<input type='hidden' name='pg' value='crproj' />
-		<input type='hidden' name='featured' value='true' />
-		<input type='hidden' name='link' value='false' />
 		
 		</form>
 	

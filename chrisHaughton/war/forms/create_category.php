@@ -52,6 +52,7 @@ $categories = $portfolioService-> getCategoryList();
 		
 		<input type='hidden' name='pg' value='crproj' />
 		<input type='hidden' name='featured' value='false' />
+		<input type='hidden' name='link' value='false' />
 		
 		</form>
 	

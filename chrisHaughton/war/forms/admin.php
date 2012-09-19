@@ -149,9 +149,11 @@ $(document).ready(function() {
 			<?php 
 				foreach($categories as $category_loop) {
 					if(!$category_loop-> isFeatured()){
+						if(!$category_loop-> isLink()){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
+						}
 					}
 				}
 			?>

@@ -34,11 +34,11 @@ $categories = $portfolioService-> getCategoryList();
 	<div id='central_panel' class='admin_central_panel'>
 	
 		<h4>Please give the name of the new featured link you would like to enter into the database:</h4>
-		<form action='process_files/create_featured_process.php' method='post'>
+		<form action='process_files/create_link_process.php' method='post'>
 		<table class='input_table'>
 		
 		<tr>
-		<td>Featured Link Name:</td>
+		<td>Link Name:</td>
 		<td><input type='text' name='title' /></td>
 		</tr>
 		
@@ -51,8 +51,8 @@ $categories = $portfolioService-> getCategoryList();
 		</table>
 		
 		<input type='hidden' name='pg' value='crproj' />
-		<input type='hidden' name='featured' value='true' />
-		<input type='hidden' name='link' value='false' />
+		<input type='hidden' name='link' value='true' />
+		<input type='hidden' name='featured' value='false' />
 		
 		</form>
 	
