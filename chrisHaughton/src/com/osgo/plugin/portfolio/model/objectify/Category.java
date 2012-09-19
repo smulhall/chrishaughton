@@ -1,6 +1,7 @@
 package com.osgo.plugin.portfolio.model.objectify;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.googlecode.objectify.Key;
@@ -21,6 +22,7 @@ public class Category {
 	private List<Ref<Project>> projects = new ArrayList<Ref<Project>>();
 	private boolean featured = false;
 	private boolean link = false;
+	private Date date;
 	
 	public Long getId() {
 		return id;
@@ -65,5 +67,11 @@ public class Category {
 	}
 	public void setLink(boolean link) {
 		this.link = link;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

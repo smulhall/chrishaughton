@@ -3,6 +3,7 @@ package com.osgo.plugin.portfolio.api;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 	
 	public Project addProject(final Project project, Category category) {
+		project.setDate(Calendar.getInstance().getTime());
 		Project result = ofy().transactNew(new Work<Project>(){
 			@Override
 			public Project run() {
@@ -88,6 +90,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 				String title = (String) input.get("title");
 				String text = (String) input.get("text");
 				Project project = new Project();
+				project.setDate(Calendar.getInstance().getTime());
 				if(category!=null){
 					project.setCategory((Key.create(Category.class, category.getId())));
 				}
@@ -165,6 +168,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 						linkVal = true;
 				}
 				Category category = new Category();
+				category.setDate(Calendar.getInstance().getTime());
 				category.setTitle(title);
 				category.setFeatured(featuredVal);
 				category.setLink(linkVal);

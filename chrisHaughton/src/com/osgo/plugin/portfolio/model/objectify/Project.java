@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class Project {
 	private Key<Category> category;	
 	private List<Ref<Picture>> images = new ArrayList<Ref<Picture>>();
 	private String text;
+	private Date date;
 
 	public Project(){}
 	
@@ -145,6 +147,14 @@ public class Project {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
