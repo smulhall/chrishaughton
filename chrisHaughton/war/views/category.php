@@ -197,12 +197,18 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 					//print_r($images);
 					if($no_of_elements > 1){ //test to see if there are more images in this project
 						$c=0;
+						/*for($i=$no_of_elements;$i>0;$i--){
+							echo $i;
+							?>
+								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images-> getImageById($i)-> getId(); ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $images-> getThumbUrl($i);?>" /></a> 	
+							<?php
+						}*/
 						foreach($images as $img){
 							if($c >= 1){
 								?>
 								<a href='/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $img-> getId(); ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
-							} 
+							}
 							$c++;
 						}
 					} 
