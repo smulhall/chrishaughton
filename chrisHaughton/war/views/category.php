@@ -26,6 +26,7 @@ if(isset($currProjId)){
 	$currProjId = $project-> getId();
 }
 $images = $project-> getImages(); //numerical array of all images in this single project
+
 if(isset($currImageId)){
 	$image = $project-> getImageById($currImageId); //particular image user has clicked
 } else {
@@ -41,10 +42,15 @@ $links_url = $image-> getLinksText(); //Links Display text
 //thumbnails pagination calcs
 $no_of_thumbnails_per_set = 15; //set no of thumbnails per page
 $total_no_of_thumbnails = count($images);
+echo "<br />total_no_of_thumbnails = $total_no_of_thumbnails";
 $no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
+echo "<br />no_of_th_sets = $no_of_th_sets";
 $current_th_set = $_GET['ts']; //if set
+echo "<br />current_th_set = $current_th_set";
 $current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
 $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
+
+
 
 ?>
 
@@ -116,14 +122,17 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 		
 		<div id="prev_next">
 			<?php 
+			echo "current_th_set = $current_th_set";
+			echo "<br />no_of_th_sets = $no_of_th_sets";
+			
+			
 			if($current_th_set > 1){
 				$new_th_set = $current_th_set - 1;
 				?>
 				<a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a>
 			<?php 
 			}
-			?>
-			<?php 
+ 
 			if($current_th_set < $no_of_th_sets){
 				$new_th_set = $current_th_set + 1;
 			?>
