@@ -3,6 +3,7 @@ package com.osgo.plugin.portfolio.model.objectify;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ public class Picture {
 	private List<String> info;
 	private List<String> links;
 	private List<String> linksText;
+	private Date date;
 	
 	private Key<Project> project;
 	
@@ -169,6 +171,12 @@ public class Picture {
 	}
 	public void setLinksText(List<String> linksText) {
 		this.linksText = linksText;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

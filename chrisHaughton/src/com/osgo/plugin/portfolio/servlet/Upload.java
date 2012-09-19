@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,6 +148,7 @@ public class Upload extends HttpServlet {
 		picture.setInfo(info);
 		picture.setLinks(links);
 		picture.setLinksText(linkTexts);
+		picture.setDate(Calendar.getInstance().getTime());
         
         portfolioService.addImage(picture, project);
     	      
