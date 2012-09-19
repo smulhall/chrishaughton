@@ -20,6 +20,7 @@ public class Category {
 	private String title;
 	private List<Ref<Project>> projects = new ArrayList<Ref<Project>>();
 	private boolean featured = false;
+	private boolean link = false;
 	
 	public Long getId() {
 		return id;
@@ -58,5 +59,11 @@ public class Category {
 	}
 	public void setFeatured(boolean featured) {
 		this.featured = featured;
+	}
+	public boolean isLink() {
+		return link;
+	}
+	public void setLink(boolean link) {
+		this.link = link;
 	}
 }

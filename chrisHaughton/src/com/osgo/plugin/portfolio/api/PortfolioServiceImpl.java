@@ -153,14 +153,21 @@ public class PortfolioServiceImpl implements PortfolioService {
 			public Category run() {
 				String title = (String) input.get("title");
 				String featured = (String)input.get("featured");
+				String link = (String)input.get("link");
 				boolean featuredVal = false;
 				if(featured.equals("true")){
 					if(featured.equals("true"));
 						featuredVal = true;
 				}
+				boolean linkVal = false;
+				if(link.equals("true")){
+					if(link.equals("true"));
+						linkVal = true;
+				}
 				Category category = new Category();
 				category.setTitle(title);
 				category.setFeatured(featuredVal);
+				category.setLink(linkVal);
 				Key<Category> result = ofy().save().entity(category).now();
 				Category obj = ofy().load().key(result).get();
 				return obj;		
