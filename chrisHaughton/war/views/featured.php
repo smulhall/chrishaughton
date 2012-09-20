@@ -128,7 +128,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 					if($ProjImgTotal < 1){
 						$imgRefNew = $imgRef - 1;
 					?>
-						<a id="next_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>	
+						<a id="prev_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Previous Image</a>	
 					<?php 
 					}
 					if($ProjImgTotal > 1){
