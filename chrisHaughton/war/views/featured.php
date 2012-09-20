@@ -7,6 +7,12 @@ $fp = $_GET['fp'];
 $currCategoryId = $_GET['c'];
 $currProjId = $_GET['p'];
 $currImageId = $_GET['i'];
+if(isset($_GET['ir'])){
+	$imgRef = $_GET['ir'];
+}else{
+	$imgRef = 0;
+}
+
 //echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
 $portfolioService = PortfolioServiceFactory::getPortfolioService();
@@ -37,18 +43,18 @@ if(isset($currImageId)){
 	$currImageId = $image-> getId();
 }
 
+
 $links_text = $image-> getLinks(); //Links Url
 $links_url = $image-> getLinksText(); //Links Display text
 
 
 //thumbnails pagination calcs
-$no_of_thumbnails_per_set = 15; //set no of thumbnails per page
 $total_no_of_thumbnails = count($images);
+$no_of_thumbnails_per_set = 15; //set no of thumbnails per page
 $no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
 $current_th_set = $_GET['ts']; //if set
 $current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
 $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
-
 
 ?>
 
@@ -114,8 +120,26 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 				<?php 
 				echo $project-> getText();
 				?>
+				
+				<div id="prev_next">
+					<?php 
+					
+					$ProjImgTotal = count($images);
+					if($ProjImgTotal < 1){
+						$imgRefNew = $imgRef - 1;
+					?>
+						<a id="next_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>	
+					<?php 
+					}
+					if($ProjImgTotal > 1){
+						$imgRefNew = $imgRef + 1;
+					?>
+						<a id="next_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>
+					<?php 
+					}
+					?>
+				</div>
 			</div>
-		
 		</div>
 				
 	
@@ -133,7 +157,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 						foreach($images as $img){
 							if($c >= 1){
 								?>
-								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
+								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
 								<?php
 							} 
 							$c++;
@@ -151,7 +175,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 			if($current_th_set > 1){
 				$new_th_set = $current_th_set - 1;
 				?>
-				<a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a>
+				<!-- <a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a> -->
 			<?php 
 			}
 			?>
@@ -159,7 +183,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 			if($current_th_set < $no_of_th_sets){
 				$new_th_set = $current_th_set + 1;
 			?>
-			<a id="next_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a>
+				<!-- <a id="next_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a> -->
 			<?php 
 			}
 			?>

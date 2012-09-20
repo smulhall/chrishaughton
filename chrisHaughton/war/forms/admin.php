@@ -24,16 +24,22 @@ if(isset($_POST['prev_project'])){
 //echo "cat = $cat // prev_cat = $prev_cat<br />";
 //echo "proj = $proj // prev_proj = $prev_proj<br />";
 
-
-
-
 $categories = $portfolioService-> getCategoryList();
 
 
 if(isset($cat)){
 	$category = $portfolioService-> getCategory($cat);
 } else{
-	$category = $categories[0];
+	//$category = $categories[0];
+	$flag = "false";
+	foreach($categories as $category_loop){
+		if(!$category_loop-> isFeatured() && $flag == "false"){
+			if(!$category_loop-> isLink() && $flag == "false"){
+				$category = $category_loop;
+				$flag = "true";
+			}
+		}
+	}
 }
 
 

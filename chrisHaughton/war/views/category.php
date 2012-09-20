@@ -18,7 +18,8 @@ if(isset($currCategoryId)){
 }
 $projects = $category-> getProjects();
 
-//$projects = $portfolioService-> getProjectList(); //numerical array of all projects
+//$projectsList = $portfolioService-> getProjectList(); //numerical array of all projects
+
 if(isset($currProjId)){
 	$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
 }else{
@@ -40,13 +41,10 @@ $links_url = $image-> getLinksText(); //Links Display text
 
 
 //thumbnails pagination calcs
+$total_no_of_thumbnails = count($projects);
 $no_of_thumbnails_per_set = 15; //set no of thumbnails per page
-$total_no_of_thumbnails = count($images);
-echo "<br />total_no_of_thumbnails = $total_no_of_thumbnails";
 $no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
-echo "<br />no_of_th_sets = $no_of_th_sets";
 $current_th_set = $_GET['ts']; //if set
-echo "<br />current_th_set = $current_th_set";
 $current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
 $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 
@@ -122,8 +120,8 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 		
 		<div id="prev_next">
 			<?php 
-			echo "current_th_set = $current_th_set";
-			echo "<br />no_of_th_sets = $no_of_th_sets";
+			//echo "current_th_set = $current_th_set";
+			//echo "<br />no_of_th_sets = $no_of_th_sets";
 			
 			
 			if($current_th_set > 1){
@@ -200,7 +198,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 					$no_of_elements = count($images);
 					//echo "elements = ".$no_of_elements."<br />";
 					if($no_of_elements > 1){ ?>
-						<h4>More Images:</h4>
+						<h4>Related Images:</h4>
 					<?php } 
 					
 					//print_r($images);

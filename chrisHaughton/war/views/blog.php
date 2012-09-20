@@ -1,4 +1,8 @@
 <?php
+import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+$portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
+
 $pg = $_GET['pg'];
 ?>
 
@@ -33,7 +37,7 @@ $pg = $_GET['pg'];
 		
 
 		<p>blog splash page</p>
-		<a target="_blank" href='http://www.chrishaughton.com'>go to chris' blog</a>
+		<a target="_blank" href='http://chrishaughton.wordpress.com/'>go to chris' blog</a>
 	
 		
 				
