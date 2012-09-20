@@ -74,7 +74,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript' src='/js/nav_menu.js'></script>
-<title><?php $project-> getTitle(); ?></title>
+<title><?php $category-> getTitle(); ?></title>
 </head>
 <body>
 <div id='wrapper'>

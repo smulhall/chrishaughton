@@ -56,6 +56,7 @@ $images = $project-> getImages();
 $images2 = $images;
 
 
+$random = rand();
 ?>
 
 <!DOCTYPE html>
@@ -89,12 +90,12 @@ $(document).ready(function() {
 
 	   $(".add_text_line").click(function(e){
 		   e.preventDefault();
-		   $('#info_table > tbody:last').append("<tr><td>Text to Display:</td><td><input  name ='display_text_line' value='' type='text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
+		   $('#info_table > tbody:last').append("<tr><td>Text to Display (new):</td><td><input  name ='new_display_text_line<?php echo $random;?>' value='' type='text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
 		});
 
 	   $(".add_link").click(function(e){
 		   e.preventDefault();
-		   $('#links_table > tbody:last').append("<tr><td><input id='link_text' class='link_text' name ='link_text' type='text' value='url' /></td><td><input class='link_url' name ='link_url' type='text' value='display text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
+		   $('#links_table > tbody:last').append("<tr><td><input id='link_text' class='link_text' name ='new_link_text<?php echo $random; ?>' type='text' value='url (new)' /></td><td><input class='link_url' name ='new_link_url<?php echo $random; ?>' type='text' value='display text (new)' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
 		});
 	   
 });
