@@ -217,14 +217,17 @@ $(document).ready(function() {
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h3>Movie</h3>			
+					<h5>Movie</h5>			
 				<?php 
 				} else{	 
 				?>
-					<h3>Image</h3>
+					<h5>Image</h5>
 				<?php 
 				}
 				?>	
+					<p><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
+					
+					
 					<table class='images_table'>
 					<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
 			

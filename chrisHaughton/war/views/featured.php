@@ -7,11 +7,7 @@ $fp = $_GET['fp'];
 $currCategoryId = $_GET['c'];
 $currProjId = $_GET['p'];
 $currImageId = $_GET['i'];
-if(isset($_GET['ir'])){
-	$imgRef = $_GET['ir'];
-}else{
-	$imgRef = 0;
-}
+
 
 //echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
 
@@ -44,6 +40,16 @@ if(isset($currImageId)){
 }
 
 
+$c = 0;
+foreach($images as $imgR){
+	$imgRefId = $imgR-> getId();
+	if($imgRefId == $currImageId){
+		$imgRef = $c;
+	}
+	$c++;
+}
+
+
 $links_text = $image-> getLinks(); //Links Url
 $links_url = $image-> getLinksText(); //Links Display text
 
@@ -68,7 +74,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript' src='/js/nav_menu.js'></script>
-<title>about/contact</title>
+<title><?php $project-> getTitle(); ?></title>
 </head>
 <body>
 <div id='wrapper'>
@@ -121,20 +127,30 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 				echo $project-> getText();
 				?>
 				
-				<div id="prev_next">
+				<div class="prev_next_img_btns">
 					<?php 
 					
 					$ProjImgTotal = count($images);
-					if($ProjImgTotal < 1){
-						$imgRefNew = $imgRef - 1;
+					if($imgRef > 0 && $imgRef < $ProjImgTotal){
+						if($imgRef <= 0){
+							$imgRefNew = $imgRef;
+						}else{
+							$imgRefNew = $imgRef - 1;
+						}
+						
 					?>
-						<a id="prev_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Previous Image</a>	
+						<a id="prev_img_btn" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Previous Image</a>	
 					<?php 
 					}
-					if($ProjImgTotal > 1){
-						$imgRefNew = $imgRef + 1;
+					$upprLimit = $ProjImgTotal - 1;
+					if($imgRef < $upprLimit){
+						if($imgRef >= $upprLimit){
+							$imgRefNew = $imgRef;
+						}else{
+							$imgRefNew = $imgRef + 1;
+						}
 					?>
-						<a id="next_ts" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>
+						<a id="next_img_btn" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>
 					<?php 
 					}
 					?>

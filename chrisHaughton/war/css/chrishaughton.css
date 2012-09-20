@@ -98,9 +98,8 @@ ul#books li{
 }
 
 #social_icons{
-	margin:0 15px 0 0;
-	float:right;
-	width:150px;	
+	margin:0 15px 0 0px;
+	float: right;	
 }
 
 .emphasis{
@@ -111,6 +110,9 @@ ul#books li{
 	padding-bottom: 20px;
 }
 
+.social_icon{
+	float:left;
+}
 /* =========================== horiz menu ============== */
 
 .featured{
@@ -350,7 +352,7 @@ a#next_ts{
 }
 
 #prev_next{
-	width:175px;
+	width:170px;
 }
 a#prev_ts{
 	float:left;	
@@ -370,4 +372,21 @@ img.arrow{
 .admin_table2, .admin_table2{
 	margin:0 0 0 20px;
 }
+
+/* ================= Featured =========================== */
+#prev_img_btn{
+	float:left;
+}
+
+#next_img_btn{
+	float:right;
+}
+
+.prev_next_img_btns{
+	width:500px;
+	margin:20px 0 0 0;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
 

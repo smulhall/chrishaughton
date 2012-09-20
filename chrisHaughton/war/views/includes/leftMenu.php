@@ -72,6 +72,11 @@
 	</li>
 
 </ul>
-
-<img id='social_icons' src='/images/social_icons.png' />
+	<div id='social_icons'>
+		<a class='social_icon' href='#'><img src='/images/icons/icon1.png' /></a>
+		<a class='social_icon' href='#'><img src='/images/icons/icon2.png' /></a>
+		<a class='social_icon' href='#'><img src='/images/icons/icon3.png' /></a>
+		<a class='social_icon' href='#'><img src='/images/icons/icon4.png' /></a>
+		<a class='social_icon' href='#'><img src='/images/icons/icon5.png' /></a>
+	</div>
 </div>

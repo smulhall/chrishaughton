@@ -1,3 +1,10 @@
+<?php 
+import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+$portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +12,8 @@
 <link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<title>portfolio.php</title>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
+<title>login</title>
 </head>
 <body>
 <div id='wrapper'>

@@ -15,6 +15,9 @@ if($type=="category"){
 else if($type=="project"){
 	$portfolioService-> deleteProject($id);
 }
+else if($type=="image"){
+	$portfolioService-> deleteImage($id);
+}
 		
 //$portfolioService-> delete($object_to_delete);
 
