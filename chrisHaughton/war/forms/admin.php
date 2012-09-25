@@ -86,7 +86,7 @@ function submitForm(name, form, value){
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<?php include 'includes/header.php'; ?>
+	<?php include '../views/includes/header.php'; ?>
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	

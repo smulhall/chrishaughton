@@ -16,9 +16,8 @@ $pg = $_GET['pg'];
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<div id='header'>
-		<a href='index.php?pg=home'><img src='/images/logo.jpg' /></a>
-	</div>
+	<?php include 'includes/header.php'; ?>
+	
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	

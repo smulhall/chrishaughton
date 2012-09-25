@@ -69,13 +69,13 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 	<?php include 'includes/header.php'; ?>
 	
 	
+	
 	<!-- ======================== LHS Menu ========================== -->	
 	<?php include 'includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
 	<div id="central_panel" class='central_panel_portfolio'>
-		<p>home.php</p>
 		<?php 
 			
 			$movieUrl = $image-> getMovieUrl();

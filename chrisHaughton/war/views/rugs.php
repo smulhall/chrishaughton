@@ -23,6 +23,7 @@ $pg = $_GET['pg'];
 	<?php include 'includes/header.php'; ?>
 	
 	
+	
 	<!-- ======================== LHS Menu ========================== -->	
 	<?php include '../views/includes/leftMenu.php'; ?>
 	

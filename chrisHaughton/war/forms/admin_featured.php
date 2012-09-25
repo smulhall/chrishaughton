@@ -102,7 +102,8 @@ $(document).ready(function() {
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<?php include 'includes/header.php'; ?>
+	<?php include '../views/includes/header.php'; ?>
+	
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
