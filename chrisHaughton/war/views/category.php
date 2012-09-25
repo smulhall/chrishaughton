@@ -66,9 +66,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<div id='header'>
-		<a href='index.php?pg=home'><img src='/images/logo.jpg' /></a>
-	</div>
+	<?php include 'includes/header.php'; ?>
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	

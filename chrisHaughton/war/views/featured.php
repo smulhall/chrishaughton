@@ -80,9 +80,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<div id='header'>
-		<a href='index.php?pg=home'><img src='/images/logo.jpg' /></a>
-	</div>
+	<?php include 'includes/header.php'; ?>
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
@@ -92,6 +90,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 	<!-- ======================== Central Panel ========================== -->	
 	
 	<div id='central_panel' class='central_panel_text_pages'>
+	<div id='featured_central_panel_inner'>
 		
 			<?php 
 			$movieUrl = $image-> getMovieUrl();
@@ -158,7 +157,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 			</div>
 		</div>
 				
-	
+	</div> <!--  close featured_central_panel_inner -->
 	</div> <!--  close central_panel -->
 
 <!-- ======================== RHS Panel ========================== -->

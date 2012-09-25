@@ -67,6 +67,7 @@ $random = rand();
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript' src='/js/nav_menu.js'></script>
+<script type='text/javascript' src='/js/admin.js'></script>
 <title>admin</title>
 
 
@@ -75,34 +76,6 @@ $random = rand();
 function submitForm(name, form, value){
 	form.submit();
 }
-
-
-$(document).ready(function() {
-		$("#link_text").click(function(e){
-			alert("clear text");
-			//e.preventDefault();
-		    //$('#link_text').val("");
-		});
-	
-	   $(".delete_element").click(function(){
-		   alert("Delete this row");
-		});
-
-	   $(".add_text_line").click(function(e){
-		   e.preventDefault();
-		   $('#info_table > tbody:last').append("<tr><td>Text to Display (new):</td><td><input  name ='new_display_text_line<?php echo $random;?>' value='' type='text' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
-		});
-
-	   $(".add_link").click(function(e){
-		   e.preventDefault();
-		   $('#links_table > tbody:last').append("<tr><td><input id='link_text' class='link_text' name ='new_link_text<?php echo $random; ?>' type='text' value='url (new)' /></td><td><input class='link_url' name ='new_link_url<?php echo $random; ?>' type='text' value='display text (new)' /></td><td><a class='delete_element' href='#'>delete</a></td></tr>");
-		});
-	   
-});
-	 
-
-
-
 </script>
 
 
@@ -113,9 +86,7 @@ $(document).ready(function() {
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<div id='header'>
-		<a href='index.php?pg=home'><img src='/images/logo.jpg' /></a>
-	</div>
+	<?php include 'includes/header.php'; ?>
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
@@ -124,7 +95,7 @@ $(document).ready(function() {
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-		<div id='central_panel' class='admin_central_panel'>
+		<div class='admin_central_panel'>
 		
 			<div id='horiz_links_div'>
 				<ul class='horiz_menu_ul'>
@@ -138,11 +109,7 @@ $(document).ready(function() {
 
 			
 			
-			
-			
-			
-			
-			
+
 			<table class='admin_table1 input_table'>
 			<tbody>
 			
@@ -219,7 +186,7 @@ $(document).ready(function() {
 			<?php 
 			if($projects[0] != null){	
 				foreach($images as $image){
-					echo "<p>===================================================================================================================</p>";
+					echo "<p class='image_seperator'>===================================================================================================================</p>";
 			?>
 			
 			<?php 
@@ -227,15 +194,15 @@ $(document).ready(function() {
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h5>Movie</h5>			
+					<h5 class='image_title'>Movie</h5>			
 				<?php 
 				} else{	 
 				?>
-					<h5>Image</h5>
+					<h5 class='image_title'>Image</h5>
 				<?php 
 				}
 				?>	
-					<p><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 					
 					
 					<table class='images_table'>
@@ -284,10 +251,10 @@ $(document).ready(function() {
 					$c=1;
 					foreach ($image-> getInfo() as $info_line) {
 					?>
-						<tr>
+						<tr id='info_tr<?php echo $c; ?>'>
 							<td>Text to Display (line <?php echo $c; ?>):</td>
 							<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
-							<td><a class='delete_element' href=''>delete</a></td>
+							<td><a id='<?php echo $c;?>' class='delete_element' href='#'>delete</a></td>
 						</tr>
 						
 					<?php 
@@ -318,7 +285,7 @@ $(document).ready(function() {
 						<tr>
 							<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
 							<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
-							<td><a class='delete_element' href=''>delete</a></td>
+							<td><a class='delete_element' href='#'>delete</a></td>
 						</tr>
 					<?php 
 					} 

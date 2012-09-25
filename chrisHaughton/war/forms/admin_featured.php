@@ -102,9 +102,7 @@ $(document).ready(function() {
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<div id='header'>
-		<a href='index.php?pg=home'><img src='/images/logo.jpg' /></a>
-	</div>
+	<?php include 'includes/header.php'; ?>
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
@@ -113,7 +111,7 @@ $(document).ready(function() {
 	
 	<!-- ======================== Central Panel ========================== -->	
 	
-		<div id='central_panel' class='admin_central_panel'>
+		<div class='admin_central_panel'>
 		
 			<div id='horiz_links_div'>
 				<ul class='horiz_menu_ul'>
@@ -209,7 +207,7 @@ $(document).ready(function() {
 	
 			<?php if($projects[0] != null){	
 				foreach($images as $image){
-					echo "<p>===================================================================================================================</p>";
+					echo "<p class='image_seperator'>===================================================================================================================</p>";
 			?>
 			
 			<?php 
@@ -217,15 +215,15 @@ $(document).ready(function() {
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h5>Movie</h5>			
+					<h5 class='image_title'>Movie</h5>			
 				<?php 
 				} else{	 
 				?>
-					<h5>Image</h5>
+					<h5 class='image_title'>Image</h5>
 				<?php 
 				}
 				?>	
-					<p><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 					
 					
 					<table class='images_table'>
