@@ -184,6 +184,7 @@ function submitForm(name, form, value){
 			
 	
 			<?php 
+			$img_loop_counter = 1;
 			if($projects[0] != null){	
 				foreach($images as $image){
 					echo "<p class='image_seperator'>===================================================================================================================</p>";
@@ -245,7 +246,7 @@ function submitForm(name, form, value){
 					</tbody>
 					</table>
 					
-					<table id='info_table' class='input_table'>
+					<table id='info_table<?php echo $img_loop_counter; ?>' class='input_table'>
 					<tbody>
 					<?php 
 					$c=1;
@@ -262,12 +263,15 @@ function submitForm(name, form, value){
 					} 
 					?>
 					
+					
+					<tr><td><a id='<?php echo $c-1;?>' class='add_text_line' href='#'>Add Text Line</a></td></tr>
 					</tbody>
 					</table>
-					<a class='add_text_line' href='#'>Add Text Line</a>
 					
 					
-					<table id='links_table' class='input_table'>
+					
+					
+					<table id='links_table<?php echo $img_loop_counter; ?>' class='input_table'>
 					<tbody>
 					<?php 
 					
@@ -282,18 +286,18 @@ function submitForm(name, form, value){
 					//echo "no_of_links_text = $no_of_links_text <br />";
 					//echo "no_of_links_url = $no_of_links_url <br />";
 					for($i=0; $i<$upper_limit; $i++){ ?>
-						<tr>
+						<tr id='link_tr<?php echo $i; ?>'>
 							<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
 							<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
-							<td><a class='delete_element' href='#'>delete</a></td>
+							<td><a id='<?php echo $i;?>' class='delete_link' href='#'>delete</a></td>
 						</tr>
 					<?php 
 					} 
 					?>
-				
+				<tr><td><a id='<?php echo $i-1;?>' class='add_link' href='#'>Add Link</a></td></tr>
 				</tbody>
 				</table>
-				<a class='add_link' href='#'>Add Link</a>
+				
 				
 				
 				<br />
@@ -302,6 +306,7 @@ function submitForm(name, form, value){
 				</form>
 				
 				<?php 
+				$img_loop_counter++;
 				}
 			}
 			

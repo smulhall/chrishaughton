@@ -74,21 +74,7 @@ $images2 = $images;
 <script type="text/javascript">
 function submitForm(name, form, value){
 	form.submit();
-}
-
-$(document).ready(function() {
-
-	   $(".delete_info_line1").click(function(){
-			alert("Delete this row");
-		   });
-
-	   //add_link
-	   //add_info_line
-	   //delete_info_line1
-	   //delete_link1
-	   
-});
-	 
+} 
 
 
 
