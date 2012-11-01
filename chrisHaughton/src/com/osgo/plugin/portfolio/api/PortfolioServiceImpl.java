@@ -134,6 +134,19 @@ public class PortfolioServiceImpl implements PortfolioService {
 		});
 		
 	}
+	
+	@Override
+	public void deleteImage(final Picture image, final Project project) {
+		ofy().transactNew(new VoidWork(){
+			@Override
+			public void vrun() {
+				project.removeImage(image);
+				ofy().save().entity(project);				
+				// removes image from db
+				ofy().delete().entity(image);
+			}		
+		});	
+	}
 
 	@Override
 	public List<Category> getCategoryList() {
@@ -147,8 +160,22 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
-	public void deleteCategory(long id) {
-		// TODO Auto-generated method stub
+	public void deleteCategory(final long id) {
+		ofy().transactNew(new VoidWork() {
+		    public void vrun() {
+		    	Category category = ofy().load().key(Key.create(Category.class, id)).get();
+		    	
+		    	List<Project> projects = category.getProjects();
+		    	for(Project p : projects){
+		    		List<Picture> images = p.getImages();
+		    		for(Picture pic : images){
+		    			ofy().delete().entity(pic);
+		    		}
+		    		ofy().delete().entity(p);
+		    	}
+		    	ofy().delete().entity(category);
+		    }
+		});
 		
 	}
 
@@ -211,5 +238,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 		    }
 		});
 	}
+
+	
 		
 }

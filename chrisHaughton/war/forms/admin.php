@@ -222,7 +222,7 @@ function submitForm(name, form, value){
 					<table id='admin_form_table' class='input_table'>
 					<tbody>
 					
-					<form id='admin_form' action='/update' enctype='multipart/form-data' method='post'>
+					<form id='admin_form' enctype='multipart/form-data' method='post'>
 					
 				
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />

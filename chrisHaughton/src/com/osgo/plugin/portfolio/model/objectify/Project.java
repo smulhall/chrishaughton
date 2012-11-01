@@ -107,6 +107,14 @@ public class Project {
 		return results;
 	}
 	
+
+	public List<Picture> getImagesOrder(){
+		List<Picture> results = ofy().load().type(Picture.class).
+				filter("project", Key.create(Project.class, this.getId())).order("-date").list();
+				
+		return results;
+	}
+	
     public void setImages(List<Picture> list){ 
     	for(Picture image : list){
     		images.add(Ref.create(Key.create(Picture.class, image.getId()), image));
@@ -118,6 +126,14 @@ public class Project {
     	Key<Picture> key = Key.create(Picture.class, image.getId());
     	Ref<Picture> ref = Ref.create(key, image);
     	images.add(ref);
+    }
+    
+    public void removeImage(Picture image){
+    	
+    	Key<Picture> key = Key.create(Picture.class, image.getId());
+    	Ref<Picture> ref = Ref.create(key, image);
+    	int index = images.indexOf(ref);
+    	images.remove(index);
     }
 
 	public Key<Category> getCategory() {
