@@ -36,7 +36,7 @@
 			foreach($categories as $category_loop){
 				if(!$category_loop-> isFeatured()){
 					if(!$category_loop-> isLink()){
-						if($category_loop-> getId() == 63001 || $category_loop-> getId() == 30001){
+						if($category_loop-> getId() == 63001 || $category_loop-> getId() == 30011){
 								//display nothing
 						}
 						else{
