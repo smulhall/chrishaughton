@@ -133,10 +133,11 @@ function submitForm(name, form, value){
 			?>
 			</select></td>
 			<td><?php echo $category-> getTitle(); ?></td>
-			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
-			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
+			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit Category</a></td>
+			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete Category</a></td> 
 			<td><a href='/forms/create_category.php'>Create new category</a></td>
-			<td><a href='/forms/create_proj.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add project</a></td>
+			<!-- <td><a href='/forms/create_proj.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add project</a></td>  -->
+			<td>&nbsp</td>
 			<td>&nbsp</td>
 			</tr>
 			
@@ -164,8 +165,8 @@ function submitForm(name, form, value){
 			</select></td>
 			<?php if($projects[0] != null){ ?>
 				<td><?php echo $project-> getTitle(); ?></td>
-				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
-				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
+				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit Project</a></td>
+				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete Project</a></td>
 				<td><a href='/forms/create_proj.php'>Create new project</a></td>
 				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
 				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
