@@ -48,8 +48,6 @@ $current_th_set = $_GET['ts']; //if set
 $current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
 $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +62,10 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 </head>
 <body>
 <div id='wrapper'>
-	
+
+<!-- use this to check for id's of home page image -->
+<!-- <p>category = <?php echo $category->getId(); ?> // project = <?php echo $project->getId(); ?> // image = <?php echo $image->getId(); ?></p> -->
+
 	<!-- ======================== Header ========================== -->
 	<?php include 'includes/header.php'; ?>
 	
@@ -75,7 +76,8 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
-	<div id="central_panel" class='central_panel_portfolio'>
+	<div id="central_panel_home">
+		
 		<?php 
 			
 			$movieUrl = $image-> getMovieUrl();
@@ -85,16 +87,11 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 				<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 			</div>
 		<?php }else{ ?>
-			<img src="<?php echo $image-> getUrl();?>" />
+			<img class="home_page_image" src="<?php echo $image-> getUrl();?>" />
 		<?php }	 ?>
 	</div> <!-- close central_panel -->
 	
-	<!-- ======================== RHS Panel ========================== -->
-	<div id="rhs_panel">
-		
-		
-
-	</div>  <!-- close rhs_panel -->
+	
 
 </div> <!-- close wrapper -->
 </body>

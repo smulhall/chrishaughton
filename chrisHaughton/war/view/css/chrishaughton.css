@@ -125,8 +125,24 @@ a.horiz_menu:link{
 	text-align:center;
 }
 
+#central_panel_home{
+	float:left;
+	margin:0 10px 0 10px;
+	width:750px;
+	text-align:center;
+}
+
+#central_panel_home img{
+	width:700px;
+}
+
+
 #homepage_panel, #text_page_panel{
 	width:750px;	
+}
+
+.home_page_image{
+	width:750px;
 }
 
 #central_panel h4{

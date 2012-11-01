@@ -36,9 +36,14 @@
 			foreach($categories as $category_loop){
 				if(!$category_loop-> isFeatured()){
 					if(!$category_loop-> isLink()){
+						if($category_loop-> getId() == 63001 || $category_loop-> getId() == 30001){
+								//display nothing
+						}
+						else{
 			?>
-					<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+							<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
 			<?php 
+						}
 					}
 				}
 			}

@@ -3,6 +3,7 @@
 @font-face {font-family: chrishaughton; src: url('/view/fonts/ABitLostAlt.otf');}
 @font-face {font-family: ClareTMed; src: url('/view/fonts/ClareTMed.ttf');}
 @font-face {font-family: ClareTLig; src: url('/view/fonts/ClareTLig.ttf');}
+@font-face {font-family: coolvetica; src: url('/view/fonts/coolvetica.otf');}
 
 body{
 	font-family: chrishaughton, Arial, Helvetica, sans-serif;
@@ -166,6 +167,18 @@ a.horiz_menu:link{
 	text-align:center;
 }
 
+
+#central_panel_home{
+	float:left;
+	margin:0 10px 0 10px;
+	width:750px;
+	text-align:center;
+}
+
+#central_panel_home img{
+	width:700px;
+}
+
 #homepage_panel, .central_panel_text_pages{
 	width:750px;	
 }
@@ -265,7 +278,7 @@ p.flow_link{
 
 .text_pages_content_content{
 	clear: left;
-	font-family: ClareTMed, Arial, Helvetica, sans-serif;
+	font-family: coolvetica, Arial, Helvetica, sans-serif;
 	letter-spacing: 0em;
 	text-align: left;
 	padding: 10px 0 0 0;
