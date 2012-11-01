@@ -196,15 +196,17 @@ function submitForm(name, form, value){
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h5 class='image_title'>Movie</h5>			
+					<h5 class='image_title'>Movie</h5>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this video</a> or edit it below:</p>			
 				<?php 
 				} else{	 
 				?>
 					<h5 class='image_title'>Image</h5>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 				<?php 
 				}
 				?>	
-					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
+					
 					
 					
 					<table class='images_table'>
