@@ -40,8 +40,8 @@ $id = $_GET['Id'];
 		<input type='hidden' name='projectId' value='<?php echo $id; ?>' />
 		<table class='input_table'>
 			
-			<tr><td><textarea name='title' class='sublink_textarea'></textarea></td></tr>
-			<tr><td></td><td><input type='submit' /></td></tr>
+			<tr><td><textarea name='text' class='sublink_textarea'></textarea></td></tr>
+			<tr><td></td><td><input type='Save HTML' /></td></tr>
 		
 		</table>
 		</form>

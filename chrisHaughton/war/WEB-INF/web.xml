@@ -79,6 +79,7 @@
      <security-constraint>
         <web-resource-collection>
             <url-pattern>/forms/*.php</url-pattern>
+            <url-pattern>/forms/process_files/*.php</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>

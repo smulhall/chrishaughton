@@ -7,13 +7,16 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
 
 // gettting attributes from form POST
-$newTitle = $_POST['title'];
+$newText = $_POST['text'];
+//echo "$newTitle<br />";
 $id = $_POST['projectId'];
+//echo "$id<br />";
+
 $project = $portfolioService-> getProject($id);
-$project->setTitle($newTitle);
+$project->setText($newText);
 $portfolioService-> updateProject($project);
 
-//redirect on server side
+//TODO: redirect 
 ?>
 
 <!DOCTYPE html>
