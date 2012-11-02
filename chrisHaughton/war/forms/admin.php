@@ -117,6 +117,7 @@ function submitForm(name, form, value){
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			
+			<!-- =========== CATEGORY ========== -->
 			<tr>
 			<td>Category:</td>
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
@@ -152,7 +153,7 @@ function submitForm(name, form, value){
 			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
 			
 			
-			
+			<!-- =========== PROJECT ========== -->
 			<tr>
 			<td>Project:</td>
 			<td><select name='project' onChange='submitForm(this.name, this.form, this.value);'>
@@ -167,13 +168,33 @@ function submitForm(name, form, value){
 				<td><?php echo $project-> getTitle(); ?></td>
 				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit Project</a></td>
 				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete Project</a></td>
-				<td><a href='/forms/create_proj.php'>Create new project</a></td>
-				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
-				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+				<td><a href='/forms/create_proj.php'>Add project to this Category</a></td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
 				
 			<?php }else{ ?>
 				<td>no projects</td>
 			<?php } ?>
+			</tr>
+			
+			<!-- =========== IMAGE ========== -->
+			<tr>
+			<td>Images:</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+			<td>Edit below</td>
+			<td>Delete below</td>
+			<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image to this Project</a></td>
+			</tr>
+			
+			<!-- =========== VIDEO ========== -->
+			<tr>
+			<td>Videos:</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+			<td>Edit below</td>
+			<td>Delete below</td>
+			<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video to this Project</a></td>
 			</tr>
 			
 			</tbody>

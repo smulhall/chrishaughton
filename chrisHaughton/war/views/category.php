@@ -16,7 +16,9 @@ if(isset($currCategoryId)){
 	$category = $categories[0];
 	$currCategoryId = $category-> getId();
 }
-$projects = $category-> getProjects();
+
+//$projects = $category-> getProjects();  // list of projects in this category in  order of id
+$projects = $category-> getProjectsOrder(); // list of projects in this category in chronological order - i.e. latest upload first
 
 //$projectsList = $portfolioService-> getProjectList(); //numerical array of all projects
 
