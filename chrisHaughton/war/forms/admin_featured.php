@@ -135,10 +135,11 @@ function submitForm(name, form, value){
 			?>
 			</select></td>
 			<td><?php echo $category-> getTitle(); ?></td>
-			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit</a></td>
-			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete</a></td> 
-			<td><a href='/forms/create_featured.php'>New Featured</a></td>
-			<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td>
+			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit Link</a></td>
+			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete Link</a></td> 
+			<td><a href='/forms/create_featured.php'>Create new Featured Link</a></td>
+			<!-- <td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td> -->
+			<td>&nbsp</td>
 			<td>&nbsp</td>
 			</tr>
 			
@@ -166,36 +167,52 @@ function submitForm(name, form, value){
 			</select></td>
 			<?php if($projects[0] != null){ ?>
 				<td><?php echo $project-> getTitle(); ?></td>
-				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit</a></td>
-				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete</a></td>
-				<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>New Sub-link</a></td>
-				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
-				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit Sub-Link</a></td>
+				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete Sub-Link</a></td>
+				<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Create new Sub-link</a></td>
+				</tr>
 				
+				<tr>
+				<td>Images:</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
+				</tr>
+				
+				<tr>
+				<td>Videos:</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+				</tr>
 			<?php }else{ ?>
 				<td>no projects</td>
 			<?php } ?>
 			</tr>
 			
 			</form>
+			</table>
 			
+			<p class='image_seperator'>===================================================================================================================</p>
 			
-			<form action='/update' method='post'>
-			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
-			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
-			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
-			
-			<tr><td>Sub-link Text:</td><td colspan='7'><textarea class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
-			<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
-			
-			</form>
+			<table class='admin_table1 input_table'>
+				<form action='edit_sublink_text.php' method='post'>
+					<input type='hidden' name='Id' value='<?php $project-> getId(); ?>' />
+
+					<tr><td>Sub-link Text:</td><td colspan='7'><textarea class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
+					<tr><td>&nbsp</td><td><input type='submit' value='save HTML' /></td></tr>
+				</form>
 			</table>
 			
 	
 			<?php if($projects[0] != null){	
 				foreach($images as $image){
-					echo "<p class='image_seperator'>===================================================================================================================</p>";
 			?>
+				<p class='image_seperator'>===================================================================================================================</p>
 			
 			<?php 
 				$movieUrl = $image-> getMovieUrl();
