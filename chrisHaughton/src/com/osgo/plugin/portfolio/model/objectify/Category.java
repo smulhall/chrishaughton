@@ -46,6 +46,13 @@ public class Category {
 		return results;
 	}
 	
+	public List<Project> getProjectsOrder(){
+		List<Project> results = ofy().load().type(Project.class).
+				filter("category", Key.create(Category.class, this.getId())).order("-date").list();
+				
+		return results;
+	}
+	
 	public void removeProject(Project project){
 		Ref<Project> ref = Ref.create(Key.create(Project.class, project.getId()), project);
     	projects.remove(ref);

@@ -76,6 +76,8 @@ public class UpdateImage extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		// TODO: add code to work if no file was uploaded, should just be a normal parameter get
+		
         try {
         	
         	// get Project to add image to
@@ -141,18 +143,19 @@ public class UpdateImage extends HttpServlet {
 			picture.setKey(imageKey);
 		}
 		BlobKey thumbKey = images.get("thumb");
-		if(thumbKey!=null){
+		if(thumbKey!=null && picture!=null){
 			BlobKey oldImage = picture.getThumbKey();
 			blobService.delete(oldImage);
 			picture.setThumbKey(thumbKey);
 		}
-		picture.intUrl();
-		picture.setInfo(info);
-		picture.setLinks(links);
-		picture.setLinksText(linkTexts);
-		picture.setDate(Calendar.getInstance().getTime());
-		portfolioService.update(picture);
-		
+		if(picture!=null){
+			picture.intUrl();
+			picture.setInfo(info);
+			picture.setLinks(links);
+			picture.setLinksText(linkTexts);
+			picture.setDate(Calendar.getInstance().getTime());
+			portfolioService.update(picture);
+		}
 		//response.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
 		response.sendRedirect("/forms/admin.php");
 	}

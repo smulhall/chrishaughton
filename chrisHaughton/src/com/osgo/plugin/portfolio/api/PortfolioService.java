@@ -18,7 +18,7 @@ public interface PortfolioService {
 	Project addProject(Map<String, Object> input);
 	Project updateProject(Project project);
 	void addImage(Picture image, Project project);
-	void deleteImage(Picture image, Project project);
+	void deleteImage(long id);
 	
 	List<Category> getCategoryList();
 	Category getCategory(long id);
