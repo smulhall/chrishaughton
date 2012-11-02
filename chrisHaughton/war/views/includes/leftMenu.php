@@ -67,12 +67,7 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='admin'>
-			<a href='/forms/login.php' class='lhs_menu_subheading'><li class='menu_link'>login/logout</li></a>
-			<?php 
-			$user_logged_in = "Y"; //TODO: user to be created on server side
-			if($user_logged_in == "Y"){ ?>
-				<a href='/forms/admin.php' class='lhs_menu_subheading'><li class='menu_link'>admin</li></a>
-			<?php } ?>
+			<a href='/forms/admin.php' class='lhs_menu_subheading'><li class='menu_link'>admin</li></a>
 		</ul>
 	</li>
 
