@@ -136,12 +136,12 @@ public class PortfolioServiceImpl implements PortfolioService {
 	}
 	
 	@Override
-	public void deleteImage(final long id) {
+	public void deleteImage(final long id, final long projectId) {
 		ofy().transactNew(new VoidWork(){
 			@Override
 			public void vrun() {
 				Picture image = ofy().load().key(Key.create(Picture.class, id)).get();
-				Project project = ofy().load().key(image.getProject()).get();
+				Project project = ofy().load().key(Key.create(Project.class, projectId)).get();
 				project.removeImage(image);
 				ofy().save().entity(project);				
 				// removes image from db
