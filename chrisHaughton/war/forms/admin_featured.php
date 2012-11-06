@@ -55,7 +55,7 @@ if(isset($proj)){
 
 $images = $project-> getImages();
 $images2 = $images;
-
+$projectHTML = $projects[0]
 
 ?>
 
@@ -199,10 +199,21 @@ function submitForm(name, form, value){
 			
 			<p class='image_seperator'>===================================================================================================================</p>
 			
-			<table class='admin_table1 input_table'>
-				<tr><td>Sub-link Text:</td><td colspan='7'><textarea class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
-				<tr><td>&nbsp</td><td><a href='/forms/edit_sublink_text.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit Sub-Link HTML</a></td></tr>
-			</table>
+			<form action='/forms/process_files/edit_sublink_text_process.php' enctype='multipart/form-data' method='post'>
+				<?php 
+				if(isset($project-> getId())){
+					$projectHTML = $project-> getId();
+				}
+				?>
+				<input type='hidden' name='projectId' value='<?php echo $projectHTML; ?>' />
+			
+				<table class='admin_table1 input_table'>
+					<tr><td>Sub-link Text:</td><td colspan='7'><textarea name='text' class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
+					<!--  <tr><td>&nbsp</td><td><a href='/forms/edit_sublink_text.php?type=project&Id=<?php echo $project-> getId(); ?>&text=<?php echo $project-> getText(); ?>'>Edit Sub-Link HTML</a></td></tr> -->
+					<tr><td></td><td><input type='submit' value='Save HTML' /></td></tr>
+				</table>
+			
+			</form>
 			
 	
 			<?php if($projects[0] != null){	

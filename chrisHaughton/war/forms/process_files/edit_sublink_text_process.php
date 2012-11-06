@@ -8,15 +8,15 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 
 // gettting attributes from form POST
 $newText = $_POST['text'];
-//echo "$newTitle<br />";
+
 $id = $_POST['projectId'];
-//echo "$id<br />";
+
 
 $project = $portfolioService-> getProject($id);
 $project->setText($newText);
 $portfolioService-> updateProject($project);
 
-//TODO: redirect 
+header("Location: /forms/admin.php");
 ?>
 
 <!DOCTYPE html>

@@ -10,12 +10,14 @@ $portfolioService = PortfolioServiceFactory::getPortfolioService();
 $newTitle = $_POST['title'];
 
 if(isset($_POST['category'])){
+	echo "category = {$_POST['category']} <br />";
 	$id = $_POST['category'];
 	$cat = $portfolioService-> getCategory($id);
 	$cat->setTitle($newTitle);
-	$portfolioService-> updateCategory($cat);
+	$portfolioService-> update($cat);
 }
 if(isset($_POST['project'])){
+	echo "project = {$_POST['project']} <br />";
 	$id = $_POST['project'];
 	$project = $portfolioService-> getProject($id);
 	$project->setTitle($newTitle);
