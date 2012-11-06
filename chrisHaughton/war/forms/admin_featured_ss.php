@@ -25,7 +25,8 @@ if(isset($_POST['prev_project'])){
 //echo "proj = $proj // prev_proj = $prev_proj<br />";
 
 $categories = $portfolioService-> getCategoryList();
-
+//echo"<br />categories<br />";
+//print_r($categories);
 
 if(isset($cat)){
 	$category = $portfolioService-> getCategory($cat);
@@ -33,15 +34,15 @@ if(isset($cat)){
 	//$category = $categories[0];
 	$flag = "false";
 	foreach($categories as $category_loop){
-		if(!$category_loop-> isFeatured() && $flag == "false"){
-			if(!$category_loop-> isLink() && $flag == "false"){
-				$category = $category_loop;
-				$flag = "true";
-			}
+		if($category_loop-> isFeatured() && $flag == "false"){
+			$category = $category_loop;
+			$flag = "true";
 		}
 	}
 }
 
+//echo"<br />category<br />";
+//print_r($category);
 
 
 $projects = $category-> getProjects();
@@ -54,9 +55,8 @@ if(isset($proj)){
 
 $images = $project-> getImages();
 $images2 = $images;
+$projectHTML = $projects[0]
 
-
-$random = rand();
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +67,6 @@ $random = rand();
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript' src='/js/nav_menu.js'></script>
-<script type='text/javascript' src='/js/admin.js'></script>
 <title>admin</title>
 
 
@@ -75,7 +74,10 @@ $random = rand();
 <script type="text/javascript">
 function submitForm(name, form, value){
 	form.submit();
-}
+} 
+
+
+
 </script>
 
 
@@ -87,6 +89,7 @@ function submitForm(name, form, value){
 	
 	<!-- ======================== Header ========================== -->
 	<?php include '../views/includes/header.php'; ?>
+	
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
@@ -109,35 +112,33 @@ function submitForm(name, form, value){
 
 			
 			
-
-			<table class='admin_table1 input_table'>
-			<tbody>
-			
 			<form action='' method='post'>
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			
-			<!-- =========== CATEGORY ========== -->
+			
+			
+			
+			<table class='admin_table1 input_table'>
+			
 			<tr>
-			<td>Category:</td>
+			<td>Featured:</td>
 			<td><select name='category' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach($categories as $category_loop) {
-					if(!$category_loop-> isFeatured()){
-						if(!$category_loop-> isLink()){
+					if($category_loop-> isFeatured() || $category_loop-> isLink()){
 					?>
 						<option name='<?php echo $category_loop-> getTitle();?>' value='<?php echo $category_loop-> getId();?>' <?php if($category_loop-> getId() == $cat){ echo "selected='selected' "; } ?>><?php echo $category_loop-> getTitle();?></option>
 					<?php
-						}
 					}
 				}
 			?>
 			</select></td>
 			<td><?php echo $category-> getTitle(); ?></td>
-			<td><a href='/forms/edit_text.php?type=category&Id=<?php echo $category-> getId(); ?>&title=<?php echo $category-> getTitle(); ?>'>Edit Category</a></td>
-			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete Category</a></td> 
-			<td><a href='/forms/create_category.php'>Create new category</a></td>
-			<!-- <td><a href='/forms/create_proj.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add project</a></td>  -->
+			<td><a href='/forms/edit.php?type=category&Id=<?php echo $category-> getId(); ?>'>Edit Link</a></td>
+			<td><a href='/forms/delete.php?type=category&Id=<?php echo $category-> getId(); ?>'>Delete Link</a></td> 
+			<td><a href='/forms/create_featured.php'>New Featured Link</a></td>
+			<!-- <td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td> -->
 			<td>&nbsp</td>
 			<td>&nbsp</td>
 			</tr>
@@ -153,9 +154,9 @@ function submitForm(name, form, value){
 			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
 			
 			
-			<!-- =========== PROJECT ========== -->
+			
 			<tr>
-			<td>Project:</td>
+			<td>Sub-Link:</td>
 			<td><select name='project' onChange='submitForm(this.name, this.form, this.value);'>
 			<?php 
 				foreach ($projects as $project_loop) { ?>
@@ -166,68 +167,74 @@ function submitForm(name, form, value){
 			</select></td>
 			<?php if($projects[0] != null){ ?>
 				<td><?php echo $project-> getTitle(); ?></td>
-				<td><a href='/forms/edit_text.php?type=project&Id=<?php echo $project-> getId(); ?>&title=<?php echo $project-> getTitle(); ?>'>Edit Project</a></td>
-				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete Project</a></td>
-				<td><a href='/forms/create_proj.php'>Add project to this Category</a></td>
-				<td>&nbsp</td>
-				<td>&nbsp</td>
+				<td><a href='/forms/edit.php?type=project&Id=<?php echo $project-> getId(); ?>'>Edit Sub-Link</a></td>
+				<td><a href='/forms/delete.php?type=project&Id=<?php echo $project-> getId(); ?>'>Delete Sub-Link</a></td>
+				<td><a href='/forms/create_featured_sublink.php?type=category&Id=<?php echo $category-> getId(); ?>'>Add Sub-link</a></td>
+				</tr>
 				
+				<tr>
+				<td>Images:</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>Edit below</td>
+				<td>Delete below</td>
+				<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image</a></td>
+				</tr>
+				
+				<tr>
+				<td>Videos:</td>
+				<td>&nbsp</td>
+				<td>&nbsp</td>
+				<td>Edit below</td>
+				<td>Delete below</td>
+				<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video</a></td>
+				</tr>
 			<?php }else{ ?>
 				<td>no projects</td>
 			<?php } ?>
 			</tr>
 			
-			<!-- =========== IMAGE ========== -->
-			<tr>
-			<td>Images:</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
-			<td>Edit below</td>
-			<td>Delete below</td>
-			<td><a href='/forms/upload_image.php?proj=<?php echo $project-> getId(); ?>'>Add image to this Project</a></td>
-			</tr>
-			
-			<!-- =========== VIDEO ========== -->
-			<tr>
-			<td>Videos:</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
-			<td>Edit below</td>
-			<td>Delete below</td>
-			<td><a href='/forms/upload_video.php?proj=<?php echo $project-> getId(); ?>'>Add video to this Project</a></td>
-			</tr>
-			
-			</tbody>
+			</form>
 			</table>
+			
+			<p class='image_seperator'>===================================================================================================================</p>
+			
+			<form action='/forms/process_files/edit_sublink_text_process.php' enctype='multipart/form-data' method='post'>
+				<?php 
+				if(isset($project-> getId())){
+					$projectHTML = $project-> getId();
+				}
+				?>
+				<input type='hidden' name='projectId' value='<?php echo $projectHTML; ?>' />
+			
+				<table class='admin_table1 input_table'>
+					<tr><td>Sub-link Text:</td><td colspan='7'><textarea name='text' class='sublink_textarea'><?php echo $project-> getText(); ?></textarea></td></tr>
+					<!--  <tr><td>&nbsp</td><td><a href='/forms/edit_sublink_text.php?type=project&Id=<?php echo $project-> getId(); ?>&text=<?php echo $project-> getText(); ?>'>Edit Sub-Link HTML</a></td></tr> -->
+					<tr><td></td><td><input type='submit' value='Save HTML' /></td></tr>
+				</table>
+			
 			</form>
 			
-		
-			
-			
 	
-			<?php 
-			$img_loop_counter = 1;
-			if($projects[0] != null){	
+			<?php if($projects[0] != null){	
 				foreach($images as $image){
-					echo "<p class='image_seperator'>===================================================================================================================</p>";
 			?>
+				<p class='image_seperator'>===================================================================================================================</p>
 			
 			<?php 
 				$movieUrl = $image-> getMovieUrl();
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h5 class='image_title'>Movie</h5>
-					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>&projId=<?php echo $project-> getId(); ?>'>Delete this video</a> or edit it below:</p>			
+					<h5 class='image_title'>Movie</h5>			
 				<?php 
 				} else{	 
 				?>
 					<h5 class='image_title'>Image</h5>
-					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>&projId=<?php echo $project-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 				<?php 
 				}
 				?>	
-					
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 					
 					
 					<table class='images_table'>
@@ -240,19 +247,15 @@ function submitForm(name, form, value){
 		
 				
 				
-				
-				
-					
-					<table id='admin_form_table' class='input_table'>
-					<tbody>
-					
-					<form id='admin_form' action="/update" enctype='multipart/form-data' method='post'>
+				<form action='/update' enctype='multipart/form-data' method='post'>
 					
 				
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
 					<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
 					<input type='hidden' name='image_id' value='<?php echo $image-> getId();?>' />
+				
 					
+					<table class='input_table'>
 					<?php 
 					$movieUrl = $image-> getMovieUrl();
 					//echo "movieUrl = $movieUrl<br />";
@@ -266,20 +269,17 @@ function submitForm(name, form, value){
 					<?php 
 					}	 
 					?>
+				
 					
-					</tbody>
-					</table>
 					
-					<table id='info_table<?php echo $img_loop_counter; ?>' class='input_table'>
-					<tbody>
 					<?php 
 					$c=1;
 					foreach ($image-> getInfo() as $info_line) {
 					?>
-						<tr id='info_tr<?php echo $c; ?>'>
+						<tr>
 							<td>Text to Display (line <?php echo $c; ?>):</td>
-							<td><input id='<?php echo $c;?>' name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
-							<td><a id='<?php echo $c;?>' class='delete_element' href='#'>delete</a></td>
+							<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
+							<td><a class='delete_info_line<?php echo $c; ?>' href=''>delete</a></td>
 						</tr>
 						
 					<?php 
@@ -287,16 +287,8 @@ function submitForm(name, form, value){
 					} 
 					?>
 					
+					<tr><td><a class='add_info_line' href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
 					
-					<tr><td><a id='<?php echo $c-1;?>' class='add_text_line' href='#'>Add Text Line</a></td></tr>
-					</tbody>
-					</table>
-					
-					
-					
-					
-					<table id='links_table<?php echo $img_loop_counter; ?>' class='input_table'>
-					<tbody>
 					<?php 
 					
 					$links_text = $image-> getLinks(); //Links Url
@@ -310,31 +302,27 @@ function submitForm(name, form, value){
 					//echo "no_of_links_text = $no_of_links_text <br />";
 					//echo "no_of_links_url = $no_of_links_url <br />";
 					for($i=0; $i<$upper_limit; $i++){ ?>
-						<tr id='link_tr<?php echo $i; ?>'>
-							<td><input id='<?php echo $i;?>' class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
-							<td><input id='<?php echo $i;?>' class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
-							<td><a id='<?php echo $i;?>' class='delete_link' href='#'>delete</a></td>
+						<tr>
+							<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
+							<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
+							<td><a class='delete_link<?php echo $i; ?>' href='#'>delete</a></td>
 						</tr>
 					<?php 
 					} 
 					?>
-				<tr><td><a id='<?php echo $i-1;?>' class='add_link' href='#'>Add Link</a></td></tr>
-				</tbody>
+					
+					<tr><td><a class='add_link' href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
+					<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
+				
 				</table>
-				
-				
-				
-				<br />
-				<input id='admin_save_btn' type='submit' value='save' />
 				<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
 				</form>
 				
+				
+				
 				<?php 
-				$img_loop_counter++;
 				}
 			}
-			
-			
 	?>
 		
 		

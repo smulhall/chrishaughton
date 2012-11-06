@@ -7,6 +7,7 @@ $categories = $portfolioService-> getCategoryList();
 
 $type = $_GET['type'];
 $id = $_GET['Id'];
+$oldText = $_GET['text'];
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@ $id = $_GET['Id'];
 		<input type='hidden' name='<?php echo $type; ?>_id' value='<?php echo $id; ?>' />
 		<table class='input_table'>
 			
-			<tr><td><input type='text' name='title' value='' /></td></tr>
+			<tr><td><input type='text' name='title' value='<?php echo $oldText; ?>' /></td></tr>
 			<tr><td></td><td><input type='submit' /></td></tr>
 		
 		</table>

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-		
 	deleteElement();
 	addTextLine();
 	addLink();
@@ -7,14 +6,21 @@ $(document).ready(function() {
 	setupForm();
 });
 
+
+
 //Add a text line
 function addTextLine(){
    $(".add_text_line").click(function(e){
 	   e.preventDefault();
 	   var loopMax = $(this).attr('id');
 	   var tableId = $(this).closest('table').attr('id');
-	   var currentId_number = Number(loopMax);
-	   var newId = Math.abs(currentId_number+1);
+	   
+	   var rows = $("#"+tableId+" tr"); 
+	   var length = rows.length;
+	   var newId = length;
+	   console.log(newId); //feedback
+	   //alert("trId = " + $length);
+	  
 	   $("#"+tableId+" > tbody:last").append("<tr id='info_tr"+ newId +"'><td>Text to Display (new):</td><td><input  name ='display_text_line"+ newId +"' value='' type='text' /></td><td><a id='"+ newId +"' class='delete_element' href='#'>delete</a></td></tr>");
 	   
 	   deleteElement();
@@ -39,12 +45,16 @@ function deleteElement(){
 function addLink(){
    $(".add_link").click(function(e){
 	   e.preventDefault();
-	   var loopMax = $(this).attr('id');
-	   var tableId = $(this).closest('table').attr('id');
-	   var currentId_number = Number(loopMax);
-	   var newId = Math.abs(currentId_number+1);
+	   var tableId = $(this).closest('table').attr('id'); //get table id specifically for this image
+	   
+	   var rows = $("#"+tableId+" tr"); 
+	   var length = rows.length;
+	   var newId = length;
+	   console.log(newId); //feedback
+	   //alert("trId = " + length);
+	   
+	   //add new table row
 	   $("#"+tableId+" > tbody:last").append("<tr id='link_tr"+ newId +"'><td><input id='link_text' class='link_text' name ='link_text"+ newId +"' type='text' value='url (new)' /></td><td><input class='link_url' name ='link_url"+ newId +"' type='text' value='display text (new)' /></td><td><a id='"+ newId +"' class='delete_link' href='#'>delete</a></td></tr>");
-	
 	   deleteLink();
    });
 }
@@ -76,7 +86,7 @@ function setupForm(){
 	        url: "/update",
 	        type: "post",
 	        data: serializedData,
-	        aysnc: false
+	        async: false
 	    	});    
 	});
 }
