@@ -21,7 +21,7 @@ function addTextLine(){
 	   console.log(newId); //feedback
 	   //alert("trId = " + $length);
 	  
-	   $("#"+tableId+" > tbody:last").append("<tr id='info_tr"+ newId +"'><td>Text to Display (new):</td><td><input  name ='display_text_line"+ newId +"' value='' type='text' /></td><td><a id='"+ newId +"' class='delete_element' href='#'>delete</a></td></tr>");
+	   $("#"+tableId+" > tbody:last").append("<tr id='info_tr"+ newId +"'><td>Text to Display (new):</td><td><input class='newInput' id='display_text_line"+ newId +"' name ='display_text_line"+ newId +"' value='' type='text' /></td><td><a id='"+ newId +"' class='delete_element' href='#'>delete</a></td></tr>");
 	   
 	   deleteElement();
    });
@@ -54,7 +54,7 @@ function addLink(){
 	   //alert("trId = " + length);
 	   
 	   //add new table row
-	   $("#"+tableId+" > tbody:last").append("<tr id='link_tr"+ newId +"'><td><input id='link_text' class='link_text' name ='link_text"+ newId +"' type='text' value='url (new)' /></td><td><input class='link_url' name ='link_url"+ newId +"' type='text' value='display text (new)' /></td><td><a id='"+ newId +"' class='delete_link' href='#'>delete</a></td></tr>");
+	   $("#"+tableId+" > tbody:last").append("<tr id='link_tr"+ newId +"'><td><input id='link_text' class='link_text newInput' name ='link_text"+ newId +"' type='text' value='url (new)' /></td><td><input class='link_url newInput' name ='link_url"+ newId +"' type='text' value='display text (new)' /></td><td><a id='"+ newId +"' class='delete_link' href='#'>delete</a></td></tr>");
 	   deleteLink();
    });
 }
@@ -74,12 +74,14 @@ function deleteLink(){
 function setupForm(){
 	$("#admin_form").submit(function(event){
     // setup some local variables
-		var $form = $(this);
-		inputs = $form.find("input");
+    	var newInputs = $('.newInput');
+		var $form = $("#admin_form");
+		var serializedData = $form.serialize();
 		
-		for(i=0;inputs.length;i++){
-			input = inputs[i];
+		for(i=0;newInputs.length;i++){
+			input = newInputs[i];
 			value = input.value;
+			serializedData += "&"+input.name + "=" + input.value;
 		}
 		
 	    $.ajax({
@@ -90,5 +92,4 @@ function setupForm(){
 	    	});    
 	});
 }
-
 
