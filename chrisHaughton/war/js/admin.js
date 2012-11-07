@@ -75,7 +75,7 @@ function setupForm(){
 	$(".admin_form").submit(function(event){
     // setup some local variables
     	var newInputs = $('.newInput');
-		var $form = $(".admin_form");
+		var $form = $(this);
 		var serializedData = $form.serialize();
 		
 		for(i=0;i<newInputs.length;i++){
@@ -86,7 +86,6 @@ function setupForm(){
 		
 	    $.ajax({
 	        url: "/update",
-	        contentType: "multipart/form-data",
 	        type: "post",
 	        data: serializedData,
 	        async: false

@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -56,19 +57,9 @@ public class UpdateImage extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		BlobstoreService blobService = BlobstoreServiceFactory.getBlobstoreService();
-		ServletFileUpload upload = new ServletFileUpload();
-	    
-        PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
-        Project project = null;
-        Picture picture = null;
-        Category category = null;
-        List<String> info = new ArrayList<String>();
-        List<String> links = new ArrayList<String>();
-        List<String> linkTexts = new ArrayList<String>();
-        Map<String, BlobKey> images = new HashMap<String, BlobKey>();
-
-        FileItemIterator iterator = null;
+		
+		ServletFileUpload upload = new ServletFileUpload();		
+		FileItemIterator iterator = null;
 		try {
 			iterator = upload.getItemIterator(request);
 		} catch (FileUploadException e) {
@@ -77,9 +68,76 @@ public class UpdateImage extends HttpServlet {
 		}
 		
 		// TODO: add code to work if no file was uploaded, should just be a normal parameter get
+		if(iterator!=null){
+			fileIncluded(iterator, request, response);
+		} else {
+			noFile(request, response);
+		}
 		
-        try {
-        	
+		response.sendRedirect("/forms/admin.php");
+	}
+	
+	private void noFile(HttpServletRequest request, HttpServletResponse response) {
+		PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
+        Project project = null;
+        Picture picture = null;
+        Category category = null;
+        List<String> info = new ArrayList<String>();
+        List<String> links = new ArrayList<String>();
+        List<String> linkTexts = new ArrayList<String>();
+        
+        String proj = request.getParameter("project_id");
+        String cat = request.getParameter("category_id");
+        String image = request.getParameter("image_id");
+        
+        category = portfolioService.getCategory(Long.parseLong(cat));
+        project = portfolioService.getProject(Long.parseLong(proj));
+        picture = project.getImageById(Long.parseLong(image));
+        
+		Map<String, Object> map = request.getParameterMap();
+		for(Entry<String, Object> entry : map.entrySet()){
+			String key = entry.getKey();
+			log.warning("Key is: "+key);			
+			String[] valueArr = (String[]) entry.getValue();
+			String value = valueArr[0];
+			log.warning("Value is: "+value);
+			if(key.equals("project_id")){
+				log.warning("Project id is: "+value);
+		    } else if(key.equals("category_id")){			    	
+			    log.warning("Category id is: "+value);
+		    } else if(key.equals("image_id")){			    	
+			    log.warning("Image id is: "+value);
+		    } else {
+		    	if(key.contains("display_text")){
+		    		info.add(value);
+		    	} else if(key.contains("link_url")){
+		    		links.add(value);
+		    	} else if(key.contains("link_text")){
+		    		linkTexts.add(value);
+		    	}
+		    }
+		}
+		
+		picture.setInfo(info);
+		picture.setLinks(links);
+		picture.setLinksText(linkTexts);
+		portfolioService.update(picture);
+		
+	}
+
+	private void fileIncluded(FileItemIterator iterator, HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, IOException{
+		BlobstoreService blobService = BlobstoreServiceFactory.getBlobstoreService();
+		PortfolioService portfolioService = PortfolioServiceFactory.getPortfolioService();
+        Project project = null;
+        Picture picture = null;
+        Category category = null;
+        List<String> info = new ArrayList<String>();
+        List<String> links = new ArrayList<String>();
+        List<String> linkTexts = new ArrayList<String>();
+        Map<String, BlobKey> images = new HashMap<String, BlobKey>();
+		
+		try {
+		        	
         	// get Project to add image to
 
 			while (iterator.hasNext()) {
@@ -156,8 +214,6 @@ public class UpdateImage extends HttpServlet {
 			picture.setDate(Calendar.getInstance().getTime());
 			portfolioService.update(picture);
 		}
-		//response.sendRedirect("/forms/admin.php?c=1&p="+project.getId());
-		response.sendRedirect("/forms/admin.php");
 	}
 	
 	private BlobKey createBlob(byte[] data, HttpServletResponse response) throws IOException{
