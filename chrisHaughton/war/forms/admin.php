@@ -150,7 +150,7 @@ function submitForm(name, form, value){
 			<form action='' method='post'>
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
-			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
+			<input type='hidden' name='category' value='<?php echo $category-> getId(); ?>' />
 			
 			
 			<!-- =========== PROJECT ========== -->
@@ -235,20 +235,17 @@ function submitForm(name, form, value){
 			
 					<td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
 					</table>
-						
-		
-		
-				
-				
-				
-				
 					
 					<table id='admin_form_table' class='input_table'>
 					<tbody>
 					
+					
+					
+					
+					<!-- =========================== START info Form =============================== -->
+					
 					<form id='admin_form' action="/update" enctype='multipart/form-data' method='post'>
 					
-				
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
 					<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
 					<input type='hidden' name='image_id' value='<?php echo $image-> getId();?>' />
@@ -258,8 +255,8 @@ function submitForm(name, form, value){
 					//echo "movieUrl = $movieUrl<br />";
 					if($movieUrl != null){ 
 					?>
-						<tr><td>Vimeo reference:</td><td> <input type='text' name='video' /></td><td>(e.g. 13703809)</td></tr>
-						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
+						<tr><td>Replace Vimeo reference:</td><td> <input type='text' name='video' /></td><td>(e.g. 13703809)</td></tr>
+						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td><td>&nbsp</td></tr>
 					<?php }else{ ?>
 						<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
 						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
@@ -328,6 +325,8 @@ function submitForm(name, form, value){
 				<input id='admin_save_btn' type='submit' value='save' />
 				<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
 				</form>
+				
+				<!-- =========================== START info Form =============================== -->
 				
 				<?php 
 				$img_loop_counter++;

@@ -12,9 +12,9 @@ body{
 
 a img{
 	border: none; //remove blue line in IE
-	}
+}
 
-a:hover img{
+#lhs_menu a:hover img{
 	border: 1px solid #000000;
 	} 
 	

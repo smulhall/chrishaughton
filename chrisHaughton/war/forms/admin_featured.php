@@ -67,7 +67,8 @@ $projectHTML = $projects[0]
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script type='text/javascript' src='/js/nav_menu.js'></script>
-<title>admin</title>
+<script type='text/javascript' src='/js/admin.js'></script>
+<title>featured admin</title>
 
 
 
@@ -151,7 +152,7 @@ function submitForm(name, form, value){
 			<form action='' method='post'>
 			<input type='hidden' name='prev_project' value='<?php echo $proj; ?>' />
 			<input type='hidden' name='prev_category' value='<?php echo $cat; ?>' />
-			<input type='hidden' name='category' value='<?php echo $cat; ?>' />
+			<input type='hidden' name='category' value='<?php echo $category-> getId(); ?>' />
 			
 			
 			
@@ -216,7 +217,9 @@ function submitForm(name, form, value){
 			</form>
 			
 	
-			<?php if($projects[0] != null){	
+			<?php 
+				$img_loop_counter = 1;
+				if($projects[0] != null){	
 				foreach($images as $image){
 			?>
 				<p class='image_seperator'>===================================================================================================================</p>
@@ -226,60 +229,67 @@ function submitForm(name, form, value){
 				//echo "movieUrl = $movieUrl<br />";
 				if($movieUrl != null){ 
 				?>
-					<h5 class='image_title'>Movie</h5>			
+					<h5 class='image_title'>Movie</h5>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>&projId=<?php echo $project-> getId(); ?>'>Delete this video</a> or edit it below:</p>			
 				<?php 
 				} else{	 
 				?>
 					<h5 class='image_title'>Image</h5>
+					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>&projId=<?php echo $project-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 				<?php 
 				}
 				?>	
-					<p class='delete_edit_link'><a href='/forms/delete.php?type=image&Id=<?php echo $image-> getId(); ?>'>Delete this image</a> or edit it below:</p>
 					
 					
+				
+						
+						
 					<table class='images_table'>
 					<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
 			
 					<td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
 					</table>
-						
-		
-		
-				
-				
-				<form action='/update' enctype='multipart/form-data' method='post'>
 					
+					<table id='admin_form_table' class='input_table'>
+					<tbody>
+		
 				
+				
+				<!-- =========================== START info Form =============================== -->
+					
+					<form id='admin_form' action="/update" enctype='multipart/form-data' method='post'>
+					
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
 					<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />
 					<input type='hidden' name='image_id' value='<?php echo $image-> getId();?>' />
-				
 					
-					<table class='input_table'>
 					<?php 
 					$movieUrl = $image-> getMovieUrl();
 					//echo "movieUrl = $movieUrl<br />";
 					if($movieUrl != null){ 
 					?>
-						<tr><td>Vimeo reference:</td><td> <input type='text' name='video' /></td><td>(e.g. 13703809)</td></tr>
-						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
+						<tr><td>Replace Vimeo reference:</td><td> <input type='text' name='video' /></td><td>(e.g. 13703809)</td></tr>
+						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td><td>&nbsp</td></tr>
 					<?php }else{ ?>
 						<tr><td>Replace Main Image File:</td><td> <input type='file' name='main' /></td></tr>
 						<tr><td>Replace Thumbnail File:</td><td> <input type='file' name='thumb' /></td></tr>
 					<?php 
 					}	 
 					?>
-				
 					
+					</tbody>
+					</table>
 					
+					<table id='info_table<?php echo $img_loop_counter; ?>' class='input_table'>
+					<tbody>
 					<?php 
 					$c=1;
 					foreach ($image-> getInfo() as $info_line) {
 					?>
-						<tr>
+						<tr id='info_tr<?php echo $c; ?>'>
 							<td>Text to Display (line <?php echo $c; ?>):</td>
-							<td><input  name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
-							<td><a class='delete_info_line<?php echo $c; ?>' href=''>delete</a></td>
+							<td><input id='<?php echo $c;?>' name ='display_text_line<?php echo $c; ?>' value='<?php echo $info_line; ?>' type='text' /></td>
+							<td><a id='<?php echo $c;?>' class='delete_element' href='#'>delete</a></td>
 						</tr>
 						
 					<?php 
@@ -287,8 +297,16 @@ function submitForm(name, form, value){
 					} 
 					?>
 					
-					<tr><td><a class='add_info_line' href='/forms/create_text_line.php'>Add Text Line</a></td><td>&nbsp</td></tr>
 					
+					<tr><td><a id='<?php echo $c-1;?>' class='add_text_line' href='#'>Add Text Line</a></td></tr>
+					</tbody>
+					</table>
+					
+					
+					
+					
+					<table id='links_table<?php echo $img_loop_counter; ?>' class='input_table'>
+					<tbody>
 					<?php 
 					
 					$links_text = $image-> getLinks(); //Links Url
@@ -302,25 +320,31 @@ function submitForm(name, form, value){
 					//echo "no_of_links_text = $no_of_links_text <br />";
 					//echo "no_of_links_url = $no_of_links_url <br />";
 					for($i=0; $i<$upper_limit; $i++){ ?>
-						<tr>
-							<td><input class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
-							<td><input class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
-							<td><a class='delete_link<?php echo $i; ?>' href='#'>delete</a></td>
+						<tr id='link_tr<?php echo $i; ?>'>
+							<td><input id='<?php echo $i;?>' class='link_text' name ='link_text<?php echo $i; ?>' type='text' value='<?php echo $links_text[$i]; ?>' /></td>
+							<td><input id='<?php echo $i;?>' class='link_url' name ='link_url<?php echo $i; ?>' type='text' value='<?php echo $links_url[$i]; ?>' /></td>
+							<td><a id='<?php echo $i;?>' class='delete_link' href='#'>delete</a></td>
 						</tr>
 					<?php 
 					} 
 					?>
-					
-					<tr><td><a class='add_link' href='/forms/create_link.php'>Add Link</a></td><td>&nbsp</td></tr>
-					<tr><td>&nbsp</td><td><input type='submit' value='save' /></td></tr>
-				
+				<tr><td><a id='<?php echo $i-1;?>' class='add_link' href='#'>Add Link</a></td></tr>
+				</tbody>
 				</table>
+				
+				
+				
+				<br />
+				<input id='admin_save_btn' type='submit' value='save' />
 				<input type='hidden' name='MAX_FILE_SIZE' value='524288'>
 				</form>
+				
+				<!-- =========================== START info Form =============================== -->
 				
 				
 				
 				<?php 
+				$img_loop_counter++;
 				}
 			}
 	?>
