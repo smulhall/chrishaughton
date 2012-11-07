@@ -257,7 +257,7 @@ function submitForm(name, form, value){
 				
 				<!-- =========================== START info Form =============================== -->
 					
-					<form id='admin_form' action="/update" enctype='multipart/form-data' method='post'>
+					<form class='admin_form' action="/update" enctype='multipart/form-data' method='post'>
 					
 					<input type='hidden' name='category_id' value='<?php echo $category-> getId();?>' />
 					<input type='hidden' name='project_id' value='<?php echo $project-> getId();?>' />

@@ -72,13 +72,13 @@ function deleteLink(){
 }
 
 function setupForm(){
-	$("#admin_form").submit(function(event){
+	$(".admin_form").submit(function(event){
     // setup some local variables
     	var newInputs = $('.newInput');
-		var $form = $("#admin_form");
+		var $form = $(".admin_form");
 		var serializedData = $form.serialize();
 		
-		for(i=0;newInputs.length;i++){
+		for(i=0;i<newInputs.length;i++){
 			input = newInputs[i];
 			value = input.value;
 			serializedData += "&"+input.name + "=" + input.value;
@@ -86,6 +86,7 @@ function setupForm(){
 		
 	    $.ajax({
 	        url: "/update",
+	        contentType: "multipart/form-data",
 	        type: "post",
 	        data: serializedData,
 	        async: false
