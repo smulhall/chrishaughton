@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +12,12 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @Entity
+@Index
 public class Project {
 
 	@Id
@@ -22,6 +25,8 @@ public class Project {
 	private String title;
 	private Key<Category> category;	
 	private List<Ref<Picture>> images = new ArrayList<Ref<Picture>>();
+	private String text;
+	private Date date;
 
 	public Project(){}
 	
@@ -96,10 +101,17 @@ public class Project {
 	public List<Picture> getImages(){
 		List<Picture> results = new ArrayList<Picture>(images.size());
 		for(Ref<Picture> image : images){
-			
 			Picture picture = ofy().load().key(image.getKey()).get();
 			results.add(picture);
 		}
+		return results;
+	}
+	
+
+	public List<Picture> getImagesOrder(){
+		List<Picture> results = ofy().load().type(Picture.class).
+				filter("project", Key.create(Project.class, this.getId())).order("-date").list();
+				
 		return results;
 	}
 	
@@ -114,6 +126,14 @@ public class Project {
     	Key<Picture> key = Key.create(Picture.class, image.getId());
     	Ref<Picture> ref = Ref.create(key, image);
     	images.add(ref);
+    }
+    
+    public void removeImage(Picture image){
+    	
+    	Key<Picture> key = Key.create(Picture.class, image.getId());
+    	Ref<Picture> ref = Ref.create(key, image);
+    	int index = images.indexOf(ref);
+    	images.remove(index);
     }
 
 	public Key<Category> getCategory() {
@@ -135,6 +155,22 @@ public class Project {
 		}
 		
 		return null;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
