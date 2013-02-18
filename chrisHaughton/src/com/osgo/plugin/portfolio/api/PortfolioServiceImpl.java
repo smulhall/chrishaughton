@@ -3,6 +3,7 @@ package com.osgo.plugin.portfolio.api;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public List<Project> getProjectList() {
 		
-		List<Project> results = ofy().load().type(Project.class).list();
+		List<Project> results = ofy().load().type(Project.class).order("-date").list();
 		return results;
 	}
 
@@ -41,12 +42,17 @@ public class PortfolioServiceImpl implements PortfolioService {
 	public void deleteProject(final long id) {
 		ofy().transactNew(new VoidWork() {
 		    public void vrun() {
+		    	Project project = ofy().load().key(Key.create(Project.class, id)).get();
+		    	Category category = ofy().load().key(project.getCategory()).get();
+		    	category.removeProject(project);
 		    	ofy().delete().key(Key.create(Project.class, id));
+		    	ofy().save().entity(category);
 		    }
 		});
 	}
 	
 	public Project addProject(final Project project, Category category) {
+		project.setDate(Calendar.getInstance().getTime());
 		Project result = ofy().transactNew(new Work<Project>(){
 			@Override
 			public Project run() {
@@ -62,7 +68,8 @@ public class PortfolioServiceImpl implements PortfolioService {
 		Project result = ofy().transactNew(new Work<Project>(){
 			@Override
 			public Project run() {
-				Project proj = ofy().load().key(Key.create(Project.class, project.getId())).get();
+				Key<Project> key = ofy().save().entity(project).now();
+				Project proj = ofy().load().key(key).get();
 				return proj;
 			}		
 		});
@@ -71,16 +78,37 @@ public class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public Project addProject(final Map<String, Object> input) {
+		
+		final Category category;
+		String idStr = (String) input.get("category");
+		if(idStr!=null){
+			category = ofy().load().key(Key.create(Category.class, Long.parseLong(idStr))).get();
+		} else {
+			category = null;
+		}
+		
 		Project result = ofy().transactNew(new Work<Project>(){
 			@SuppressWarnings("unchecked")
 			@Override
 			public Project run() {
 				String title = (String) input.get("title");
+				String text = (String) input.get("text");
 				Project project = new Project();
+				project.setDate(Calendar.getInstance().getTime());
+				if(category!=null){
+					project.setCategory((Key.create(Category.class, category.getId())));
+				}
 				project.setTitle(title);
+				project.setText(text);
 				Key<Project> result = ofy().save().entity(project).now();
-				Project obj = ofy().load().key(result).get();
-				return obj;		
+				project = ofy().load().key(result).get();			
+				
+				if(category!=null){
+					category.addProject(project);
+					ofy().save().entities(category).now();
+				}
+				
+				return project;		
 			}		
 		});
 		return result;
@@ -106,29 +134,83 @@ public class PortfolioServiceImpl implements PortfolioService {
 		});
 		
 	}
+	
+	@Override
+	public void deleteImage(final long id, final long projectId) {
+		ofy().transactNew(new VoidWork(){
+			@Override
+			public void vrun() {
+				Picture image = ofy().load().key(Key.create(Picture.class, id)).get();
+				Project project = ofy().load().key(Key.create(Project.class, projectId)).get();
+				project.removeImage(image);
+				ofy().save().entity(project);				
+				// removes image from db
+				ofy().delete().entity(image);
+			}		
+		});	
+	}
 
 	@Override
 	public List<Category> getCategoryList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category> results = ofy().load().type(Category.class).order("-date").list();
+		return results;
 	}
 
 	@Override
 	public Category getCategory(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ofy().load().key(Key.create(Category.class, id)).get();
 	}
 
 	@Override
-	public void deleteCategory(long id) {
-		// TODO Auto-generated method stub
+	public void deleteCategory(final long id) {
+		ofy().transactNew(new VoidWork() {
+		    public void vrun() {
+		    	Category category = ofy().load().key(Key.create(Category.class, id)).get();
+		    	
+		    	List<Project> projects = category.getProjects();
+		    	for(Project p : projects){
+		    		List<Picture> images = p.getImages();
+		    		for(Picture pic : images){
+		    			ofy().delete().entity(pic);
+		    		}
+		    		ofy().delete().entity(p);
+		    	}
+		    	ofy().delete().entity(category);
+		    }
+		});
 		
 	}
 
 	@Override
-	public Key<Category> addCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category addCategory(final Map<String, Object> input) {
+		Category result = ofy().transactNew(new Work<Category>(){
+			@SuppressWarnings("unchecked")
+			@Override
+			public Category run() {
+				String title = (String) input.get("title");
+				String featured = (String)input.get("featured");
+				String link = (String)input.get("link");
+				boolean featuredVal = false;
+				if(featured.equals("true")){
+					if(featured.equals("true"));
+						featuredVal = true;
+				}
+				boolean linkVal = false;
+				if(link.equals("true")){
+					if(link.equals("true"));
+						linkVal = true;
+				}
+				Category category = new Category();
+				category.setDate(Calendar.getInstance().getTime());
+				category.setTitle(title);
+				category.setFeatured(featuredVal);
+				category.setLink(linkVal);
+				Key<Category> result = ofy().save().entity(category).now();
+				Category obj = ofy().load().key(result).get();
+				return obj;		
+			}		
+		});
+		return result;
 	}
 
 	@Override
@@ -137,7 +219,28 @@ public class PortfolioServiceImpl implements PortfolioService {
 		return null;
 	}
 
+	@Override
+	public Object update(final Object entity) {
+		Object result = ofy().transactNew(new Work<Object>(){
+			@Override
+			public Object run() {
+				Key<Object> key = ofy().save().entity(entity).now();
+				Object proj = ofy().load().key(key).get();
+				return proj;
+			}		
+		});
+		return result;
+	}
+	
+	@Override
+	public void delete(final Object entity) {
+		ofy().transactNew(new VoidWork() {
+		    public void vrun() {
+		    	ofy().delete().entity(entity);
+		    }
+		});
+	}
 
-
+	
 		
 }

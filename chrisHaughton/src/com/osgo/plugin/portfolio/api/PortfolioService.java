@@ -12,18 +12,21 @@ import com.osgo.plugin.portfolio.model.objectify.Project;
 public interface PortfolioService {
 	
 	/** Returns list of Projects */
-	List<Project> getProjectList();
+	List<Project> getProjectList(); //TODO: add a category Id
 	Project getProject(long id);
 	void deleteProject(long id);
 	Project addProject(Map<String, Object> input);
 	Project updateProject(Project project);
 	void addImage(Picture image, Project project);
+	void deleteImage(long id, long projectId);
 	
 	List<Category> getCategoryList();
 	Category getCategory(long id);
 	void deleteCategory(long id);
-	Key<Category> addCategory(Category category);
+	Category addCategory(Map<String, Object> input);
 	Category updateCategory(Category category);
 	
+	Object update(Object entity);
+	void delete(Object entity);
 	
 }

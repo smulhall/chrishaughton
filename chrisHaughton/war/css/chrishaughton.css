@@ -1,14 +1,23 @@
 @CHARSET "UTF-8";
 
-@font-face {
-  font-family: chrishaughton;
-  src: url('/view/fonts/ABitLostAlt.otf');
-}
+@font-face {font-family: chrishaughton; src: url('/view/fonts/ABitLostAlt.otf');}
+@font-face {font-family: clarem; src: url('/view/fonts/ClareTMed.ttf');}
+@font-face {font-family: clarel; src: url('/view/fonts/ClareTLig.ttf');}
+@font-face {font-family: coolvetica; src: url('/view/fonts/coolvetica.otf');}
 
 body{
-	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
 }
 
+a img{
+	border: none; //remove blue line in IE
+}
+
+#lhs_menu a:hover img{
+	border: 1px solid #000000;
+	} 
+	
 /* ==================== MAIN ======================== */
 #wrapper{
 	width:960px;
@@ -19,20 +28,42 @@ body{
 
 #header{
 	width:960px;
-	height:90px;
+	height:80px;
 }
 
 #header img{
 float: right;
 margin-right: 780px;
 }
+/* ===================  ========================= */
+.text_page_img{
+	width: 650px;
+	height: 250px;
+}
 
-/* =================== LHS ========================= */
+
+/* =================== LHS & horiz menu ========================= */
 #lhs_menu{
 	float:left;
 	width:190px;
 	font-family: chrishaughton, Arial, Helvetica, sans-serif;
 	color:#000000;
+}
+
+.horiz_menu_ul{
+	margin:5px 0 0 -40px;
+}
+
+.HL {
+	background: #000; 
+	color: #fff;
+	padding:0px 0px 0px 0px;
+}
+
+#lhs_menu a:active, #horiz_links_div a:active
+{ 
+	background-color: #000; 
+	color: #fff;
 }
 
 .lhs_menu_heading_ul{
@@ -41,13 +72,21 @@ margin-right: 780px;
 	text-align:right;
 }
 
-#lhs_menu ul{
+#lhs_menu ul, #horiz_links_div ul{
 	list-style-type:none;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
 }
 
-a.lhs_menu_subheading:link{
+
+a.lhs_menu_subheading:link, a.horiz_menu_a:link, a.lhs_menu_subheading:visited, a.horiz_menu_a:visited{
 	text-decoration:none;
 	color:#000000;
+}
+
+a.horiz_menu_a:link{
+	float:left;
+	margin: 0 10px 0 0;
 }
 
 a.lhs_menu_subheading:link{
@@ -67,9 +106,8 @@ ul#books li{
 }
 
 #social_icons{
-	margin:0 15px 0 0;
-	float:right;
-	width:150px;	
+	margin:0 10px 0 0px;
+	float: right;	
 }
 
 .emphasis{
@@ -80,7 +118,14 @@ ul#books li{
 	padding-bottom: 20px;
 }
 
+.social_icon{
+	float:left;
+}
 /* =========================== horiz menu ============== */
+
+.featured{
+	font-size: 90%;	
+}
 
 #horiz_menu_div{
 	width:500px;
@@ -106,7 +151,9 @@ a.horiz_menu:link{
 }
 
 .horiz_link{
-	
+	text-align: left;
+	padding: 2px 5px 0px 5px;
+	margin: 0 10px 0 0;
 }
 
 
@@ -114,24 +161,50 @@ a.horiz_menu:link{
 
 /* ================= CENTRAL =========================== */	
 
-#central_panel, #homepage_panel, #text_page_panel{
+#central_panel, #homepage_panel, .central_panel_text_pages{
 	float:left;
 	margin:0 10px 0 10px;
 	width:550px;
-	text-align:left;
 }
 
 #central_panel{
+	text-align: center;
+}
+
+.central_panel_portfolio{
 	text-align:center;
 }
 
-#homepage_panel, #text_page_panel{
+
+#central_panel_home{
+	float:left;
+	margin:0 10px 0 10px;
+	width:750px;
+	text-align:center;
+}
+
+#central_panel_home img{
+	width:700px;
+}
+
+#homepage_panel, .central_panel_text_pages{
 	width:750px;	
 }
 
-#central_panel h4{
-	margin:0 0 20px 0;
+h5{
+	margin:0 0 0px 0;
 	padding:0 0 0 0;
+	color: orange;
+	font-size: 120%;
+}
+
+.image_seperator{
+	margin:10px 0 0 0;
+}
+
+.admin_title{
+	clear:left;
+	margin:50px 0 0 0;
 }
 
 p.success{
@@ -161,8 +234,76 @@ p.flow_link{
 	width:730px;
 }
 
+.wait_for_video{
+	z-index: -2;
+	margin: 150px 0 0 0;
+	color:orange;
+}
+
+#video_iframe_div{
+	z-index: 2;
+	margin: -170px 0 0 0;
+}
+/* ================== admin ========================== */
+
+.admin_central_panel{
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+	letter-spacing: 0em;
+	text-align: left;
+	width:550px;
+	float:left;
+	margin:0 10px 0 10px;
+}
+
+.admin_table1{
+	width:650px;
+}
+
+.sublink_textarea{
+	width:500px;
+	height:100px;
+}
+
+#admin_save_btn{
+	clear:left;	
+}
+
+.delete_edit_link{
+	margin: 0 0 0 0;
+}
+
+.image_title{
+	margin: 0 0 0 0;
+}
+
 
 /* ================== text pages ========================== */
+
+.text_pages_content{
+	text-align: left;
+	width: 500px;
+}
+
+.text_pages_content_content{
+	clear: left;
+	font-family: clarem, coolvetica, Arial, Helvetica, sans-serif;
+	letter-spacing: 0em;
+	text-align: left;
+	padding: 10px 0 0 0;
+}
+
+#featured_central_panel_inner{
+	text-align: left;
+	margin: 0 auto;
+	width: 500px;
+}
+
+.text_pages_img{
+	
+}
+
+
+
 iframe#blog{
 	width:700px;
 	height:1000px;
@@ -174,6 +315,10 @@ iframe#rugs{
 	margin-top: -100px;
 }
 
+.text_pages_container{
+	width:650px;
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+}
 /* ================== RHS ========================== */
 
 #rhs_panel{
@@ -186,23 +331,25 @@ iframe#rugs{
 }
 
 img.rhs_thumb{
-	margin:0 10px 10px 0;
+	margin:0 5px 5px 0;
 }
 
 #image_info_wrapper{
-	margin:10px 0 0 0;
-	color:#999;
+	margin:0px 0 0 0;
 	clear:both;
+	width:180px;
+	font-size:80%;
 }
 
 #image_info_wrapper h4{
-	margin:10px 0 5px 0;
+	margin:0px 0 5px 0;
 	font-weight:bold;
-	color:#666;
+	color:#000;
 }
 
 #image_info_wrapper p{
-	margin:-5px 0 0 0;
+	margin:0px 0 0 0;
+	
 }
 
 .dashed_line{
@@ -214,7 +361,22 @@ img.rhs_thumb{
 #info, #links, #more_images{
 	float:left;
 	clear:left;
-	height:90px;
+	/* height:90px; */
+	margin-top:15px;
+}
+
+#links a{
+	color:#222;
+	text-decoration: none;	
+}
+
+#links a:hover{
+	color:#333;
+	text-decoration: none;	
+}
+
+a.horiz_menu_a:active{
+	background-color: #999;
 }
 
 #more_images{
@@ -230,14 +392,14 @@ a#next_ts{
 }
 
 #prev_next{
-	width:175px;
+	width:170px;
 }
 a#prev_ts{
 	float:left;	
 }
 
 img.arrow{
-	width:30px;
+	/* width:30px; */
 }
 
 /* ============================================ */
@@ -245,3 +407,29 @@ img.arrow{
 .input_table td{
 	vertical-align:top;
 }
+
+/* ============================================ */
+.admin_table2, .admin_table2{
+	margin:0 0 0 20px;
+}
+
+/* ================= Featured =========================== */
+#prev_img_btn, #next_img_btn{
+	float:left;
+	text-decoration: none;
+	color: black;
+	font-size: 85%;
+}
+
+#next_img_btn{
+	float:right;
+}
+
+.prev_next_img_btns{
+	width:500px;
+	margin:20px 0 0 0;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
+

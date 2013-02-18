@@ -1,44 +1,98 @@
+<?php 
+import com.osgo.plugin.portfolio.api.PortfolioServiceFactory;
+
+$currCategoryId = $_GET['c'];
+$currProjId = $_GET['p'];
+$currImageId = $_GET['i'];
+//echo "c = $currCategoryId // p = $currProjId // i = $currImageId";
+
+$portfolioService = PortfolioServiceFactory::getPortfolioService();
+$categories = $portfolioService-> getCategoryList(); 
+
+if(isset($currCategoryId)){
+	$category = $portfolioService-> getCategory($currCategoryId);
+}else{
+	//$categories = $portfolioService-> getCategoryList();
+	$category = $categories[0];
+	$currCategoryId = $category-> getId();
+}
+$projects = $category-> getProjects();
+
+//$projectsList = $portfolioService-> getProjectList(); //numerical array of all projects
+
+if(isset($currProjId)){
+	$project = $portfolioService-> getProject($currProjId); //object of singular project containing all images
+}else{
+	$project = $projects[0];
+	$currProjId = $project-> getId();
+}
+$images = $project-> getImages(); //numerical array of all images in this single project
+
+if(isset($currImageId)){
+	$image = $project-> getImageById($currImageId); //particular image user has clicked
+} else {
+	$images = $project-> getImages();
+	$image = $images[0];
+	$currImageId = $image-> getId();
+}
+
+$links_text = $image-> getLinks(); //Links Url
+$links_url = $image-> getLinksText(); //Links Display text
+
+
+//thumbnails pagination calcs
+$total_no_of_thumbnails = count($projects);
+$no_of_thumbnails_per_set = 15; //set no of thumbnails per page
+$no_of_th_sets = ceil($total_no_of_thumbnails / $no_of_thumbnails_per_set);
+$current_th_set = $_GET['ts']; //if set
+$current_ts_upr_limit = $current_th_set * $no_of_thumbnails_per_set;
+$current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
+
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="view/css/chrishaughton.css" />
+<link rel="stylesheet" type="text/css" href="/css/chrishaughton.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>portfolio.php</title>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script type='text/javascript' src='/js/nav_menu.js'></script>
 </head>
 <body>
+<div id='wrapper'>
 
-<div id='wrapper'><div id='header'>
-<a href='index.php?pg=home'><img src='model/images/other/logos/logo_portfolio.jpg' /></a>
-</div><div id='lhs_menu'>
-<ul class='lhs_menu_heading_ul'><li class='lhs_menu_heading'>
-<ul id='books'><a href='index.php?pg=bks&fl=abl&curr_ts=1' class='lhs_menu_subheading'><li>A Bit Lost</li></a>
-<a href='index.php?pg=bks&fl=ong&curr_ts=1' class='lhs_menu_subheading'><li>Oh No George</li></a>
-<a href='index.php?pg=app&fl=hm&curr_ts=1' class='lhs_menu_subheading'><li>Hot Monkey</li></a>
-<a href='index.php?pg=bks&fl=dwihap&curr_ts=1' class='lhs_menu_subheading'><li>Don't worry, I have a plan</li></a>
-</ul></li>
-<li class='lhs_menu_heading'><ul id='other_sites'>
-<a href='index.php?pg=blg' class='lhs_menu_subheading'><li>blog</li></a>
-<a href='index.php?pg=shp' class='lhs_menu_subheading'><li>shop</li></a>
-<a href='index.php?pg=rugs' class='lhs_menu_subheading'><li>rugs</li></a>
-</ul></li>
-<li class='lhs_menu_heading'><ul id='portfolio'>
-<a href='index.php?pg=bks&curr_ts=1' class='lhs_menu_subheading'><li>books</li></a>
-<a href='index.php?pg=ill&curr_ts=1' class='lhs_menu_subheading'><li>illustration</li></a>
-<a href='index.php?pg=ani&curr_ts=1' class='lhs_menu_subheading'><li>animation</li></a>
-<a href='index.php?pg=sk&curr_ts=1' class='lhs_menu_subheading'><li>sketches</li></a>
-<a href='index.php?pg=prj&curr_ts=1' class='lhs_menu_subheading'><li>projects</li></a>
-<a href='index.php?pg=ft&curr_ts=1' class='lhs_menu_subheading'><li>fair trade</li></a>
-</ul></li>
-<li class='lhs_menu_heading'><ul id='about_etc'>
-<a href='index.php?pg=abt-cont' class='lhs_menu_subheading'><li>about/contact</li></a>
-<a href='index.php?pg=prs' class='lhs_menu_subheading'><li>press</li></a>
-</ul></li>
-</ul><img id='social_icons' src='/model/images/other/social_icons.png' /></div>
-<div id='homepage_panel'><img id='homepage_img' src='../model/images/other/home.jpg' /></div>
+<!-- use this to check for id's of home page image -->
+<!-- <p>category = <?php echo $category->getId(); ?> // project = <?php echo $project->getId(); ?> // image = <?php echo $image->getId(); ?></p> -->
 
-</div> <!-- close wrapper div -->
+	<!-- ======================== Header ========================== -->
+	<?php include 'includes/header.php'; ?>
+	
+	
+	
+	<!-- ======================== LHS Menu ========================== -->	
+	<?php include 'includes/leftMenu.php'; ?>
+	
+	
+	<!-- ======================== Central Panel ========================== -->	
+	<div id="central_panel_home">
+		
+		<?php 
+			
+			$movieUrl = $image-> getMovieUrl();
+			if($movieUrl != null){ ?>
+			<p class='wait_for_video'>Please wait for the movie file to load...</p>
+			<div id='video_iframe_div'>
+				<iframe src="http://player.vimeo.com/video/<?php echo $image-> getMovieUrl(); ?>?autoplay=true" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+		<?php }else{ ?>
+			<img class="home_page_image" src="<?php echo $image-> getUrl();?>" />
+		<?php }	 ?>
+	</div> <!-- close central_panel -->
+	
+	
 
+</div> <!-- close wrapper -->
 </body>
 </html>
