@@ -1,0 +1,252 @@
+@CHARSET "UTF-8";
+
+@font-face {
+  font-family: chrishaughton;
+  src: url('/view/fonts/ABitLostAlt.otf');
+}
+
+body{
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+}
+
+/* ==================== MAIN ======================== */
+#wrapper{
+	width:960px;
+	margin:0 auto;
+}
+
+/* =================== HEADER ========================= */
+
+#header{
+	width:960px;
+	height:90px;
+}
+
+#header img{
+float: right;
+margin-right: 780px;
+}
+
+/* =================== LHS ========================= */
+#lhs_menu{
+	float:left;
+	width:190px;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.lhs_menu_heading_ul{
+	margin:0 10px 0 0;
+	padding:0;
+	text-align:right;
+}
+
+#lhs_menu ul{
+	list-style-type:none;
+}
+
+a.lhs_menu_subheading:link{
+	text-decoration:none;
+	color:#000000;
+}
+
+a.lhs_menu_subheading:link{
+	text-decoration:none;
+}
+
+.lhs_menu_heading{
+	padding:0px 0 30px 0;
+}
+
+.lhs_menu_subheading{
+	color:#000000;
+}
+
+ul#books li{
+	margin:0 0 10px 0;
+}
+
+#social_icons{
+	margin:0 15px 0 0;
+	float:right;
+	width:150px;	
+}
+
+.emphasis{
+	font-weight:bold;
+}
+
+.padding-botom-20px{
+	padding-bottom: 20px;
+}
+
+/* =========================== horiz menu ============== */
+
+#horiz_menu_div{
+	width:500px;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	color:#000000;
+	text-align:left;
+}
+
+#horiz_menu ul{
+	
+}
+
+
+#horiz_menu ul li{
+	float:left;
+	list-style-type:none;
+	text-decoration:none;
+	color:#000000;
+}
+
+a.horiz_menu:link{
+	text-decoration:none;
+}
+
+.horiz_link{
+	
+}
+
+
+
+
+/* ================= CENTRAL =========================== */	
+
+#central_panel, #homepage_panel, #text_page_panel{
+	float:left;
+	margin:0 10px 0 10px;
+	width:550px;
+	text-align:left;
+}
+
+#central_panel{
+	text-align:center;
+}
+
+#homepage_panel, #text_page_panel{
+	width:750px;	
+}
+
+#central_panel h4{
+	margin:0 0 20px 0;
+	padding:0 0 0 0;
+}
+
+p.success{
+	color:green;
+	margin:0 0 0 0;
+}
+
+p.error{
+	color:red;
+	margin:0 0 0 0;
+}
+
+p.flow_link{
+	color:#999;
+	margin:10px 0 10px 0;
+}
+
+#central_panel img{
+	/*width:550px;*/
+}
+
+#central_panel video{
+	/*width:550px;*/
+}
+
+#homepage_img{
+	width:730px;
+}
+
+
+/* ================== text pages ========================== */
+iframe#blog{
+	width:700px;
+	height:1000px;
+}
+
+iframe#rugs{
+	width: 1000px;
+	height: 5000px;
+	margin-top: -100px;
+}
+
+/* ================== RHS ========================== */
+
+#rhs_panel{
+	float:right;
+	width:190px;
+}
+
+#thumb_wrapper{
+	height:255px;	
+}
+
+img.rhs_thumb{
+	margin:0 10px 10px 0;
+}
+
+#image_info_wrapper{
+	margin:10px 0 0 0;
+	color:#999;
+	clear:both;
+}
+
+#image_info_wrapper h4{
+	margin:10px 0 5px 0;
+	font-weight:bold;
+	color:#666;
+}
+
+#image_info_wrapper p{
+	margin:-5px 0 0 0;
+}
+
+.dashed_line{
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	text-align: center;
+	width:176px;
+}
+
+#info, #links, #more_images{
+	float:left;
+	clear:left;
+	height:90px;
+}
+
+#more_images{
+	height:150px;
+}
+
+#info h4, #links h4, #more_images h4{
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+}
+
+a#next_ts{
+	float:right;	
+}
+
+#prev_next{
+	width:175px;
+}
+a#prev_ts{
+	float:left;	
+}
+
+img.arrow{
+	width:30px;
+}
+
+/* ============================================ */
+
+.input_table td{
+	vertical-align:top;
+}
+
+/* ============================================ */
+.admin_table2, .admin_table2{
+	margin:0 0 0 20px;
+}

@@ -1,0 +1,435 @@
+@CHARSET "UTF-8";
+
+@font-face {font-family: chrishaughton; src: url('/view/fonts/ABitLostAlt.otf');}
+@font-face {font-family: clarem; src: url('/view/fonts/ClareTMed.ttf');}
+@font-face {font-family: clarel; src: url('/view/fonts/ClareTLig.ttf');}
+@font-face {font-family: coolvetica; src: url('/view/fonts/coolvetica.otf');}
+
+body{
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
+a img{
+	border: none; //remove blue line in IE
+}
+
+#lhs_menu a:hover img{
+	border: 1px solid #000000;
+	} 
+	
+/* ==================== MAIN ======================== */
+#wrapper{
+	width:960px;
+	margin:0 auto;
+}
+
+/* =================== HEADER ========================= */
+
+#header{
+	width:960px;
+	height:80px;
+}
+
+#header img{
+float: right;
+margin-right: 780px;
+}
+/* ===================  ========================= */
+.text_page_img{
+	width: 650px;
+	height: 250px;
+}
+
+
+/* =================== LHS & horiz menu ========================= */
+#lhs_menu{
+	float:left;
+	width:190px;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.horiz_menu_ul{
+	margin:5px 0 0 -40px;
+}
+
+.HL {
+	background: #000; 
+	color: #fff;
+	padding:0px 0px 0px 0px;
+}
+
+#lhs_menu a:active, #horiz_links_div a:active
+{ 
+	background-color: #000; 
+	color: #fff;
+}
+
+.lhs_menu_heading_ul{
+	margin:0 10px 0 0;
+	padding:0;
+	text-align:right;
+}
+
+#lhs_menu ul, #horiz_links_div ul{
+	list-style-type:none;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
+
+a.lhs_menu_subheading:link, a.horiz_menu_a:link, a.lhs_menu_subheading:visited, a.horiz_menu_a:visited{
+	text-decoration:none;
+	color:#000000;
+}
+
+a.horiz_menu_a:link{
+	float:left;
+	margin: 0 10px 0 0;
+}
+
+a.lhs_menu_subheading:link{
+	text-decoration:none;
+}
+
+.lhs_menu_heading{
+	padding:0px 0 30px 0;
+}
+
+.lhs_menu_subheading{
+	color:#000000;
+}
+
+ul#books li{
+	margin:0 0 10px 0;
+}
+
+#social_icons{
+	margin:0 10px 0 0px;
+	float: right;	
+}
+
+.emphasis{
+	font-weight:bold;
+}
+
+.padding-botom-20px{
+	padding-bottom: 20px;
+}
+
+.social_icon{
+	float:left;
+}
+/* =========================== horiz menu ============== */
+
+.featured{
+	font-size: 90%;	
+}
+
+#horiz_menu_div{
+	width:500px;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	color:#000000;
+	text-align:left;
+}
+
+#horiz_menu ul{
+	
+}
+
+
+#horiz_menu ul li{
+	float:left;
+	list-style-type:none;
+	text-decoration:none;
+	color:#000000;
+}
+
+a.horiz_menu:link{
+	text-decoration:none;
+}
+
+.horiz_link{
+	text-align: left;
+	padding: 2px 5px 0px 5px;
+	margin: 0 10px 0 0;
+}
+
+
+
+
+/* ================= CENTRAL =========================== */	
+
+#central_panel, #homepage_panel, .central_panel_text_pages{
+	float:left;
+	margin:0 10px 0 10px;
+	width:550px;
+}
+
+#central_panel{
+	text-align: center;
+}
+
+.central_panel_portfolio{
+	text-align:center;
+}
+
+
+#central_panel_home{
+	float:left;
+	margin:0 10px 0 10px;
+	width:750px;
+	text-align:center;
+}
+
+#central_panel_home img{
+	width:700px;
+}
+
+#homepage_panel, .central_panel_text_pages{
+	width:750px;	
+}
+
+h5{
+	margin:0 0 0px 0;
+	padding:0 0 0 0;
+	color: orange;
+	font-size: 120%;
+}
+
+.image_seperator{
+	margin:10px 0 0 0;
+}
+
+.admin_title{
+	clear:left;
+	margin:50px 0 0 0;
+}
+
+p.success{
+	color:green;
+	margin:0 0 0 0;
+}
+
+p.error{
+	color:red;
+	margin:0 0 0 0;
+}
+
+p.flow_link{
+	color:#999;
+	margin:10px 0 10px 0;
+}
+
+#central_panel img{
+	/*width:550px;*/
+}
+
+#central_panel video{
+	/*width:550px;*/
+}
+
+#homepage_img{
+	width:730px;
+}
+
+.wait_for_video{
+	z-index: -2;
+	margin: 150px 0 0 0;
+	color:orange;
+}
+
+#video_iframe_div{
+	z-index: 2;
+	margin: -170px 0 0 0;
+}
+/* ================== admin ========================== */
+
+.admin_central_panel{
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+	letter-spacing: 0em;
+	text-align: left;
+	width:550px;
+	float:left;
+	margin:0 10px 0 10px;
+}
+
+.admin_table1{
+	width:650px;
+}
+
+.sublink_textarea{
+	width:500px;
+	height:100px;
+}
+
+#admin_save_btn{
+	clear:left;	
+}
+
+.delete_edit_link{
+	margin: 0 0 0 0;
+}
+
+.image_title{
+	margin: 0 0 0 0;
+}
+
+
+/* ================== text pages ========================== */
+
+.text_pages_content{
+	text-align: left;
+	width: 500px;
+}
+
+.text_pages_content_content{
+	clear: left;
+	font-family: clarem, coolvetica, Arial, Helvetica, sans-serif;
+	letter-spacing: 0em;
+	text-align: left;
+	padding: 10px 0 0 0;
+}
+
+#featured_central_panel_inner{
+	text-align: left;
+	margin: 0 auto;
+	width: 500px;
+}
+
+.text_pages_img{
+	
+}
+
+
+
+iframe#blog{
+	width:700px;
+	height:1000px;
+}
+
+iframe#rugs{
+	width: 1000px;
+	height: 5000px;
+	margin-top: -100px;
+}
+
+.text_pages_container{
+	width:650px;
+	font-family: 'Open Sans Condensed', sans-serif; /*Google web font*/
+}
+/* ================== RHS ========================== */
+
+#rhs_panel{
+	float:right;
+	width:190px;
+}
+
+#thumb_wrapper{
+	height:255px;	
+}
+
+img.rhs_thumb{
+	margin:0 5px 5px 0;
+}
+
+#image_info_wrapper{
+	margin:0px 0 0 0;
+	clear:both;
+	width:180px;
+	font-size:80%;
+}
+
+#image_info_wrapper h4{
+	margin:0px 0 5px 0;
+	font-weight:bold;
+	color:#000;
+}
+
+#image_info_wrapper p{
+	margin:0px 0 0 0;
+	
+}
+
+.dashed_line{
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	text-align: center;
+	width:176px;
+}
+
+#info, #links, #more_images{
+	float:left;
+	clear:left;
+	/* height:90px; */
+	margin-top:15px;
+}
+
+#links a{
+	color:#222;
+	text-decoration: none;	
+}
+
+#links a:hover{
+	color:#333;
+	text-decoration: none;	
+}
+
+a.horiz_menu_a:active{
+	background-color: #999;
+}
+
+#more_images{
+	height:150px;
+}
+
+#info h4, #links h4, #more_images h4{
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+}
+
+a#next_ts{
+	float:right;	
+}
+
+#prev_next{
+	width:170px;
+}
+a#prev_ts{
+	float:left;	
+}
+
+img.arrow{
+	/* width:30px; */
+}
+
+/* ============================================ */
+
+.input_table td{
+	vertical-align:top;
+}
+
+/* ============================================ */
+.admin_table2, .admin_table2{
+	margin:0 0 0 20px;
+}
+
+/* ================= Featured =========================== */
+#prev_img_btn, #next_img_btn{
+	float:left;
+	text-decoration: none;
+	color: black;
+	font-size: 85%;
+}
+
+#next_img_btn{
+	float:right;
+}
+
+.prev_next_img_btns{
+	width:500px;
+	margin:20px 0 0 0;
+	font-family: chrishaughton, Arial, Helvetica, sans-serif;
+	letter-spacing: 0.1em;
+}
+
+
