@@ -89,12 +89,12 @@ function submitForm(name, form, value){
 <div id='wrapper'>
 	
 	<!-- ======================== Header ========================== -->
-	<?php include '../views/includes/header.php'; ?>
+	<?php include '../includes/header.php'; ?>
 	
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
-	<?php include '../views/includes/leftMenu.php'; ?>
+	<?php include '../includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
@@ -245,9 +245,9 @@ function submitForm(name, form, value){
 						
 						
 					<table class='images_table'>
-					<tr><td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
+					<tr><td><a href='/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getUrl(); ?>' /></a></td>
 			
-					<td><a href='/views/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
+					<td><a href='/category.php?c=<?php echo $category-> getId(); ?>&p=<?php echo $project-> getId(); ?>&i=<?php echo $image-> getId(); ?>'><img src='<?php echo $image-> getThumbUrl(); ?>' /></a></td></tr>
 					</table>
 					
 					<table id='admin_form_table' class='input_table'>

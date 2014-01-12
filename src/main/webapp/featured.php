@@ -85,7 +85,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
-	<?php include '../views/includes/leftMenu.php'; ?>
+	<?php include 'includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	
@@ -114,7 +114,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 				<?php 
 				foreach($projects as $project_loop){
 				?>
-					<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $project_loop-> getId(); ?>&ts=1' class='horiz_menu_a'><li class='horiz_link menu_link'><?php echo $project_loop-> getTitle(); ?></li></a>
+					<a href='/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $project_loop-> getId(); ?>&ts=1' class='horiz_menu_a'><li class='horiz_link menu_link'><?php echo $project_loop-> getTitle(); ?></li></a>
 				<?php 
 				}
 				?>
@@ -139,7 +139,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 						}
 						
 					?>
-						<a id="prev_img_btn" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Previous Image</a>	
+						<a id="prev_img_btn" href="/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Previous Image</a>
 					<?php 
 					}
 					$upprLimit = $ProjImgTotal - 1;
@@ -150,7 +150,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 							$imgRefNew = $imgRef + 1;
 						}
 					?>
-						<a id="next_img_btn" href="/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>
+						<a id="next_img_btn" href="/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $images[$imgRefNew]-> getId(); ?>&ir=<?php echo $imgRefNew; ?>&ts=<?php echo $current_th_set;?>">Next Image</a>
 					<?php 
 					}
 					?>
@@ -173,7 +173,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 						foreach($images as $img){
 							if($c >= 1){
 								?>
-								<a href='/views/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a> 	
+								<a href='/featured.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId; ?>&i=<?php echo $img-> getId(); ?>&ir=<?php echo $imgRef; ?>&ts=<?php echo $current_th_set; ?>'><img class="rhs_thumb" src="<?php echo $img-> getThumbUrl();?>" /></a>
 								<?php
 							} 
 							$c++;
@@ -191,7 +191,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 			if($current_th_set > 1){
 				$new_th_set = $current_th_set - 1;
 				?>
-				<!-- <a id="prev_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a> -->
+				<!-- <a id="prev_ts" href="/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/prev.jpg" /></a> -->
 			<?php 
 			}
 			?>
@@ -199,7 +199,7 @@ $current_ts_lwr_limit = $current_ts_upr_limit - $no_of_thumbnails_per_set;
 			if($current_th_set < $no_of_th_sets){
 				$new_th_set = $current_th_set + 1;
 			?>
-				<!-- <a id="next_ts" href="/views/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a> -->
+				<!-- <a id="next_ts" href="/category.php?c=<?php echo $currCategoryId; ?>&p=<?php echo $currProjId;?>&i=<?php echo $currImageId; ?>&ts=<?php echo $new_th_set;?>"><img class="arrow" src="/images/next.jpg"></a> -->
 			<?php 
 			}
 			?>

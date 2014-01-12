@@ -45,7 +45,7 @@ if(isset($_POST['project'])){
 	
 	
 	<!-- ======================== LHS Menu ========================== -->	
-	<?php include '../../views/includes/leftMenu.php'; ?>
+	<?php include '../../includes/leftMenu.php'; ?>
 	
 	
 	<!-- ======================== Central Panel ========================== -->	

@@ -13,7 +13,7 @@
 			if($category_loop-> isFeatured()){
 				$featured_projects = $category_loop-> getProjects();
 		?>
-				<a href='/views/featured.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+				<a href='/featured.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
 		<?php 
 			}
 		}
@@ -23,9 +23,9 @@
 	
 	<li class='lhs_menu_heading'>
 		<ul id='other_sites'>
-			<a href='/views/blog.php' class='lhs_menu_subheading'><li class='menu_link'>blog</li></a>
-			<a href='/views/shop.php' class='lhs_menu_subheading'><li class='menu_link'>shop</li></a>
-			<a href='/views/rugs.php' class='lhs_menu_subheading'><li class='menu_link'>rugs</li></a>
+			<a href='/blog.php' class='lhs_menu_subheading'><li class='menu_link'>blog</li></a>
+			<a href='/shop.php' class='lhs_menu_subheading'><li class='menu_link'>shop</li></a>
+			<a href='/rugs.php' class='lhs_menu_subheading'><li class='menu_link'>rugs</li></a>
 		</ul>
 	</li>
 	
@@ -41,7 +41,7 @@
 						}
 						else{
 			?>
-							<a href='/views/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
+							<a href='/category.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>
 			<?php 
 						}
 					}
@@ -58,7 +58,7 @@
 			foreach($categories as $category_loop){
 				if($category_loop-> isLink()){
 			?>
-					<a href='/views/featured.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>			<?php 
+					<a href='/featured.php?c=<?php echo $category_loop-> getId(); ?>&ts=1' class='lhs_menu_subheading'><li class='menu_link'><?php echo $category_loop-> getTitle(); ?></li></a>			<?php
 				}
 			}
 			?>
