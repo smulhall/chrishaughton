@@ -5,6 +5,7 @@ import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import lombok.extern.java.Log;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+@Log
 @Entity
 @Index
 public class Project {
@@ -99,6 +101,7 @@ public class Project {
 	}
 
 	public List<Picture> getImages(){
+    log.info(this.getTitle());
 		List<Picture> results = new ArrayList<Picture>(images.size());
 		for(Ref<Picture> image : images){
 			Picture picture = ofy().load().key(image.getKey()).get();

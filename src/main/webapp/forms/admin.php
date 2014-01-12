@@ -52,9 +52,13 @@ if(isset($proj)){
 	$project = $projects[0];
 }
 
-$images = $project-> getImages();
-$images2 = $images;
-
+$images = array();
+if(isset($project)) {
+    $images = $project-> getImages();
+    $images2 = $images;
+} else {
+    $images = array();
+}
 
 $random = rand();
 ?>
